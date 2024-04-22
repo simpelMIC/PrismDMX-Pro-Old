@@ -1,0 +1,634 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
+		6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
+		6FB0618B2BD6520A00C8C8DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* ContentView.swift */; };
+		6FB0618D2BD6520B00C8C8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */; };
+		6FB061922BD6520B00C8C8DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061912BD6520B00C8C8DC /* Preview Assets.xcassets */; };
+		6FB0619C2BD6520B00C8C8DC /* PrismDMX_ProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0619B2BD6520B00C8C8DC /* PrismDMX_ProTests.swift */; };
+		6FB061A62BD6520B00C8C8DC /* PrismDMX_ProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061A52BD6520B00C8C8DC /* PrismDMX_ProUITests.swift */; };
+		6FB061A82BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061A72BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6FB061982BD6520B00C8C8DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6FB0617B2BD6520A00C8C8DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6FB061822BD6520A00C8C8DC;
+			remoteInfo = "PrismDMX Pro";
+		};
+		6FB061A22BD6520B00C8C8DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6FB0617B2BD6520A00C8C8DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6FB061822BD6520A00C8C8DC;
+			remoteInfo = "PrismDMX Pro";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
+		6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProDocument.swift; sourceTree = "<group>"; };
+		6FB0618A2BD6520A00C8C8DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6FB0618E2BD6520B00C8C8DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FB0618F2BD6520B00C8C8DC /* PrismDMX_Pro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrismDMX_Pro.entitlements; sourceTree = "<group>"; };
+		6FB061912BD6520B00C8C8DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6FB061972BD6520B00C8C8DC /* PrismDMX ProTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrismDMX ProTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB0619B2BD6520B00C8C8DC /* PrismDMX_ProTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProTests.swift; sourceTree = "<group>"; };
+		6FB061A12BD6520B00C8C8DC /* PrismDMX ProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrismDMX ProUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FB061A52BD6520B00C8C8DC /* PrismDMX_ProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProUITests.swift; sourceTree = "<group>"; };
+		6FB061A72BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6FB061802BD6520A00C8C8DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB061942BD6520B00C8C8DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB0619E2BD6520B00C8C8DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6FB0617A2BD6520A00C8C8DC = {
+			isa = PBXGroup;
+			children = (
+				6FB061852BD6520A00C8C8DC /* PrismDMX Pro */,
+				6FB0619A2BD6520B00C8C8DC /* PrismDMX ProTests */,
+				6FB061A42BD6520B00C8C8DC /* PrismDMX ProUITests */,
+				6FB061842BD6520A00C8C8DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6FB061842BD6520A00C8C8DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */,
+				6FB061972BD6520B00C8C8DC /* PrismDMX ProTests.xctest */,
+				6FB061A12BD6520B00C8C8DC /* PrismDMX ProUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6FB061852BD6520A00C8C8DC /* PrismDMX Pro */ = {
+			isa = PBXGroup;
+			children = (
+				6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */,
+				6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */,
+				6FB0618A2BD6520A00C8C8DC /* ContentView.swift */,
+				6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */,
+				6FB0618E2BD6520B00C8C8DC /* Info.plist */,
+				6FB0618F2BD6520B00C8C8DC /* PrismDMX_Pro.entitlements */,
+				6FB061902BD6520B00C8C8DC /* Preview Content */,
+			);
+			path = "PrismDMX Pro";
+			sourceTree = "<group>";
+		};
+		6FB061902BD6520B00C8C8DC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6FB061912BD6520B00C8C8DC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6FB0619A2BD6520B00C8C8DC /* PrismDMX ProTests */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0619B2BD6520B00C8C8DC /* PrismDMX_ProTests.swift */,
+			);
+			path = "PrismDMX ProTests";
+			sourceTree = "<group>";
+		};
+		6FB061A42BD6520B00C8C8DC /* PrismDMX ProUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6FB061A52BD6520B00C8C8DC /* PrismDMX_ProUITests.swift */,
+				6FB061A72BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift */,
+			);
+			path = "PrismDMX ProUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6FB061822BD6520A00C8C8DC /* PrismDMX Pro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FB061AB2BD6520B00C8C8DC /* Build configuration list for PBXNativeTarget "PrismDMX Pro" */;
+			buildPhases = (
+				6FB0617F2BD6520A00C8C8DC /* Sources */,
+				6FB061802BD6520A00C8C8DC /* Frameworks */,
+				6FB061812BD6520A00C8C8DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrismDMX Pro";
+			productName = "PrismDMX Pro";
+			productReference = 6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6FB061962BD6520B00C8C8DC /* PrismDMX ProTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FB061AE2BD6520B00C8C8DC /* Build configuration list for PBXNativeTarget "PrismDMX ProTests" */;
+			buildPhases = (
+				6FB061932BD6520B00C8C8DC /* Sources */,
+				6FB061942BD6520B00C8C8DC /* Frameworks */,
+				6FB061952BD6520B00C8C8DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6FB061992BD6520B00C8C8DC /* PBXTargetDependency */,
+			);
+			name = "PrismDMX ProTests";
+			productName = "PrismDMX ProTests";
+			productReference = 6FB061972BD6520B00C8C8DC /* PrismDMX ProTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6FB061A02BD6520B00C8C8DC /* PrismDMX ProUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FB061B12BD6520B00C8C8DC /* Build configuration list for PBXNativeTarget "PrismDMX ProUITests" */;
+			buildPhases = (
+				6FB0619D2BD6520B00C8C8DC /* Sources */,
+				6FB0619E2BD6520B00C8C8DC /* Frameworks */,
+				6FB0619F2BD6520B00C8C8DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6FB061A32BD6520B00C8C8DC /* PBXTargetDependency */,
+			);
+			name = "PrismDMX ProUITests";
+			productName = "PrismDMX ProUITests";
+			productReference = 6FB061A12BD6520B00C8C8DC /* PrismDMX ProUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6FB0617B2BD6520A00C8C8DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					6FB061822BD6520A00C8C8DC = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					6FB061962BD6520B00C8C8DC = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 6FB061822BD6520A00C8C8DC;
+					};
+					6FB061A02BD6520B00C8C8DC = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 6FB061822BD6520A00C8C8DC;
+					};
+				};
+			};
+			buildConfigurationList = 6FB0617E2BD6520A00C8C8DC /* Build configuration list for PBXProject "PrismDMX Pro" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6FB0617A2BD6520A00C8C8DC;
+			productRefGroup = 6FB061842BD6520A00C8C8DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6FB061822BD6520A00C8C8DC /* PrismDMX Pro */,
+				6FB061962BD6520B00C8C8DC /* PrismDMX ProTests */,
+				6FB061A02BD6520B00C8C8DC /* PrismDMX ProUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6FB061812BD6520A00C8C8DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB061922BD6520B00C8C8DC /* Preview Assets.xcassets in Resources */,
+				6FB0618D2BD6520B00C8C8DC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB061952BD6520B00C8C8DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB0619F2BD6520B00C8C8DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6FB0617F2BD6520A00C8C8DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */,
+				6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */,
+				6FB0618B2BD6520A00C8C8DC /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB061932BD6520B00C8C8DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB0619C2BD6520B00C8C8DC /* PrismDMX_ProTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB0619D2BD6520B00C8C8DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB061A82BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift in Sources */,
+				6FB061A62BD6520B00C8C8DC /* PrismDMX_ProUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6FB061992BD6520B00C8C8DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6FB061822BD6520A00C8C8DC /* PrismDMX Pro */;
+			targetProxy = 6FB061982BD6520B00C8C8DC /* PBXContainerItemProxy */;
+		};
+		6FB061A32BD6520B00C8C8DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6FB061822BD6520A00C8C8DC /* PrismDMX Pro */;
+			targetProxy = 6FB061A22BD6520B00C8C8DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6FB061A92BD6520B00C8C8DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6FB061AA2BD6520B00C8C8DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		6FB061AC2BD6520B00C8C8DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PrismDMX Pro/PrismDMX_Pro.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro/Preview Content\"";
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PrismDMX Pro/Info.plist";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6FB061AD2BD6520B00C8C8DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "PrismDMX Pro/PrismDMX_Pro.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro/Preview Content\"";
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PrismDMX Pro/Info.plist";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6FB061AF2BD6520B00C8C8DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-ProTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrismDMX Pro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PrismDMX Pro";
+			};
+			name = Debug;
+		};
+		6FB061B02BD6520B00C8C8DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-ProTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrismDMX Pro.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PrismDMX Pro";
+			};
+			name = Release;
+		};
+		6FB061B22BD6520B00C8C8DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-ProUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "PrismDMX Pro";
+			};
+			name = Debug;
+		};
+		6FB061B32BD6520B00C8C8DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-ProUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "PrismDMX Pro";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6FB0617E2BD6520A00C8C8DC /* Build configuration list for PBXProject "PrismDMX Pro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FB061A92BD6520B00C8C8DC /* Debug */,
+				6FB061AA2BD6520B00C8C8DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FB061AB2BD6520B00C8C8DC /* Build configuration list for PBXNativeTarget "PrismDMX Pro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FB061AC2BD6520B00C8C8DC /* Debug */,
+				6FB061AD2BD6520B00C8C8DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FB061AE2BD6520B00C8C8DC /* Build configuration list for PBXNativeTarget "PrismDMX ProTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FB061AF2BD6520B00C8C8DC /* Debug */,
+				6FB061B02BD6520B00C8C8DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FB061B12BD6520B00C8C8DC /* Build configuration list for PBXNativeTarget "PrismDMX ProUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FB061B22BD6520B00C8C8DC /* Debug */,
+				6FB061B32BD6520B00C8C8DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6FB0617B2BD6520A00C8C8DC /* Project object */;
+}
