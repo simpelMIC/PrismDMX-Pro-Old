@@ -10,102 +10,48 @@ import SwiftUI
 import Network
 import NWWebSocket
 
-
-
 class Websocket: WebSocketConnectionDelegate {
     var socket: NWWebSocket?
     
-    func connect(ip: String, port: String) {
+    func connect(ip: String, port: String, response: Bool) {
         if let socketURL = URL(string: "\(ip):\(port)") {
-            self.socket
-        }
-    }
-    
-    func webSocketDidConnect(connection: WebSocketConnection) {
-        print("WebSocket connected")
-    }
-
-    func webSocketDidDisconnect(connection: WebSocketConnection, closeCode: NWProtocolWebSocket.CloseCode, reason: Data?) {
-        print("WebSocket disconnected with code: \(closeCode)")
-    }
-
-    func webSocketViabilityDidChange(connection: WebSocketConnection, isViable: Bool) {
-        print("WebSocket viability changed to: \(isViable)")
-    }
-
-    func webSocketDidAttemptBetterPathMigration(result: Result<WebSocketConnection, NWError>) {
-        print("WebSocket attempted better path migration")
-    }
-
-    func webSocketDidReceiveError(connection: WebSocketConnection, error: NWError) {
-        print("WebSocket received error: \(error)")
-        //-65554: NoSuchRecord :: This error occurs when a host is not reachable
-        //POSIXErrorCode(rawValue: 50): Network is down :: This error occurs when the network down is.
-    }
-
-    func webSocketDidReceivePong(connection: WebSocketConnection) {
-        print("WebSocket received Pong")
-    }
-
-    func webSocketDidReceiveMessage(connection: WebSocketConnection, string: String) {
-        print("WebSocket received message as string: \(string)")
-    }
-
-    func webSocketDidReceiveMessage(connection: WebSocketConnection, data: Data) {
-        print("WebSocket received message as data: \(data)")
-    }
-}
-
-class Websocketssss: WebSocketConnectionDelegate {
-    @Binding var isConnected: Bool
-    @Binding var wsError: Bool
-    
-    var ip: String = ""
-    var port: String = ""
-    var socket: NWWebSocket?
-    
-    init(isConnected: Binding<Bool>, wsError: Binding<Bool>) {
-        self._isConnected = isConnected
-        self._wsError = wsError
-    }
-    
-    func connect() {
-        if let socketURL = URL(string: "https://echo.websocket.org") {
             self.socket = NWWebSocket(url: socketURL)
             self.socket?.delegate = self
             self.socket?.connect()
-        } else {
-            print("Invalid URL")
+            if response == true {
+                print("Websocket connected to: \(ip):\(port)")
+            }
         }
     }
     
-    func disconnect() {
+    func disconnect(response: Bool) {
         socket?.disconnect()
-        isConnected = false
-        wsError = false
+        if response == true {
+            print("Websocket disconnect")
+        }
     }
     
-    func sendData() {
-        let data: [UInt8] = [123, 234]
+    func sendData(_ data: [UInt8], response: Bool) {
         let messageData = Data(data)
         self.socket?.send(data: messageData)
-        // Use the WebSocket…
+        if response == true {
+            print("Sent data: \(data)")
+        }
     }
     
-    func sendString() {
-        let message = "Hello, world!"
-        socket?.send(string: message)
-        print("Sent message: Hello, world!")
+    func sendString(_ string: String, response: Bool) {
+        socket?.send(string: string)
+        if response == true {
+            print("Sent message: \(string)")
+        }
     }
-
+    
     func webSocketDidConnect(connection: WebSocketConnection) {
         print("WebSocket connected")
-        isConnected = true
     }
 
     func webSocketDidDisconnect(connection: WebSocketConnection, closeCode: NWProtocolWebSocket.CloseCode, reason: Data?) {
         print("WebSocket disconnected with code: \(closeCode)")
-        isConnected = false
     }
 
     func webSocketViabilityDidChange(connection: WebSocketConnection, isViable: Bool) {
@@ -120,8 +66,6 @@ class Websocketssss: WebSocketConnectionDelegate {
         print("WebSocket received error: \(error)")
         //-65554: NoSuchRecord :: This error occurs when a host is not reachable
         //POSIXErrorCode(rawValue: 50): Network is down :: This error occurs when the network down is.
-        wsError = true
-        isConnected = false
     }
 
     func webSocketDidReceivePong(connection: WebSocketConnection) {

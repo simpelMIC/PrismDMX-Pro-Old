@@ -16,6 +16,8 @@ struct mainView: View {
     }
 }
 
+/*
 #Preview {
     mainView(document: .constant(PrismDMXProDocument(workspace: Workspace(text: ""))))
 }
+*/

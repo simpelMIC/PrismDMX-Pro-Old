@@ -9,7 +9,6 @@ import Foundation
 
 struct Workspace: Equatable, Identifiable, Codable {
     var id = UUID()
-    var text: String
     var settings: Settings
 }
 
