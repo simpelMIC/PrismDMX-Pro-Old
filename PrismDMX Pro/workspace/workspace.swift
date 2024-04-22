@@ -15,7 +15,6 @@ struct WorkspaceView: View {
     @State var sideBarVisibility: NavigationSplitViewVisibility = .doubleColumn
     
     var body: some View {
-        #if os(macOS)
         NavigationSplitView(columnVisibility: $sideBarVisibility) {
             List(SideBarItem.allCases, selection: $selectedSideBarItem) { item in
                 NavigationLink(
@@ -26,16 +25,13 @@ struct WorkspaceView: View {
         } detail: {
             switch selectedSideBarItem {
             case .setup:
-                Setup(wsSettings: $workspace.settings.wsSettings)
+                Setup(workspace: $workspace)
             case .config:
                 EmptyView()
             case .playbacks:
                 EmptyView()
             }
         }
-        #else
-        EmptyView()
-        #endif
     }
 }
 

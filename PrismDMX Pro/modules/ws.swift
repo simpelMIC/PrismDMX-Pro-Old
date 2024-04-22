@@ -23,29 +23,42 @@ class Websocket: WebSocketConnectionDelegate {
     }
     
     func connect(ip: Binding<String>, port: Binding<String>, response: Bool) {
-        if response == true {
-            print("Connecting to \(ip.wrappedValue):\(port.wrappedValue)...")
+        // Check if the IP is a valid URL
+        guard let url = URL(string: ip.wrappedValue), url.scheme != nil else {
+            // Print an error message or handle the invalid URL case as needed
+            error = "Invalid URL: \(ip.wrappedValue)"
+            return
         }
-        if port.wrappedValue == "" { //If there is no port this part removes the ":"
-            if let socketURL = URL(string: "\(ip.wrappedValue)") {
-                self.socket = NWWebSocket(url: socketURL)
-                self.socket?.delegate = self
-                self.socket?.connect()
-                if response == true {
-                    print("Websocket connected to: \(ip.wrappedValue)")
-                }
+        
+        // Connect only if the port is empty
+        if port.wrappedValue.isEmpty {
+            if response {
+                print("Connecting to \(ip.wrappedValue)")
             }
-        } else { //Opposite
-            if let socketURL = URL(string: "\(ip.wrappedValue):\(port.wrappedValue)") {
-                self.socket = NWWebSocket(url: socketURL)
-                self.socket?.delegate = self
-                self.socket?.connect()
-                if response == true {
-                    print("Websocket connected to: \(ip.wrappedValue):\(port.wrappedValue)")
+            connectToSocket(url: url, response: response)
+        } else {
+            // If the port is provided, proceed with the connection
+            let urlString = "\(ip.wrappedValue):\(port.wrappedValue)"
+            if let socketURL = URL(string: urlString) {
+                if response {
+                    print("Connecting to \(urlString)...")
                 }
+                connectToSocket(url: socketURL, response: response)
+            } else {
+                error = "Invalid URL: \(urlString)"
             }
         }
     }
+
+    func connectToSocket(url: URL, response: Bool) {
+        self.socket = NWWebSocket(url: url)
+        self.socket?.delegate = self
+        self.socket?.connect()
+        if response {
+            print("Websocket connected to: \(url)")
+        }
+    }
+
     
     func disconnect(response: Bool) {
         socket?.disconnect()
@@ -89,8 +102,6 @@ class Websocket: WebSocketConnectionDelegate {
 
     func webSocketDidReceiveError(connection: WebSocketConnection, error: NWError) {
         print("WebSocket received error: \(error)")
-        //-65554: NoSuchRecord :: This error occurs when a host is not reachable
-        //POSIXErrorCode(rawValue: 50): Network is down :: This error occurs when the network down is.
         self.error = error.localizedDescription
     }
 
