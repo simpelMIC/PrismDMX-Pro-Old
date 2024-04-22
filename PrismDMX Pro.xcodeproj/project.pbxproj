@@ -63,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F9D761D2BD714C800622AD6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
 		6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProDocument.swift; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 		6FB0617A2BD6520A00C8C8DC = {
 			isa = PBXGroup;
 			children = (
+				6F9D761D2BD714C800622AD6 /* README.md */,
 				6FB061B42BD652BF00C8C8DC /* LICENSE.txt */,
 				6FB061852BD6520A00C8C8DC /* PrismDMX Pro */,
 				6FB0619A2BD6520B00C8C8DC /* PrismDMX ProTests */,
