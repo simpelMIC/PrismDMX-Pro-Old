@@ -10,6 +10,7 @@ import Foundation
 struct Workspace: Equatable, Identifiable, Codable {
     var id = UUID()
     var text: String
+    var settings: Settings
 }
 
 struct fixture: Equatable, Identifiable, Codable {
@@ -45,4 +46,15 @@ struct color: Equatable, Identifiable, Codable {
     var R: UInt8
     var G: UInt8
     var B: UInt8
+}
+
+struct Settings: Equatable, Identifiable, Codable {
+    var id = UUID()
+    var wsSettings: WsSettings
+}
+
+struct WsSettings: Equatable, Identifiable, Codable {
+    var id = UUID()
+    var ip: String
+    var port: String
 }
