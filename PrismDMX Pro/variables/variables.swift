@@ -37,4 +37,12 @@ struct Channel: Equatable, Identifiable, Codable {
     var internalID: Int
     var channelType: String
     var dmxChannel: Int
+    var color: color
+}
+
+struct color: Equatable, Identifiable, Codable {
+    var id = UUID()
+    var R: UInt8
+    var G: UInt8
+    var B: UInt8
 }

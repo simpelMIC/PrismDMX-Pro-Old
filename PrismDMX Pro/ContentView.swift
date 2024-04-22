@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Binding var document: PrismDMXProDocument
+    
     var body: some View {
         EmptyView()
     }
