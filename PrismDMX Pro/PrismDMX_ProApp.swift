@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import Foundation
 
 @main
 struct PrismDMX_ProApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: PrismDMXProDocument()) { file in
-            ContentView(document: file.$document)
+            #if os(macOS)
+            mainView(document: file.$document)
+            #elseif os(iOS)
+            iosView()
+            #endif
         }
     }
 }

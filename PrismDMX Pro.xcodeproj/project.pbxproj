@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F971ACB2BD6BE2600A2225D /* iosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F971ACA2BD6BE2600A2225D /* iosView.swift */; };
 		6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
 		6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
-		6FB0618B2BD6520A00C8C8DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* ContentView.swift */; };
+		6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
 		6FB0618D2BD6520B00C8C8DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */; };
 		6FB061922BD6520B00C8C8DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061912BD6520B00C8C8DC /* Preview Assets.xcassets */; };
 		6FB0619C2BD6520B00C8C8DC /* PrismDMX_ProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0619B2BD6520B00C8C8DC /* PrismDMX_ProTests.swift */; };
@@ -38,10 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F971ACA2BD6BE2600A2225D /* iosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosView.swift; sourceTree = "<group>"; };
 		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
 		6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProDocument.swift; sourceTree = "<group>"; };
-		6FB0618A2BD6520A00C8C8DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6FB0618A2BD6520A00C8C8DC /* macOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSView.swift; sourceTree = "<group>"; };
 		6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FB0618E2BD6520B00C8C8DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FB0618F2BD6520B00C8C8DC /* PrismDMX_Pro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrismDMX_Pro.entitlements; sourceTree = "<group>"; };
@@ -81,6 +83,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F971AC72BD6BDEE00A2225D /* target */ = {
+			isa = PBXGroup;
+			children = (
+				6F971AC92BD6BE0600A2225D /* iOS */,
+				6F971AC82BD6BDFA00A2225D /* macOS */,
+			);
+			path = target;
+			sourceTree = "<group>";
+		};
+		6F971AC82BD6BDFA00A2225D /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0618A2BD6520A00C8C8DC /* macOSView.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		6F971AC92BD6BE0600A2225D /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6F971ACA2BD6BE2600A2225D /* iosView.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		6FB0617A2BD6520A00C8C8DC = {
 			isa = PBXGroup;
 			children = (
@@ -105,11 +132,11 @@
 		6FB061852BD6520A00C8C8DC /* PrismDMX Pro */ = {
 			isa = PBXGroup;
 			children = (
+				6F971AC72BD6BDEE00A2225D /* target */,
 				6FB061B92BD6964500C8C8DC /* modules */,
 				6FB061B62BD6576300C8C8DC /* variables */,
 				6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */,
 				6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */,
-				6FB0618A2BD6520A00C8C8DC /* ContentView.swift */,
 				6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */,
 				6FB0618E2BD6520B00C8C8DC /* Info.plist */,
 				6FB0618F2BD6520B00C8C8DC /* PrismDMX_Pro.entitlements */,
@@ -293,7 +320,8 @@
 				6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */,
 				6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */,
 				6FB061BB2BD6965400C8C8DC /* json.swift in Sources */,
-				6FB0618B2BD6520A00C8C8DC /* ContentView.swift in Sources */,
+				6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */,
+				6F971ACB2BD6BE2600A2225D /* iosView.swift in Sources */,
 				6FB061B82BD6577000C8C8DC /* variables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +487,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PrismDMX Pro/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "PrismDMX Pro";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -480,9 +510,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -500,6 +531,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PrismDMX Pro/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "PrismDMX Pro";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -521,9 +554,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
