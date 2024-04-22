@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct PrismDMX_ProApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: PrismDMX_ProDocument()) { file in
+        DocumentGroup(newDocument: PrismDMXProDocument()) { file in
             ContentView(document: file.$document)
         }
     }

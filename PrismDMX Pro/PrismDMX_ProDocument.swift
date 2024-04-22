@@ -9,31 +9,27 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 extension UTType {
-    static var exampleText: UTType {
-        UTType(importedAs: "com.example.plain-text")
+    static var prismDMXProDocument: UTType {
+        UTType(exportedAs: "de.micstudios.pmxpro")
     }
 }
 
-struct PrismDMX_ProDocument: FileDocument {
-    var text: String
+struct PrismDMXProDocument: FileDocument, Codable {
+    var workspace: Workspace
 
-    init(text: String = "Hello, world!") {
-        self.text = text
+    init(workspace: Workspace = Workspace(text: "")) {
+        self.workspace = workspace
     }
-
-    static var readableContentTypes: [UTType] { [.exampleText] }
+    
+    static var readableContentTypes: [UTType] { [.prismDMXProDocument] }
 
     init(configuration: ReadConfiguration) throws {
-        guard let data = configuration.file.regularFileContents,
-              let string = String(data: data, encoding: .utf8)
-        else {
-            throw CocoaError(.fileReadCorruptFile)
-        }
-        text = string
+        let data = configuration.file.regularFileContents!
+        self = try JSONDecoder().decode(Self.self, from: data)
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        let data = text.data(using: .utf8)!
+        let data = try JSONEncoder().encode(self)
         return .init(regularFileWithContents: data)
     }
 }

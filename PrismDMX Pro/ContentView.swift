@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Binding var document: PrismDMX_ProDocument
-
+    @Binding var document: PrismDMXProDocument
     var body: some View {
-        TextEditor(text: $document.text)
+        EmptyView()
     }
 }
 
 #Preview {
-    ContentView(document: .constant(PrismDMX_ProDocument()))
+    ContentView(document: .constant(PrismDMXProDocument(workspace: Workspace(text: ""))))
 }
