@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct Setup: View {
+    @Binding var wsSettings: WsSettings
+    
+    var body: some View {
+        Section("Test") {
+            Text("Text")
+        }
+    }
+}
