@@ -44,7 +44,7 @@ struct nearlyMainView: View {
         VStack {
             if document.workspace.isCompleted == true {
                 if connected == true && error == nil { //If the client connects successfully
-                    WorkspaceView(workspace: $document.workspace)
+                    WorkspaceView(workspace: $document.workspace, websocket: $websocket)
                     
                 } else if connected == true && error != nil { //If the client connects but there is an error
                     Text("An error occured: \(error ?? "")")
@@ -127,6 +127,8 @@ struct ConfigView: View {
     }
 }
 
+/*
 #Preview {
     nearlyMainView(document: .constant(PrismDMXProDocument(workspace: Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "127.0.0.1", port: "8888")), fixtures: []))), websocket: Websocket(connected: .constant(true), error: .constant(nil)), connected: .constant(true), error: .constant(nil))
 }
+*/

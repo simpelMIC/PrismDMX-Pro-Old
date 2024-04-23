@@ -12,6 +12,7 @@ struct Workspace: Equatable, Identifiable, Codable {
     var isCompleted: Bool
     var settings: Settings
     var fixtures: [Fixture]
+    var fixtureTemplates: [fixtureTemplate]
 }
 
 struct Settings: Equatable, Identifiable, Codable {

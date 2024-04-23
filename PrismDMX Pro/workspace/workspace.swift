@@ -14,6 +14,8 @@ struct WorkspaceView: View {
     @State var selectedSideBarItem: SideBarItem = .config
     @State var sideBarVisibility: NavigationSplitViewVisibility = .doubleColumn
     
+    @Binding var websocket: Websocket
+    
     var body: some View {
         NavigationSplitView(columnVisibility: $sideBarVisibility) {
             List(SideBarItem.allCases, selection: $selectedSideBarItem) { item in
@@ -25,7 +27,7 @@ struct WorkspaceView: View {
         } detail: {
             switch selectedSideBarItem {
             case .setup:
-                Setup(workspace: $workspace)
+                Setup(workspace: $workspace, websocket: $websocket)
             case .config:
                 EmptyView()
             case .playbacks:
@@ -35,6 +37,8 @@ struct WorkspaceView: View {
     }
 }
 
-#Preview {
-    WorkspaceView(workspace: .constant(Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "", port: "")), fixtures: [])))
-}
+/*
+ #Preview {
+ WorkspaceView(workspace: .constant(Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "", port: "")), fixtures: [])))
+ }
+ */

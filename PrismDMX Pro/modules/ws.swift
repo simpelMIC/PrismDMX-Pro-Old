@@ -85,6 +85,13 @@ class Websocket: WebSocketConnectionDelegate {
         }
     }
     
+    func sendNonBindingString(_ string: String, response: Bool) {
+        socket?.send(string: string)
+        if response == true {
+            print("Sent message: \(string)")
+        }
+    }
+    
     //WS Events
     
     func webSocketDidConnect(connection: WebSocketConnection) {
