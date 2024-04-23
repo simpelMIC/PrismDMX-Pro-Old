@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F2B0D132BD82EEC007F67F0 /* jsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2B0D122BD82EEC007F67F0 /* jsonData.swift */; };
 		6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
 		6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
 		6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
@@ -16,7 +17,7 @@
 		6FB061A62BD6520B00C8C8DC /* PrismDMX_ProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061A52BD6520B00C8C8DC /* PrismDMX_ProUITests.swift */; };
 		6FB061A82BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061A72BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift */; };
 		6FB061B52BD652BF00C8C8DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061B42BD652BF00C8C8DC /* LICENSE.txt */; };
-		6FB061B82BD6577000C8C8DC /* variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* variables.swift */; };
+		6FB061B82BD6577000C8C8DC /* workspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */; };
 		6FB061BB2BD6965400C8C8DC /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061BA2BD6965400C8C8DC /* json.swift */; };
 		6FC0736A2BD6C3B200906170 /* ws.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073692BD6C3B200906170 /* ws.swift */; };
 		6FC0736D2BD6C43200906170 /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 6FC0736C2BD6C43200906170 /* NWWebSocket */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F2B0D122BD82EEC007F67F0 /* jsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonData.swift; sourceTree = "<group>"; };
 		6F9D761D2BD714C800622AD6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
@@ -78,7 +80,7 @@
 		6FB061A52BD6520B00C8C8DC /* PrismDMX_ProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProUITests.swift; sourceTree = "<group>"; };
 		6FB061A72BD6520B00C8C8DC /* PrismDMX_ProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6FB061B42BD652BF00C8C8DC /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = ../../../Downloads/LICENSE.txt; sourceTree = "<group>"; };
-		6FB061B72BD6577000C8C8DC /* variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = variables.swift; sourceTree = "<group>"; };
+		6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspaceConfig.swift; sourceTree = "<group>"; };
 		6FB061BA2BD6965400C8C8DC /* json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json.swift; sourceTree = "<group>"; };
 		6FC073692BD6C3B200906170 /* ws.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ws.swift; sourceTree = "<group>"; };
 		6FC0736F2BD6CAD600906170 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
@@ -214,7 +216,8 @@
 		6FB061B62BD6576300C8C8DC /* variables */ = {
 			isa = PBXGroup;
 			children = (
-				6FB061B72BD6577000C8C8DC /* variables.swift */,
+				6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */,
+				6F2B0D122BD82EEC007F67F0 /* jsonData.swift */,
 			);
 			path = variables;
 			sourceTree = "<group>";
@@ -503,11 +506,12 @@
 			files = (
 				6FC073722BD6CB3800906170 /* workspace.swift in Sources */,
 				6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */,
+				6F2B0D132BD82EEC007F67F0 /* jsonData.swift in Sources */,
 				6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */,
 				6FB061BB2BD6965400C8C8DC /* json.swift in Sources */,
 				6FC0736A2BD6C3B200906170 /* ws.swift in Sources */,
 				6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */,
-				6FB061B82BD6577000C8C8DC /* variables.swift in Sources */,
+				6FB061B82BD6577000C8C8DC /* workspaceConfig.swift in Sources */,
 				6FC073702BD6CAD600906170 /* setup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

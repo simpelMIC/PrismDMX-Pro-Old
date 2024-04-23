@@ -10,7 +10,6 @@ import Foundation
 
 @main
 struct PrismDMX_ProApp: App {
-    
     var body: some Scene {
         DocumentGroup(newDocument: PrismDMXProDocument()) { file in
             mainView(document: file.$document)

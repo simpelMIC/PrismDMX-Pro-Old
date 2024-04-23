@@ -36,5 +36,5 @@ struct WorkspaceView: View {
 }
 
 #Preview {
-    WorkspaceView(workspace: .constant(Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "", port: "")))))
+    WorkspaceView(workspace: .constant(Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "", port: "")), fixtures: [])))
 }

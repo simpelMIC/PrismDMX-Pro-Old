@@ -20,6 +20,7 @@ struct mainView: View {
     @Binding var document: PrismDMXProDocument
     @State var connected: Bool = false
     @State var error: String? = nil
+    @State var isConnectedToMixer: Bool = false
     
     var body: some View {
         nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error), connected: $connected, error: $error)
@@ -90,7 +91,7 @@ struct nearlyMainView: View {
                     }
                 }
             } else {
-                ConfigView(wsSettings: $document.workspace.settings.wsSettings, workspace: $document.workspace, connected: $connected, error: $error)
+                ConfigView(wsSettings: $document.workspace.settings.wsSettings, workspace: $document.workspace, connected: $connected, error: $error )
                 
             }
         }
@@ -127,5 +128,5 @@ struct ConfigView: View {
 }
 
 #Preview {
-    nearlyMainView(document: .constant(PrismDMXProDocument(workspace: Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "127.0.0.1", port: "8888"))))), websocket: Websocket(connected: .constant(true), error: .constant(nil)), connected: .constant(true), error: .constant(nil))
+    nearlyMainView(document: .constant(PrismDMXProDocument(workspace: Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "127.0.0.1", port: "8888")), fixtures: []))), websocket: Websocket(connected: .constant(true), error: .constant(nil)), connected: .constant(true), error: .constant(nil))
 }

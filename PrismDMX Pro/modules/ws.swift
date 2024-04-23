@@ -22,6 +22,8 @@ class Websocket: WebSocketConnectionDelegate {
         self._error = error
     }
     
+    //Connection
+    
     func connect(ip: Binding<String>, port: Binding<String>, response: Bool) {
         // Check if the IP is a valid URL
         guard let url = URL(string: ip.wrappedValue), url.scheme != nil else {
@@ -58,7 +60,6 @@ class Websocket: WebSocketConnectionDelegate {
             print("Websocket connected to: \(url)")
         }
     }
-
     
     func disconnect(response: Bool) {
         socket?.disconnect()
@@ -66,6 +67,8 @@ class Websocket: WebSocketConnectionDelegate {
             print("Websocket disconnect")
         }
     }
+    
+    //Data
     
     func sendData(_ data: Binding<[UInt8]>, response: Bool) {
         let messageData = Data(data.wrappedValue)
@@ -81,6 +84,8 @@ class Websocket: WebSocketConnectionDelegate {
             print("Sent message: \(string)")
         }
     }
+    
+    //WS Events
     
     func webSocketDidConnect(connection: WebSocketConnection) {
         print("WebSocket connected")
