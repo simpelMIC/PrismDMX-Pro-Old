@@ -23,7 +23,7 @@ struct mainView: View {
     @State var isConnectedToMixer: Bool = false
     
     var body: some View {
-        nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error), connected: $connected, error: $error)
+        nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error, workspace: $document.workspace), connected: $connected, error: $error)
             .onAppear {
                 connected = false
                 error = nil

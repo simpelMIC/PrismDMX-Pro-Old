@@ -17,9 +17,12 @@ class Websocket: WebSocketConnectionDelegate {
     @Binding var connected: Bool
     @Binding var error: String?
     
-    init(connected: Binding<Bool>, error: Binding<String?>) {
+    @Binding var workspace: Workspace
+    
+    init(connected: Binding<Bool>, error: Binding<String?>, workspace: Binding<Workspace>) {
         self._connected = connected
         self._error = error
+        self._workspace = workspace
     }
     
     //Connection
@@ -123,6 +126,7 @@ class Websocket: WebSocketConnectionDelegate {
 
     func webSocketDidReceiveMessage(connection: WebSocketConnection, string: String) {
         print("WebSocket received message as string: \(string)")
+        //On Recieve change data
     }
 
     func webSocketDidReceiveMessage(connection: WebSocketConnection, data: Data) {
