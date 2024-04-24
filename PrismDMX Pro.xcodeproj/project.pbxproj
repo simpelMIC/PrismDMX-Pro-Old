@@ -23,13 +23,6 @@
 		6FC0736D2BD6C43200906170 /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 6FC0736C2BD6C43200906170 /* NWWebSocket */; };
 		6FC073702BD6CAD600906170 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0736F2BD6CAD600906170 /* setup.swift */; };
 		6FC073722BD6CB3800906170 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073712BD6CB3800906170 /* workspace.swift */; };
-		6FC0737C2BD6E9E100906170 /* PrismDMX_Pro_MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0737B2BD6E9E100906170 /* PrismDMX_Pro_MobileApp.swift */; };
-		6FC0737E2BD6E9E100906170 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0737D2BD6E9E100906170 /* ContentView.swift */; };
-		6FC073802BD6E9E300906170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC0737F2BD6E9E300906170 /* Assets.xcassets */; };
-		6FC073832BD6E9E300906170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC073822BD6E9E300906170 /* Preview Assets.xcassets */; };
-		6FC0738D2BD6E9E300906170 /* PrismDMX_Pro_MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0738C2BD6E9E300906170 /* PrismDMX_Pro_MobileTests.swift */; };
-		6FC073972BD6E9E300906170 /* PrismDMX_Pro_MobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073962BD6E9E300906170 /* PrismDMX_Pro_MobileUITests.swift */; };
-		6FC073992BD6E9E300906170 /* PrismDMX_Pro_MobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073982BD6E9E300906170 /* PrismDMX_Pro_MobileUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,20 +39,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6FB061822BD6520A00C8C8DC;
 			remoteInfo = "PrismDMX Pro";
-		};
-		6FC073892BD6E9E300906170 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6FB0617B2BD6520A00C8C8DC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6FC073782BD6E9E100906170;
-			remoteInfo = "PrismDMX Pro Mobile";
-		};
-		6FC073932BD6E9E300906170 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6FB0617B2BD6520A00C8C8DC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6FC073782BD6E9E100906170;
-			remoteInfo = "PrismDMX Pro Mobile";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -85,16 +64,6 @@
 		6FC073692BD6C3B200906170 /* ws.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ws.swift; sourceTree = "<group>"; };
 		6FC0736F2BD6CAD600906170 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
 		6FC073712BD6CB3800906170 /* workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspace.swift; sourceTree = "<group>"; };
-		6FC073792BD6E9E100906170 /* PrismDMX Pro Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FC0737B2BD6E9E100906170 /* PrismDMX_Pro_MobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_Pro_MobileApp.swift; sourceTree = "<group>"; };
-		6FC0737D2BD6E9E100906170 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		6FC0737F2BD6E9E300906170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6FC073822BD6E9E300906170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		6FC073882BD6E9E300906170 /* PrismDMX Pro MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrismDMX Pro MobileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FC0738C2BD6E9E300906170 /* PrismDMX_Pro_MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_Pro_MobileTests.swift; sourceTree = "<group>"; };
-		6FC073922BD6E9E300906170 /* PrismDMX Pro MobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrismDMX Pro MobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FC073962BD6E9E300906170 /* PrismDMX_Pro_MobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_Pro_MobileUITests.swift; sourceTree = "<group>"; };
-		6FC073982BD6E9E300906170 /* PrismDMX_Pro_MobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_Pro_MobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,27 +89,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6FC073762BD6E9E100906170 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC073852BD6E9E300906170 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC0738F2BD6E9E300906170 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -152,9 +100,6 @@
 				6FB061852BD6520A00C8C8DC /* PrismDMX Pro */,
 				6FB0619A2BD6520B00C8C8DC /* PrismDMX ProTests */,
 				6FB061A42BD6520B00C8C8DC /* PrismDMX ProUITests */,
-				6FC0737A2BD6E9E100906170 /* PrismDMX Pro Mobile */,
-				6FC0738B2BD6E9E300906170 /* PrismDMX Pro MobileTests */,
-				6FC073952BD6E9E300906170 /* PrismDMX Pro MobileUITests */,
 				6FB061842BD6520A00C8C8DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,9 +110,6 @@
 				6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */,
 				6FB061972BD6520B00C8C8DC /* PrismDMX ProTests.xctest */,
 				6FB061A12BD6520B00C8C8DC /* PrismDMX ProUITests.xctest */,
-				6FC073792BD6E9E100906170 /* PrismDMX Pro Mobile.app */,
-				6FC073882BD6E9E300906170 /* PrismDMX Pro MobileTests.xctest */,
-				6FC073922BD6E9E300906170 /* PrismDMX Pro MobileUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,42 +183,6 @@
 			path = workspace;
 			sourceTree = "<group>";
 		};
-		6FC0737A2BD6E9E100906170 /* PrismDMX Pro Mobile */ = {
-			isa = PBXGroup;
-			children = (
-				6FC0737B2BD6E9E100906170 /* PrismDMX_Pro_MobileApp.swift */,
-				6FC0737D2BD6E9E100906170 /* ContentView.swift */,
-				6FC0737F2BD6E9E300906170 /* Assets.xcassets */,
-				6FC073812BD6E9E300906170 /* Preview Content */,
-			);
-			path = "PrismDMX Pro Mobile";
-			sourceTree = "<group>";
-		};
-		6FC073812BD6E9E300906170 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				6FC073822BD6E9E300906170 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		6FC0738B2BD6E9E300906170 /* PrismDMX Pro MobileTests */ = {
-			isa = PBXGroup;
-			children = (
-				6FC0738C2BD6E9E300906170 /* PrismDMX_Pro_MobileTests.swift */,
-			);
-			path = "PrismDMX Pro MobileTests";
-			sourceTree = "<group>";
-		};
-		6FC073952BD6E9E300906170 /* PrismDMX Pro MobileUITests */ = {
-			isa = PBXGroup;
-			children = (
-				6FC073962BD6E9E300906170 /* PrismDMX_Pro_MobileUITests.swift */,
-				6FC073982BD6E9E300906170 /* PrismDMX_Pro_MobileUITestsLaunchTests.swift */,
-			);
-			path = "PrismDMX Pro MobileUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -336,59 +242,6 @@
 			productReference = 6FB061A12BD6520B00C8C8DC /* PrismDMX ProUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		6FC073782BD6E9E100906170 /* PrismDMX Pro Mobile */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6FC0739A2BD6E9E300906170 /* Build configuration list for PBXNativeTarget "PrismDMX Pro Mobile" */;
-			buildPhases = (
-				6FC073752BD6E9E100906170 /* Sources */,
-				6FC073762BD6E9E100906170 /* Frameworks */,
-				6FC073772BD6E9E100906170 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "PrismDMX Pro Mobile";
-			productName = "PrismDMX Pro Mobile";
-			productReference = 6FC073792BD6E9E100906170 /* PrismDMX Pro Mobile.app */;
-			productType = "com.apple.product-type.application";
-		};
-		6FC073872BD6E9E300906170 /* PrismDMX Pro MobileTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6FC0739D2BD6E9E300906170 /* Build configuration list for PBXNativeTarget "PrismDMX Pro MobileTests" */;
-			buildPhases = (
-				6FC073842BD6E9E300906170 /* Sources */,
-				6FC073852BD6E9E300906170 /* Frameworks */,
-				6FC073862BD6E9E300906170 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6FC0738A2BD6E9E300906170 /* PBXTargetDependency */,
-			);
-			name = "PrismDMX Pro MobileTests";
-			productName = "PrismDMX Pro MobileTests";
-			productReference = 6FC073882BD6E9E300906170 /* PrismDMX Pro MobileTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		6FC073912BD6E9E300906170 /* PrismDMX Pro MobileUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6FC073A02BD6E9E300906170 /* Build configuration list for PBXNativeTarget "PrismDMX Pro MobileUITests" */;
-			buildPhases = (
-				6FC0738E2BD6E9E300906170 /* Sources */,
-				6FC0738F2BD6E9E300906170 /* Frameworks */,
-				6FC073902BD6E9E300906170 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6FC073942BD6E9E300906170 /* PBXTargetDependency */,
-			);
-			name = "PrismDMX Pro MobileUITests";
-			productName = "PrismDMX Pro MobileUITests";
-			productReference = 6FC073922BD6E9E300906170 /* PrismDMX Pro MobileUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -410,17 +263,6 @@
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = 6FB061822BD6520A00C8C8DC;
 					};
-					6FC073782BD6E9E100906170 = {
-						CreatedOnToolsVersion = 15.0.1;
-					};
-					6FC073872BD6E9E300906170 = {
-						CreatedOnToolsVersion = 15.0.1;
-						TestTargetID = 6FC073782BD6E9E100906170;
-					};
-					6FC073912BD6E9E300906170 = {
-						CreatedOnToolsVersion = 15.0.1;
-						TestTargetID = 6FC073782BD6E9E100906170;
-					};
 				};
 			};
 			buildConfigurationList = 6FB0617E2BD6520A00C8C8DC /* Build configuration list for PBXProject "PrismDMX Pro" */;
@@ -440,11 +282,8 @@
 			projectRoot = "";
 			targets = (
 				6FB061822BD6520A00C8C8DC /* PrismDMX Pro */,
-				6FC073912BD6E9E300906170 /* PrismDMX Pro MobileUITests */,
 				6FB061962BD6520B00C8C8DC /* PrismDMX ProTests */,
 				6FB061A02BD6520B00C8C8DC /* PrismDMX ProUITests */,
-				6FC073782BD6E9E100906170 /* PrismDMX Pro Mobile */,
-				6FC073872BD6E9E300906170 /* PrismDMX Pro MobileTests */,
 			);
 		};
 /* End PBXProject section */
@@ -468,29 +307,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6FB0619F2BD6520B00C8C8DC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC073772BD6E9E100906170 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6FC073832BD6E9E300906170 /* Preview Assets.xcassets in Resources */,
-				6FC073802BD6E9E300906170 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC073862BD6E9E300906170 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC073902BD6E9E300906170 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -533,32 +349,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6FC073752BD6E9E100906170 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6FC0737E2BD6E9E100906170 /* ContentView.swift in Sources */,
-				6FC0737C2BD6E9E100906170 /* PrismDMX_Pro_MobileApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC073842BD6E9E300906170 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6FC0738D2BD6E9E300906170 /* PrismDMX_Pro_MobileTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6FC0738E2BD6E9E300906170 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6FC073992BD6E9E300906170 /* PrismDMX_Pro_MobileUITestsLaunchTests.swift in Sources */,
-				6FC073972BD6E9E300906170 /* PrismDMX_Pro_MobileUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -571,16 +361,6 @@
 			isa = PBXTargetDependency;
 			target = 6FB061822BD6520A00C8C8DC /* PrismDMX Pro */;
 			targetProxy = 6FB061A22BD6520B00C8C8DC /* PBXContainerItemProxy */;
-		};
-		6FC0738A2BD6E9E300906170 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6FC073782BD6E9E100906170 /* PrismDMX Pro Mobile */;
-			targetProxy = 6FC073892BD6E9E300906170 /* PBXContainerItemProxy */;
-		};
-		6FC073942BD6E9E300906170 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6FC073782BD6E9E100906170 /* PrismDMX Pro Mobile */;
-			targetProxy = 6FC073932BD6E9E300906170 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -877,159 +657,6 @@
 			};
 			name = Release;
 		};
-		6FC0739B2BD6E9E300906170 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro Mobile/Preview Content\"";
-				DEVELOPMENT_TEAM = A85Q5NP5JW;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro-Mobile";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		6FC0739C2BD6E9E300906170 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro Mobile/Preview Content\"";
-				DEVELOPMENT_TEAM = A85Q5NP5JW;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro-Mobile";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		6FC0739E2BD6E9E300906170 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A85Q5NP5JW;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro-MobileTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrismDMX Pro Mobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PrismDMX Pro Mobile";
-			};
-			name = Debug;
-		};
-		6FC0739F2BD6E9E300906170 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A85Q5NP5JW;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro-MobileTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrismDMX Pro Mobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PrismDMX Pro Mobile";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		6FC073A12BD6E9E300906170 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A85Q5NP5JW;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro-MobileUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
-				TEST_TARGET_NAME = "PrismDMX Pro Mobile";
-			};
-			name = Debug;
-		};
-		6FC073A22BD6E9E300906170 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A85Q5NP5JW;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro-MobileUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
-				TEST_TARGET_NAME = "PrismDMX Pro Mobile";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1065,33 +692,6 @@
 			buildConfigurations = (
 				6FB061B22BD6520B00C8C8DC /* Debug */,
 				6FB061B32BD6520B00C8C8DC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6FC0739A2BD6E9E300906170 /* Build configuration list for PBXNativeTarget "PrismDMX Pro Mobile" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6FC0739B2BD6E9E300906170 /* Debug */,
-				6FC0739C2BD6E9E300906170 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6FC0739D2BD6E9E300906170 /* Build configuration list for PBXNativeTarget "PrismDMX Pro MobileTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6FC0739E2BD6E9E300906170 /* Debug */,
-				6FC0739F2BD6E9E300906170 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6FC073A02BD6E9E300906170 /* Build configuration list for PBXNativeTarget "PrismDMX Pro MobileUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6FC073A12BD6E9E300906170 /* Debug */,
-				6FC073A22BD6E9E300906170 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

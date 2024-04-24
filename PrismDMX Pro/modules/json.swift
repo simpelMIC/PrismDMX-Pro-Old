@@ -40,27 +40,59 @@ class fixturesJson {
 }
  */
 
- class JSON<T: Encodable> {
-     func encode(_ data: T) -> String {
-         let jsonEncoder = JSONEncoder()
-         let jsonData = try! jsonEncoder.encode(data)
-         let json = String(data: jsonData, encoding: String.Encoding.utf8)
-         return json!
-     }
- }
+struct Fixture: Equatable, Codable {
+    var internalID: String
+    var name: String
+    var FixtureGroup: String
+    var template: String
+    var startChannel: String
+}
+
+struct fixtureTemplate: Equatable, Codable, Hashable {
+    var internalID: String
+    var name: String
+    var channels: [Channel]
+}
+
+struct Channel: Equatable, Codable, Hashable {
+    var internalID: String
+    var ChannelName: String
+    var ChannelType: String
+    var dmxChannel: String
+}
+
+struct packet: Equatable, Codable {
+    var fixtures: [Fixture]
+    var fixtureTemplates: [fixtureTemplate]
+}
+
+struct newFixture: Equatable, Codable {
+    var newFixture: hiJuDasIstEineNeueFixture
+}
+
+struct hiJuDasIstEineNeueFixture: Equatable, Codable {
+    var fixture: Fixture
+}
+
+class JsonModule {
+    func encode(_ newFixture: newFixture) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(newFixture) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            return nil
+        }
+    }
+}
 
 struct JSONView: View {
     @Binding var fixtures: [Fixture]
+    @Binding var workspace: Workspace
     @State private var jsonData: String?
+    
     var body: some View {
         VStack {
-            Button {
-                let json = JSON().encode(fixtures)
-                jsonData = json
-            } label: {
-                Text("Encode variables")
-            }
-            Text(jsonData ?? "No data generated")
+            
         }
         .padding()
     }

@@ -12,6 +12,7 @@ struct Setup: View {
     @Binding var workspace: Workspace
     @State var selectedSetupPage: String?
     @Binding var websocket: Websocket
+    @Binding var packet: packet
     
     var body: some View {
         NavigationView {
@@ -34,21 +35,20 @@ struct Setup: View {
             }
             .listStyle(SidebarListStyle())
             .frame(minWidth: 180, idealWidth: 220, maxWidth: 300)
-            currentSetupWindow(selected: $selectedSetupPage, fixtures: $workspace.fixtures, fixtureTemplates: $workspace.fixtureTemplates, websocket: $websocket)
+            currentSetupWindow(selected: $selectedSetupPage, packet: $packet, websocket: $websocket)
         }
     }
 }
 
 struct currentSetupWindow: View {
     @Binding var selected: String?
-    @Binding var fixtures: [Fixture]
-    @Binding var fixtureTemplates: [fixtureTemplate]
+    @Binding var packet: packet
     @Binding var websocket: Websocket
     var body: some View {
         if selected == nil {
             Text("Nothing selected")
         } else if selected == "fixtureConfiguration" {
-            FixtureConfigView(fixtures: $fixtures, fixtureTemplates: $fixtureTemplates, websocket: $websocket)
+            FixtureConfigView(packet: $packet, websocket: $websocket)
         }
     }
 }
@@ -64,66 +64,83 @@ struct DisableIsCompleted: View {
 }
 
 struct FixtureConfigView: View {
-    @Binding var fixtures: [Fixture]
-    @Binding var fixtureTemplates: [fixtureTemplate]
-    @State private var isSheetOpened: Bool = false
-    @State private var selectedIndex: Int = 0
-    @State private var startChannel: String = ""
-    
+    @Binding var packet: packet
     @Binding var websocket: Websocket
     
-    var selectedTemplate: fixtureTemplate {
-        return fixtureTemplates[selectedIndex]
-    }
-    
+    @State private var isSheetOpened: Bool = false
     var body: some View {
         VStack {
-            Text("Fixture Management")
+            Text("Fixture Configuration")
+                .font(.title)
                 .padding(.top)
-            Button {
-                isSheetOpened = true
-                startChannel = "1"
-            } label: {
-                Text("New Fixture")
+            HStack {
+                Button {
+                    isSheetOpened = true
+                } label: {
+                    Text("New Fixture")
+                }
             }
-            List(fixtures.indices, id: \.self) { index in
-                Text(fixtures[index].name)
+            List(packet.fixtures.indices, id: \.self) { index in
+                Text(packet.fixtures[index].name)
             }
             .padding()
         }
-        .sheet(isPresented: $isSheetOpened) {
-            VStack {
-                Text("New Fixture")
-                Text("Choose from a template below")
-                Picker("Select a template", selection: $selectedIndex) {
-                    ForEach(fixtureTemplates.indices, id: \.self) { index in
-                        Text(fixtureTemplates[index].name)
-                    }
-                }
-                HStack {
-                    Text("Starting Address")
-                    TextField("startChannel", text: $startChannel)
-                }
-                .pickerStyle(.menu)
-                HStack {
-                    Button {
-                        isSheetOpened = false
-                    } label: {
-                        Text("Cancel")
-                    }
-                    Button {
-                        fixtures.append(Fixture(internalID: "0", name: selectedTemplate.name, FixtureGroup: "", template: selectedTemplate.internalID, startChannel: $startChannel.wrappedValue))
-                        isSheetOpened = false
-                        websocket.sendNonBindingString(JSON().encode(fixtures), response: true)
-                    } label: {
-                        Text("Create")
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-            }
-            .padding(20)
-        }
+        .sheet(isPresented: $isSheetOpened, content: {
+            newFixtureView(packet: $packet, websocket: $websocket, isSheetPresented: $isSheetOpened)
+        })
     }
 }
 
+struct newFixtureView: View {
+    @Binding var packet: packet
+    @Binding var websocket: Websocket
+    @Binding var isSheetPresented: Bool
+    
+    @State private var selection: fixtureTemplate?
+    @State private var selectedIndex: Int = 0
+    @State private var group: String = ""
+    @State private var startChannel: String = ""
+    
+    private var selectedTemplate: fixtureTemplate {
+        return packet.fixtureTemplates[selectedIndex]
+    }
 
+    var body: some View {
+        VStack {
+            Text("New Fixture")
+            Picker("Pick a template", selection: $selectedIndex) {
+                ForEach(packet.fixtureTemplates.indices, id: \.self) { index in
+                    Text(packet.fixtureTemplates[index].name)
+                }
+            }
+            HStack {
+                Text("Group Identifier")
+                TextField("Group ID", text: $group)
+            }
+            HStack {
+                Text("Starting Channel")
+                TextField("Channel", text: $startChannel)
+            }
+            HStack {
+                Button {
+                    isSheetPresented = false
+                } label: {
+                    Text("Cancel")
+                }
+                Button {
+                    isSheetPresented = false
+                    requestNewFixture(newFixture(newFixture: hiJuDasIstEineNeueFixture(fixture: Fixture(internalID: "", name: selectedTemplate.name, FixtureGroup: group, template: selectedTemplate.internalID, startChannel: startChannel))), websocket: $websocket)
+                } label: {
+                    Text("Create")
+                }
+            }
+        }
+        .padding()
+    }
+    
+    func requestNewFixture(_ newFixture: newFixture, websocket: Binding<Websocket>) {
+        let json = JsonModule()
+        let jsonData = json.encode(newFixture)
+        websocket.wrappedValue.sendNonBindingString(jsonData ?? "", response: true)
+    }
+}

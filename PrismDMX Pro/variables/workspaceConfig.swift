@@ -11,8 +11,6 @@ struct Workspace: Equatable, Identifiable, Codable {
     var id = UUID()
     var isCompleted: Bool
     var settings: Settings
-    var fixtures: [Fixture]
-    var fixtureTemplates: [fixtureTemplate]
 }
 
 struct Settings: Equatable, Identifiable, Codable {

@@ -17,7 +17,7 @@ extension UTType {
 struct PrismDMXProDocument: FileDocument, Codable {
     var workspace: Workspace
 
-    init(workspace: Workspace = Workspace(isCompleted: false, settings: Settings(wsSettings: WsSettings(ip: "ws://127.0.0.1", port: "80")), fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "0", name: "Lixada Wash Moving Head", channels: []), fixtureTemplate(internalID: "1", name: "Lixada 12 LED", channels: [])])) {
+    init(workspace: Workspace = Workspace(isCompleted: false, settings: Settings(wsSettings: WsSettings(ip: "ws://127.0.0.1", port: "80")))) {
         self.workspace = workspace
     }
     

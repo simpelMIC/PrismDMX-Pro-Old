@@ -21,9 +21,10 @@ struct mainView: View {
     @State var connected: Bool = false
     @State var error: String? = nil
     @State var isConnectedToMixer: Bool = false
+    @State var ppacket: packet = packet(fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "", name: "Dimmer", channels: []), fixtureTemplate(internalID: "", name: "PAR56", channels: [])])
     
     var body: some View {
-        nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error, workspace: $document.workspace), connected: $connected, error: $error)
+        nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error, workspace: $document.workspace), connected: $connected, error: $error, packet: $ppacket)
             .onAppear {
                 connected = false
                 error = nil
@@ -40,11 +41,12 @@ struct nearlyMainView: View {
     
     @Binding var connected: Bool
     @Binding var error: String?
+    @Binding var packet: packet
     var body: some View {
         VStack {
             if document.workspace.isCompleted == true {
                 if connected == true && error == nil { //If the client connects successfully
-                    WorkspaceView(workspace: $document.workspace, websocket: $websocket)
+                    WorkspaceView(workspace: $document.workspace, websocket: $websocket, packet: $packet)
                     
                 } else if connected == true && error != nil { //If the client connects but there is an error
                     Text("An error occured: \(error ?? "")")
@@ -121,14 +123,7 @@ struct ConfigView: View {
             } label: {
                 Text("Continue")
             }
-
         }
         .padding()
     }
 }
-
-/*
-#Preview {
-    nearlyMainView(document: .constant(PrismDMXProDocument(workspace: Workspace(isCompleted: true, settings: Settings(wsSettings: WsSettings(ip: "127.0.0.1", port: "8888")), fixtures: []))), websocket: Websocket(connected: .constant(true), error: .constant(nil)), connected: .constant(true), error: .constant(nil))
-}
-*/
