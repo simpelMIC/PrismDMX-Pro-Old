@@ -24,6 +24,7 @@ struct WorkspaceView: View {
                     item.rawValue.localizedCapitalized,
                     value: item
                 )
+                .frame(minWidth: 120, idealWidth: 150, maxWidth: 200, alignment: .topLeading)
             }
         } detail: {
             switch selectedSideBarItem {

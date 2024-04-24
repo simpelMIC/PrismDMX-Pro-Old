@@ -34,7 +34,7 @@ struct Setup: View {
                 }
             }
             .listStyle(SidebarListStyle())
-            .frame(minWidth: 180, idealWidth: 220, maxWidth: 300)
+            .frame(minWidth: 180, idealWidth: 220, maxWidth: 300, alignment: .topLeading)
             currentSetupWindow(selected: $selectedSetupPage, packet: $packet, websocket: $websocket)
         }
     }
