@@ -83,6 +83,15 @@ class JsonModule {
             return nil
         }
     }
+    
+    func decode(_ data: Data) -> packet? {
+        let decoder = JSONDecoder()
+        if let packetData = try? decoder.decode(packet.self, from: data) {
+            return packetData
+        } else {
+            return nil
+        }
+    }
 }
 
 struct JSONView: View {
