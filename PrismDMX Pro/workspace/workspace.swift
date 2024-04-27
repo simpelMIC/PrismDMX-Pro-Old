@@ -15,7 +15,7 @@ struct WorkspaceView: View {
     @State var sideBarVisibility: NavigationSplitViewVisibility = .doubleColumn
     
     @Binding var websocket: Websocket
-    @Binding var packet: packet
+    @Binding var packet: Packet
     
     var body: some View {
         NavigationSplitView(columnVisibility: $sideBarVisibility) {

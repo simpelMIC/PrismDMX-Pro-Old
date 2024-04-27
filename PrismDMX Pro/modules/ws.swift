@@ -18,11 +18,13 @@ class Websocket: WebSocketConnectionDelegate {
     @Binding var error: String?
     
     @Binding var workspace: Workspace
+    @Binding var packet: Packet
     
-    init(connected: Binding<Bool>, error: Binding<String?>, workspace: Binding<Workspace>) {
+    init(connected: Binding<Bool>, error: Binding<String?>, workspace: Binding<Workspace>, packet: Binding<Packet>) {
         self._connected = connected
         self._error = error
         self._workspace = workspace
+        self._packet = packet
     }
     
     //Connection
@@ -127,6 +129,11 @@ class Websocket: WebSocketConnectionDelegate {
     func webSocketDidReceiveMessage(connection: WebSocketConnection, string: String) {
         print("WebSocket received message as string: \(string)")
         //On Recieve change data
+        if let data = string.data(using: .utf8) {
+            packet = JsonModule().decode(data) ?? Packet(fixtures: [], fixtureTemplates: [])
+        } else {
+            print("Couldn't convert recieved message to data")
+        }
     }
 
     func webSocketDidReceiveMessage(connection: WebSocketConnection, data: Data) {

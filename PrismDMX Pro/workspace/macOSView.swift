@@ -21,10 +21,10 @@ struct mainView: View {
     @State var connected: Bool = false
     @State var error: String? = nil
     @State var isConnectedToMixer: Bool = false
-    @State var ppacket: packet = packet(fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "", name: "Dimmer", channels: []), fixtureTemplate(internalID: "", name: "PAR56", channels: [])])
+    @State var ppacket: Packet = Packet(fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "", name: "Dimmer", channels: []), fixtureTemplate(internalID: "", name: "PAR56", channels: [])])
     
     var body: some View {
-        nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error, workspace: $document.workspace), connected: $connected, error: $error, packet: $ppacket)
+        nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error, workspace: $document.workspace, packet: $ppacket), connected: $connected, error: $error, packet: $ppacket)
             .onAppear {
                 connected = false
                 error = nil
@@ -41,7 +41,7 @@ struct nearlyMainView: View {
     
     @Binding var connected: Bool
     @Binding var error: String?
-    @Binding var packet: packet
+    @Binding var packet: Packet
     var body: some View {
         VStack {
             if document.workspace.isCompleted == true {
