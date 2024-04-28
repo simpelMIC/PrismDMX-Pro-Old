@@ -33,6 +33,13 @@ struct Channel: Equatable, Codable, Hashable {
 struct Packet: Equatable, Codable {
     var fixtures: [Fixture]
     var fixtureTemplates: [fixtureTemplate]
+    var mixer: Mixer
+    var fixtureGroups: [FixtureGroup]
+}
+
+struct FixtureGroup: Equatable, Codable {
+    var name: String
+    var internalIDs: [String]
 }
 
 struct newFixture: Equatable, Codable {
@@ -45,6 +52,14 @@ struct editFixture: Equatable, Codable {
 
 struct hiJuDasIstEineNeueFixture: Equatable, Codable {
     var fixture: Fixture
+}
+
+struct DeleteFixture: Equatable, Codable {
+    var deleteFixture: hiJuDasIstDieFixture
+}
+
+struct hiJuDasIstDieFixture: Equatable, Codable {
+    var internalID: String
 }
 
 class JsonModule {
@@ -64,6 +79,26 @@ class JsonModule {
             return String(data: json, encoding: .utf8)
         } else {
             print("Error encoding editFixture")
+            return nil
+        }
+    }
+    
+    func encodeFixtureDeletion(_ deleteFixture: DeleteFixture) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(deleteFixture) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding fixtureDeletion")
+            return nil
+        }
+    }
+    
+    func encodePacket(_ packet: Packet) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(packet) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding packet")
             return nil
         }
     }

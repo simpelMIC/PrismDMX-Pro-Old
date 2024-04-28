@@ -31,7 +31,13 @@ struct WorkspaceView: View {
             case .setup:
                 Setup(workspace: $workspace, websocket: $websocket, packet: $packet)
             case .config:
-                EmptyView()
+                ZStack {
+                    /*LinearGradient(gradient: Gradient(colors: [Color(hex: /*Int(packet.mixer.color) ?? */0xffffff), Color(NSColor.windowBackgroundColor)]), startPoint: .leading, endPoint: .trailing)
+                    Rectangle()
+                        .fill(.clear)
+                        .background(Material.regular)*/
+                    ConfigView(mixer: $packet.mixer)
+                }
             case .playbacks:
                 EmptyView()
             }

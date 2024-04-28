@@ -21,7 +21,7 @@ struct mainView: View {
     @State var connected: Bool = false
     @State var error: String? = nil
     @State var isConnectedToMixer: Bool = false
-    @State var ppacket: Packet = Packet(fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "", name: "Dimmer", channels: []), fixtureTemplate(internalID: "", name: "PAR56", channels: [])])
+    @State var ppacket: Packet = Packet(fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "", name: "Dimmer", channels: []), fixtureTemplate(internalID: "", name: "PAR56", channels: [])], mixer: Mixer(faders: [], buttons: [], color: "#ffffff", page: "0", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [])
     
     var body: some View {
         nearlyMainView(document: $document, websocket: Websocket(connected: $connected, error: $error, workspace: $document.workspace, packet: $ppacket), connected: $connected, error: $error, packet: $ppacket)
@@ -93,7 +93,7 @@ struct nearlyMainView: View {
                     }
                 }
             } else {
-                ConfigView(wsSettings: $document.workspace.settings.wsSettings, workspace: $document.workspace, connected: $connected, error: $error )
+                NWConfigView(wsSettings: $document.workspace.settings.wsSettings, workspace: $document.workspace, connected: $connected, error: $error )
                 
             }
         }
@@ -103,7 +103,7 @@ struct nearlyMainView: View {
     }
 }
 
-struct ConfigView: View {
+struct NWConfigView: View {
     @Binding var wsSettings: WsSettings
     @Binding var workspace: Workspace
     @Binding var connected: Bool

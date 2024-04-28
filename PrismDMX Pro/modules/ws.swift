@@ -107,6 +107,8 @@ class Websocket: WebSocketConnectionDelegate {
 
     func webSocketDidDisconnect(connection: WebSocketConnection, closeCode: NWProtocolWebSocket.CloseCode, reason: Data?) {
         print("WebSocket disconnected with code: \(closeCode)")
+        connected = false
+        error = "Connection lost"
     }
 
     func webSocketViabilityDidChange(connection: WebSocketConnection, isViable: Bool) {
@@ -130,7 +132,7 @@ class Websocket: WebSocketConnectionDelegate {
         print("WebSocket received message as string: \(string)")
         //On Recieve change data
         if let data = string.data(using: .utf8) {
-            packet = JsonModule().decode(data) ?? Packet(fixtures: [], fixtureTemplates: [])
+            packet = JsonModule().decode(data) ?? Packet(fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "0", name: "error", channels: [Channel(internalID: "0", ChannelName: "error", ChannelType: "error", dmxChannel: "1")])], mixer: Mixer(faders: [], buttons: [], color: "0xffffff", page: "0", isMixerAvailable: "false", mixerType: ""), fixtureGroups: [])
         } else {
             print("Couldn't convert recieved message to data")
         }
