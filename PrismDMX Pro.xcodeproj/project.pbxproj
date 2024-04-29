@@ -26,6 +26,7 @@
 		6FA7B5412BE01D1F00D3E712 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
 		6FA7B5432BE01D6100D3E712 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
 		6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
+		6FA7B5462BE02F2100D3E712 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5452BE02F2100D3E712 /* workspace.swift */; };
 		6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
 		6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
 		6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
@@ -68,6 +69,7 @@
 		6F9D761D2BD714C800622AD6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6FA7B53F2BE01D1F00D3E712 /* tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tree.swift; sourceTree = "<group>"; };
 		6FA7B5422BE01D6100D3E712 /* iOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSView.swift; sourceTree = "<group>"; };
+		6FA7B5452BE02F2100D3E712 /* workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspace.swift; sourceTree = "<group>"; };
 		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
 		6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProDocument.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				6FA7B5422BE01D6100D3E712 /* iOSView.swift */,
+				6FA7B5452BE02F2100D3E712 /* workspace.swift */,
 			);
 			path = workspace;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				6F9D4AF92BDE76D60036E802 /* macOSView.swift in Sources */,
 				6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */,
 				6F9D4AFA2BDE76D60036E802 /* config.swift in Sources */,
+				6FA7B5462BE02F2100D3E712 /* workspace.swift in Sources */,
 				6F9D4AFB2BDE76D60036E802 /* workspaceConfig.swift in Sources */,
 				6F9D4AFC2BDE76D60036E802 /* setup.swift in Sources */,
 			);
