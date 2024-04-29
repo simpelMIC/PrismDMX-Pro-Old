@@ -132,7 +132,7 @@ class Websocket: WebSocketConnectionDelegate {
         print("WebSocket received message as string: \(string)")
         //On Recieve change data
         if let data = string.data(using: .utf8) {
-            packet = JsonModule().decode(data) ?? Packet(fixtures: [], fixtureTemplates: [fixtureTemplate(internalID: "0", name: "error", channels: [Channel(internalID: "0", ChannelName: "error", ChannelType: "error", dmxChannel: "1")])], mixer: Mixer(faders: [], buttons: [], color: "0xffffff", page: "0", isMixerAvailable: "false", mixerType: ""), fixtureGroups: [])
+            packet = JsonModule().decode(data) ?? Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [])
         } else {
             print("Couldn't convert recieved message to data")
         }

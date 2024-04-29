@@ -15,11 +15,7 @@ struct Workspace: Equatable, Identifiable, Codable {
 
 struct Settings: Equatable, Identifiable, Codable {
     var id = UUID()
-    var wsSettings: WsSettings
-}
-
-struct WsSettings: Equatable, Identifiable, Codable {
-    var id = UUID()
     var ip: String
     var port: String
+    var project: Project?
 }

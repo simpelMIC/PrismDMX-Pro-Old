@@ -31,10 +31,17 @@ struct Channel: Equatable, Codable, Hashable {
 }
 
 struct Packet: Equatable, Codable {
+    var project: Project?
+    var availableProjects: [Project]
     var fixtures: [Fixture]
     var fixtureTemplates: [fixtureTemplate]
     var mixer: Mixer
     var fixtureGroups: [FixtureGroup]
+}
+
+struct Project: Equatable, Codable {
+    var internalID: String
+    var name: String
 }
 
 struct FixtureGroup: Equatable, Codable {
@@ -60,6 +67,18 @@ struct DeleteFixture: Equatable, Codable {
 
 struct hiJuDasIstDieFixture: Equatable, Codable {
     var internalID: String
+}
+
+struct hiJuDasIstEinNeuesProject: Equatable, Codable {
+    var project: Project
+}
+
+struct newProject: Equatable, Codable {
+    var newProject: hiJuDasIstEinNeuesProject
+}
+
+struct setProject: Equatable, Codable {
+    var setProject: hiJuDasIstEinNeuesProject
 }
 
 class JsonModule {
@@ -96,6 +115,26 @@ class JsonModule {
     func encodePacket(_ packet: Packet) -> String? {
         let encoder = JSONEncoder()
         if let json = try? encoder.encode(packet) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding packet")
+            return nil
+        }
+    }
+    
+    func encodeNewProject(_ newProject: newProject) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(newProject) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding packet")
+            return nil
+        }
+    }
+    
+    func encodeSetProject(_ setProject: setProject) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(setProject) {
             return String(data: json, encoding: .utf8)
         } else {
             print("Error encoding packet")

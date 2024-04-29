@@ -15,35 +15,45 @@ struct Setup: View {
     @Binding var packet: Packet
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
-                VStack {
-                    Button {
-                        workspace.isCompleted = false
-                        websocket.disconnect(response: true)
-                    } label: {
-                        Text("Network Settings")
-                    }
-                    .padding(.top)
-                    .buttonStyle(.accessoryBar)
-                    Button {
-                        selectedSetupPage = "1"
-                    } label: {
-                        Text("Fixture Configuration")
-                    }
-                    .buttonStyle(.accessoryBar)
-                    Button {
-                        selectedSetupPage = "2"
-                    } label: {
-                        Text("JSON Export")
-                    }
-                    .buttonStyle(.accessoryBar)
-                }
+                NavigationLink(destination: DisableIsCompleted(isCompleted: $workspace.isCompleted), label: { Text("Network Settings") })
+                NavigationLink(destination: FixtureConfigView(packet: $packet, websocket: $websocket), label: { Text("Fixture Configuration") })
+                NavigationLink(destination: JSONExportView(packet: $packet), label: { Text("JSON Export") })
+                NavigationLink(destination: EnterProjectView(workspace: $workspace, packet: $packet), label: { Text("Projects") })
             }
-            .listStyle(SidebarListStyle())
-            .frame(minWidth: 180, idealWidth: 220, maxWidth: 300, alignment: .topLeading)
-            currentSetupWindow(selected: $selectedSetupPage, packet: $packet, websocket: $websocket)
+            /*List {
+                
+                 VStack {
+                 Button {
+                 workspace.isCompleted = false
+                 websocket.disconnect(response: true)
+                 } label: {
+                 Text("Network Settings")
+                 }
+                 .padding(.top)
+                 .buttonStyle(.bordered)
+                 Button {
+                 selectedSetupPage = "1"
+                 } label: {
+                 Text("Fixture Configuration")
+                 }
+                 .buttonStyle(.bordered)
+                 Button {
+                 selectedSetupPage = "2"
+                 } label: {
+                 Text("JSON Export")
+                 }
+                 .buttonStyle(.bordered)
+                 }
+                 }
+                 .listStyle(SidebarListStyle())
+                 .frame(minWidth: 180, idealWidth: 220, maxWidth: 300, alignment: .topLeading)
+                 currentSetupWindow(selected: $selectedSetupPage, packet: $packet, websocket: $websocket)
+                 
+            }*/
         }
+        .navigationTitle("Setup")
     }
 }
 
@@ -76,10 +86,12 @@ struct JSONExportView: View {
                 Text("Generate Json")
             }
             Button {
+                #if os(macOS)
                 let pasteboard = NSPasteboard.general
                 pasteboard.clearContents()
                 pasteboard.setString(jsonOutput, forType: .string)
                 buttonText = "Copied!"
+                #endif
             } label: {
                 Text(buttonText)
             }
@@ -93,6 +105,18 @@ struct DisableIsCompleted: View {
         Text("Loading...")
             .onAppear {
                 isCompleted = false
+            }
+    }
+}
+
+struct EnterProjectView: View {
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    var body: some View {
+        Text("Loading...")
+            .onAppear {
+                workspace.settings.project = nil
+                packet.project = nil
             }
     }
 }

@@ -8,6 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		6F4A9CDD2BDD975A003F557B /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A9CDC2BDD975A003F557B /* config.swift */; };
+		6F9D4AF42BDE76D60036E802 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073712BD6CB3800906170 /* workspace.swift */; };
+		6F9D4AF52BDE76D60036E802 /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
+		6F9D4AF62BDE76D60036E802 /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
+		6F9D4AF72BDE76D60036E802 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061BA2BD6965400C8C8DC /* json.swift */; };
+		6F9D4AF82BDE76D60036E802 /* ws.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073692BD6C3B200906170 /* ws.swift */; };
+		6F9D4AF92BDE76D60036E802 /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
+		6F9D4AFA2BDE76D60036E802 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A9CDC2BDD975A003F557B /* config.swift */; };
+		6F9D4AFB2BDE76D60036E802 /* workspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */; };
+		6F9D4AFC2BDE76D60036E802 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0736F2BD6CAD600906170 /* setup.swift */; };
+		6F9D4AFE2BDE76D60036E802 /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 6F9D4AF22BDE76D60036E802 /* NWWebSocket */; };
+		6F9D4B002BDE76D60036E802 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061B42BD652BF00C8C8DC /* LICENSE.txt */; };
+		6F9D4B012BDE76D60036E802 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061912BD6520B00C8C8DC /* Preview Assets.xcassets */; };
+		6F9D4B022BDE76D60036E802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */; };
+		6F9D4B092BDEFA7A0036E802 /* Mobile_Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9D4B082BDEFA7A0036E802 /* Mobile_Assets.xcassets */; };
+		6FA7B5402BE01D1F00D3E712 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
+		6FA7B5412BE01D1F00D3E712 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
+		6FA7B5432BE01D6100D3E712 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
+		6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
 		6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
 		6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
 		6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
@@ -44,7 +62,12 @@
 
 /* Begin PBXFileReference section */
 		6F4A9CDC2BDD975A003F557B /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		6F9D4B062BDE76D60036E802 /* PrismDMX Pro_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro_Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F9D4B072BDE76D60036E802 /* PrismDMX Pro copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PrismDMX Pro copy-Info.plist"; path = "/Users/christiansavage/Documents/XCode Projects/PrismDMX Pro/PrismDMX Pro copy-Info.plist"; sourceTree = "<absolute>"; };
+		6F9D4B082BDEFA7A0036E802 /* Mobile_Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mobile_Assets.xcassets; sourceTree = "<group>"; };
 		6F9D761D2BD714C800622AD6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6FA7B53F2BE01D1F00D3E712 /* tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tree.swift; sourceTree = "<group>"; };
+		6FA7B5422BE01D6100D3E712 /* iOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSView.swift; sourceTree = "<group>"; };
 		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
 		6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProDocument.swift; sourceTree = "<group>"; };
@@ -67,6 +90,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6F9D4AFD2BDE76D60036E802 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F9D4AFE2BDE76D60036E802 /* NWWebSocket in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6FB061802BD6520A00C8C8DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,6 +123,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F0D145A2BE00389008A76AC /* workspace */ = {
+			isa = PBXGroup;
+			children = (
+				6FA7B5422BE01D6100D3E712 /* iOSView.swift */,
+			);
+			path = workspace;
+			sourceTree = "<group>";
+		};
+		6F5955B12BDFF5B200E2B425 /* target */ = {
+			isa = PBXGroup;
+			children = (
+				6F5955B32BDFF66A00E2B425 /* iOS */,
+				6F5955B22BDFF5C000E2B425 /* macOS */,
+			);
+			path = target;
+			sourceTree = "<group>";
+		};
+		6F5955B22BDFF5C000E2B425 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				6FC0736E2BD6CAC700906170 /* workspace */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		6F5955B32BDFF66A00E2B425 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6F0D145A2BE00389008A76AC /* workspace */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		6FB0617A2BD6520A00C8C8DC = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +165,7 @@
 				6FB0619A2BD6520B00C8C8DC /* PrismDMX ProTests */,
 				6FB061A42BD6520B00C8C8DC /* PrismDMX ProUITests */,
 				6FB061842BD6520A00C8C8DC /* Products */,
+				6F9D4B072BDE76D60036E802 /* PrismDMX Pro copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +175,7 @@
 				6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */,
 				6FB061972BD6520B00C8C8DC /* PrismDMX ProTests.xctest */,
 				6FB061A12BD6520B00C8C8DC /* PrismDMX ProUITests.xctest */,
+				6F9D4B062BDE76D60036E802 /* PrismDMX Pro_Mobile.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,12 +183,14 @@
 		6FB061852BD6520A00C8C8DC /* PrismDMX Pro */ = {
 			isa = PBXGroup;
 			children = (
-				6FC0736E2BD6CAC700906170 /* workspace */,
+				6FA7B53F2BE01D1F00D3E712 /* tree.swift */,
+				6F5955B12BDFF5B200E2B425 /* target */,
 				6FB061B92BD6964500C8C8DC /* modules */,
 				6FB061B62BD6576300C8C8DC /* variables */,
 				6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */,
 				6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */,
 				6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */,
+				6F9D4B082BDEFA7A0036E802 /* Mobile_Assets.xcassets */,
 				6FB0618E2BD6520B00C8C8DC /* Info.plist */,
 				6FB0618F2BD6520B00C8C8DC /* PrismDMX_Pro.entitlements */,
 				6FB061902BD6520B00C8C8DC /* Preview Content */,
@@ -186,6 +254,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6F9D4AF12BDE76D60036E802 /* PrismDMX Pro_Mobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F9D4B032BDE76D60036E802 /* Build configuration list for PBXNativeTarget "PrismDMX Pro_Mobile" */;
+			buildPhases = (
+				6F9D4AF32BDE76D60036E802 /* Sources */,
+				6F9D4AFD2BDE76D60036E802 /* Frameworks */,
+				6F9D4AFF2BDE76D60036E802 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrismDMX Pro_Mobile";
+			packageProductDependencies = (
+				6F9D4AF22BDE76D60036E802 /* NWWebSocket */,
+			);
+			productName = "PrismDMX Pro";
+			productReference = 6F9D4B062BDE76D60036E802 /* PrismDMX Pro_Mobile.app */;
+			productType = "com.apple.product-type.application";
+		};
 		6FB061822BD6520A00C8C8DC /* PrismDMX Pro */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6FB061AB2BD6520B00C8C8DC /* Build configuration list for PBXNativeTarget "PrismDMX Pro" */;
@@ -284,11 +372,23 @@
 				6FB061822BD6520A00C8C8DC /* PrismDMX Pro */,
 				6FB061962BD6520B00C8C8DC /* PrismDMX ProTests */,
 				6FB061A02BD6520B00C8C8DC /* PrismDMX ProUITests */,
+				6F9D4AF12BDE76D60036E802 /* PrismDMX Pro_Mobile */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6F9D4AFF2BDE76D60036E802 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F9D4B092BDEFA7A0036E802 /* Mobile_Assets.xcassets in Resources */,
+				6F9D4B002BDE76D60036E802 /* LICENSE.txt in Resources */,
+				6F9D4B012BDE76D60036E802 /* Preview Assets.xcassets in Resources */,
+				6F9D4B022BDE76D60036E802 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6FB061812BD6520A00C8C8DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -316,16 +416,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6F9D4AF32BDE76D60036E802 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FA7B5412BE01D1F00D3E712 /* tree.swift in Sources */,
+				6F9D4AF42BDE76D60036E802 /* workspace.swift in Sources */,
+				6F9D4AF52BDE76D60036E802 /* PrismDMX_ProDocument.swift in Sources */,
+				6F9D4AF62BDE76D60036E802 /* PrismDMX_ProApp.swift in Sources */,
+				6F9D4AF72BDE76D60036E802 /* json.swift in Sources */,
+				6F9D4AF82BDE76D60036E802 /* ws.swift in Sources */,
+				6F9D4AF92BDE76D60036E802 /* macOSView.swift in Sources */,
+				6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */,
+				6F9D4AFA2BDE76D60036E802 /* config.swift in Sources */,
+				6F9D4AFB2BDE76D60036E802 /* workspaceConfig.swift in Sources */,
+				6F9D4AFC2BDE76D60036E802 /* setup.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6FB0617F2BD6520A00C8C8DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FA7B5402BE01D1F00D3E712 /* tree.swift in Sources */,
 				6FC073722BD6CB3800906170 /* workspace.swift in Sources */,
 				6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */,
 				6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */,
 				6FB061BB2BD6965400C8C8DC /* json.swift in Sources */,
 				6FC0736A2BD6C3B200906170 /* ws.swift in Sources */,
 				6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */,
+				6FA7B5432BE01D6100D3E712 /* iOSView.swift in Sources */,
 				6F4A9CDD2BDD975A003F557B /* config.swift in Sources */,
 				6FB061B82BD6577000C8C8DC /* workspaceConfig.swift in Sources */,
 				6FC073702BD6CAD600906170 /* setup.swift in Sources */,
@@ -365,6 +485,98 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6F9D4B042BDE76D60036E802 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = iOSIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "PrismDMX Pro/PrismDMX_Pro.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro/Preview Content\"";
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PrismDMX Pro copy-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "PrismDMX Pro";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-DMobile";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		6F9D4B052BDE76D60036E802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = iOSIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = "PrismDMX Pro/PrismDMX_Pro.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro/Preview Content\"";
+				DEVELOPMENT_TEAM = A85Q5NP5JW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PrismDMX Pro copy-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "PrismDMX Pro";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-DMobile";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.micstudios.PrismDMX-Pro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
 		6FB061A92BD6520B00C8C8DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -417,7 +629,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -472,7 +686,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -660,6 +876,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6F9D4B032BDE76D60036E802 /* Build configuration list for PBXNativeTarget "PrismDMX Pro_Mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F9D4B042BDE76D60036E802 /* Debug */,
+				6F9D4B052BDE76D60036E802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6FB0617E2BD6520A00C8C8DC /* Build configuration list for PBXProject "PrismDMX Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -706,6 +931,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6F9D4AF22BDE76D60036E802 /* NWWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NWWebSocket;
+		};
 		6FC0736C2BD6C43200906170 /* NWWebSocket */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NWWebSocket;
