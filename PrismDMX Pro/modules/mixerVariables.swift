@@ -1,5 +1,5 @@
 //
-//  workspace.swift
+//  mixerVariables.swift
 //  PrismDMX Pro
 //
 //  Created by Christian on 29.04.24.
