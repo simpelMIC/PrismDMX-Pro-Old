@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0DA0BC2BE033C300462EF3 /* mixerVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */; };
+		6F0DA0BD2BE033C300462EF3 /* mixerVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */; };
 		6F4A9CDD2BDD975A003F557B /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A9CDC2BDD975A003F557B /* config.swift */; };
-		6F9D4AF42BDE76D60036E802 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073712BD6CB3800906170 /* workspace.swift */; };
 		6F9D4AF52BDE76D60036E802 /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
 		6F9D4AF62BDE76D60036E802 /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
 		6F9D4AF72BDE76D60036E802 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061BA2BD6965400C8C8DC /* json.swift */; };
 		6F9D4AF82BDE76D60036E802 /* ws.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073692BD6C3B200906170 /* ws.swift */; };
-		6F9D4AF92BDE76D60036E802 /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
-		6F9D4AFA2BDE76D60036E802 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A9CDC2BDD975A003F557B /* config.swift */; };
 		6F9D4AFB2BDE76D60036E802 /* workspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */; };
-		6F9D4AFC2BDE76D60036E802 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0736F2BD6CAD600906170 /* setup.swift */; };
 		6F9D4AFE2BDE76D60036E802 /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 6F9D4AF22BDE76D60036E802 /* NWWebSocket */; };
 		6F9D4B002BDE76D60036E802 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061B42BD652BF00C8C8DC /* LICENSE.txt */; };
 		6F9D4B012BDE76D60036E802 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061912BD6520B00C8C8DC /* Preview Assets.xcassets */; };
@@ -24,9 +22,10 @@
 		6F9D4B092BDEFA7A0036E802 /* Mobile_Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9D4B082BDEFA7A0036E802 /* Mobile_Assets.xcassets */; };
 		6FA7B5402BE01D1F00D3E712 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
 		6FA7B5412BE01D1F00D3E712 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
-		6FA7B5432BE01D6100D3E712 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
 		6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
-		6FA7B5462BE02F2100D3E712 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5452BE02F2100D3E712 /* workspace.swift */; };
+		6FA7B5492BE0309300D3E712 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5472BE0309300D3E712 /* workspace.swift */; };
+		6FA7B54B2BE0320000D3E712 /* jsonVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */; };
+		6FA7B54C2BE0320000D3E712 /* jsonVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */; };
 		6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
 		6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
 		6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
@@ -38,6 +37,9 @@
 		6FB061B52BD652BF00C8C8DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061B42BD652BF00C8C8DC /* LICENSE.txt */; };
 		6FB061B82BD6577000C8C8DC /* workspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */; };
 		6FB061BB2BD6965400C8C8DC /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061BA2BD6965400C8C8DC /* json.swift */; };
+		6FB8F42A2BE19248004C7C52 /* dataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4292BE19248004C7C52 /* dataModule.swift */; };
+		6FB8F42B2BE19248004C7C52 /* dataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4292BE19248004C7C52 /* dataModule.swift */; };
+		6FB8F4312BE197D9004C7C52 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4302BE197D9004C7C52 /* setup.swift */; };
 		6FC0736A2BD6C3B200906170 /* ws.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073692BD6C3B200906170 /* ws.swift */; };
 		6FC0736D2BD6C43200906170 /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 6FC0736C2BD6C43200906170 /* NWWebSocket */; };
 		6FC073702BD6CAD600906170 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0736F2BD6CAD600906170 /* setup.swift */; };
@@ -62,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = mixerVariables.swift; path = "PrismDMX Pro/modules/mixerVariables.swift"; sourceTree = SOURCE_ROOT; };
 		6F4A9CDC2BDD975A003F557B /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		6F9D4B062BDE76D60036E802 /* PrismDMX Pro_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro_Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9D4B072BDE76D60036E802 /* PrismDMX Pro copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PrismDMX Pro copy-Info.plist"; path = "/Users/christiansavage/Documents/XCode Projects/PrismDMX Pro/PrismDMX Pro copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -69,7 +72,8 @@
 		6F9D761D2BD714C800622AD6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6FA7B53F2BE01D1F00D3E712 /* tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tree.swift; sourceTree = "<group>"; };
 		6FA7B5422BE01D6100D3E712 /* iOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSView.swift; sourceTree = "<group>"; };
-		6FA7B5452BE02F2100D3E712 /* workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspace.swift; sourceTree = "<group>"; };
+		6FA7B5472BE0309300D3E712 /* workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspace.swift; sourceTree = "<group>"; };
+		6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonVariables.swift; sourceTree = "<group>"; };
 		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
 		6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProDocument.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		6FB061B42BD652BF00C8C8DC /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = ../../../Downloads/LICENSE.txt; sourceTree = "<group>"; };
 		6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspaceConfig.swift; sourceTree = "<group>"; };
 		6FB061BA2BD6965400C8C8DC /* json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json.swift; sourceTree = "<group>"; };
+		6FB8F4292BE19248004C7C52 /* dataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataModule.swift; sourceTree = "<group>"; };
+		6FB8F4302BE197D9004C7C52 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
 		6FC073692BD6C3B200906170 /* ws.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ws.swift; sourceTree = "<group>"; };
 		6FC0736F2BD6CAD600906170 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
 		6FC073712BD6CB3800906170 /* workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspace.swift; sourceTree = "<group>"; };
@@ -129,7 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				6FA7B5422BE01D6100D3E712 /* iOSView.swift */,
-				6FA7B5452BE02F2100D3E712 /* workspace.swift */,
+				6FA7B5472BE0309300D3E712 /* workspace.swift */,
+				6FB8F4302BE197D9004C7C52 /* setup.swift */,
 			);
 			path = workspace;
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 		6F5955B32BDFF66A00E2B425 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6FB8F4262BE18F5C004C7C52 /* data */,
 				6F0D145A2BE00389008A76AC /* workspace */,
 			);
 			path = iOS;
@@ -229,6 +237,8 @@
 		6FB061B62BD6576300C8C8DC /* variables */ = {
 			isa = PBXGroup;
 			children = (
+				6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */,
+				6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */,
 				6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */,
 			);
 			path = variables;
@@ -241,6 +251,14 @@
 				6FC073692BD6C3B200906170 /* ws.swift */,
 			);
 			path = modules;
+			sourceTree = "<group>";
+		};
+		6FB8F4262BE18F5C004C7C52 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				6FB8F4292BE19248004C7C52 /* dataModule.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 		6FC0736E2BD6CAC700906170 /* workspace */ = {
@@ -424,17 +442,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FA7B5412BE01D1F00D3E712 /* tree.swift in Sources */,
-				6F9D4AF42BDE76D60036E802 /* workspace.swift in Sources */,
+				6FB8F42B2BE19248004C7C52 /* dataModule.swift in Sources */,
 				6F9D4AF52BDE76D60036E802 /* PrismDMX_ProDocument.swift in Sources */,
 				6F9D4AF62BDE76D60036E802 /* PrismDMX_ProApp.swift in Sources */,
 				6F9D4AF72BDE76D60036E802 /* json.swift in Sources */,
 				6F9D4AF82BDE76D60036E802 /* ws.swift in Sources */,
-				6F9D4AF92BDE76D60036E802 /* macOSView.swift in Sources */,
+				6FA7B54C2BE0320000D3E712 /* jsonVariables.swift in Sources */,
 				6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */,
-				6F9D4AFA2BDE76D60036E802 /* config.swift in Sources */,
-				6FA7B5462BE02F2100D3E712 /* workspace.swift in Sources */,
+				6F0DA0BD2BE033C300462EF3 /* mixerVariables.swift in Sources */,
+				6FA7B5492BE0309300D3E712 /* workspace.swift in Sources */,
 				6F9D4AFB2BDE76D60036E802 /* workspaceConfig.swift in Sources */,
-				6F9D4AFC2BDE76D60036E802 /* setup.swift in Sources */,
+				6FB8F4312BE197D9004C7C52 /* setup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,10 +467,12 @@
 				6FB061BB2BD6965400C8C8DC /* json.swift in Sources */,
 				6FC0736A2BD6C3B200906170 /* ws.swift in Sources */,
 				6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */,
-				6FA7B5432BE01D6100D3E712 /* iOSView.swift in Sources */,
+				6FA7B54B2BE0320000D3E712 /* jsonVariables.swift in Sources */,
 				6F4A9CDD2BDD975A003F557B /* config.swift in Sources */,
 				6FB061B82BD6577000C8C8DC /* workspaceConfig.swift in Sources */,
+				6FB8F42A2BE19248004C7C52 /* dataModule.swift in Sources */,
 				6FC073702BD6CAD600906170 /* setup.swift in Sources */,
+				6F0DA0BC2BE033C300462EF3 /* mixerVariables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,8 +534,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -531,7 +551,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -560,8 +580,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -577,7 +597,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

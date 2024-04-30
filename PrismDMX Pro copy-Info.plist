@@ -6,9 +6,9 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeIconFile</key>
-			<string></string>
+			<string>iOSIcon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
-			<real>0</real>
+			<integer>1</integer>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
@@ -32,13 +32,13 @@
 			<key>UTTypeDescription</key>
 			<string>PrismDMX Pro Document</string>
 			<key>UTTypeIconFile</key>
-			<string></string>
+			<string>iOSIcon</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBackgroundName</key>
-				<string></string>
+				<string>iOSIcon</string>
 				<key>UTTypeIconBadgeName</key>
-				<string></string>
+				<string>iOSIcon</string>
 				<key>UTTypeIconText</key>
 				<string>PMX</string>
 			</dict>
@@ -53,7 +53,5 @@
 			</dict>
 		</dict>
 	</array>
-	<key>UTImportedTypeDeclarations</key>
-	<array/>
 </dict>
 </plist>

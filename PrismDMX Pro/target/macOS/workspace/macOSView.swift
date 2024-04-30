@@ -173,7 +173,7 @@ struct newProjectSheet: View {
             HStack {
                 Button("Cancel") { isSheetPresented.toggle() }
                     .buttonStyle(.bordered)
-                Button("Create & Load") {
+                Button("Create") {
                     createProject()
                 }
                 .buttonStyle(.borderedProminent)

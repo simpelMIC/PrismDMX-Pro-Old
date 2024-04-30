@@ -16,7 +16,7 @@ struct Fixture: Equatable, Codable {
     var channels: [Channel]
 }
 
-struct fixtureTemplate: Equatable, Codable, Hashable {
+struct FixtureTemplate: Equatable, Codable, Hashable {
     var internalID: String
     var name: String
     var channels: [Channel]
@@ -33,7 +33,7 @@ struct Packet: Equatable, Codable {
     var project: Project?
     var availableProjects: [Project]
     var fixtures: [Fixture]
-    var fixtureTemplates: [fixtureTemplate]
+    var fixtureTemplates: [FixtureTemplate]
     var mixer: Mixer
     var fixtureGroups: [FixtureGroup]
 }

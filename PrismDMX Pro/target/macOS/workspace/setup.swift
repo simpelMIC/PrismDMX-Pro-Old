@@ -183,13 +183,13 @@ struct newFixtureView: View {
     @Binding var websocket: Websocket
     @Binding var isSheetPresented: Bool
     
-    @State private var selection: fixtureTemplate?
+    @State private var selection: FixtureTemplate?
     @State private var name: String?
     @State private var selectedIndex: Int = 0
     @State private var group: String = ""
     @State private var startChannelString: String = ""
     
-    private var selectedTemplate: fixtureTemplate {
+    private var selectedTemplate: FixtureTemplate {
         return packet.fixtureTemplates[selectedIndex]
     }
     

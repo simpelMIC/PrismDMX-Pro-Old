@@ -29,9 +29,8 @@ struct mainView: View {
             .toolbar(content: {
                 Text("WS PROJECT: \(document.workspace.settings.project?.name ?? "NO PROJECT")")
             })
-        #elseif os(iOS)
-        iOSView(workspace: $document.workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
         #endif
+        //iOSView(workspace: $document.workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
     }
     
     func disconnect() {
