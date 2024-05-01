@@ -132,13 +132,47 @@ struct setProjectView: View {
             return project1.name.contains("(currently open)") && !project2.name.contains("(currently open)")
         }
     }
-    
+    /*
     private var selectedProject: Project {
         let selectedProjectIndex = sortedProjectIndices[selectedIndex]
         return packet.availableProjects[selectedProjectIndex]
-    }
+    }*/
     
     var body: some View {
+        NavigationStack {
+            VStack {
+                List(sortedProjectIndices.indices, id: \.self) { index in
+                    NavigationLink {
+                        Text("Loading...")
+                            .onAppear {
+                                loadProject(selectedProject: packet.availableProjects[index])
+                            }
+                    } label: {
+                        Text(packet.availableProjects[index].name)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(role: .destructive) {
+                                    deleteProject(project: $packet.availableProjects[index].wrappedValue)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                    }
+                }
+                .navigationTitle("Select a Project")
+            }
+            .toolbar(content: {
+                Button {
+                    createProject()
+                } label: {
+                    Image(systemName: "plus")
+                }
+
+            })
+            .sheet(isPresented: $isSheetPresented, content: {
+                newProjectSheet(isSheetPresented: $isSheetPresented, websocket: $websocket, workspace: $workspace)
+            })
+        }
+        /*
         VStack {
             Text("Select your project")
                 .font(.title)
@@ -163,10 +197,10 @@ struct setProjectView: View {
         .padding(20)
         .sheet(isPresented: $isSheetPresented, content: {
             newProjectSheet(isSheetPresented: $isSheetPresented, websocket: $websocket, workspace: $workspace)
-        })
+        })*/
     }
     
-    func loadProject() {
+    func loadProject(selectedProject: Project) {
         workspace.settings.project = selectedProject
         websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: selectedProject))) ?? "", response: true)
         iOSDataModule().save($workspace)
@@ -174,6 +208,10 @@ struct setProjectView: View {
     
     func createProject() {
         isSheetPresented.toggle()
+    }
+    
+    func deleteProject(project: Project) {
+        websocket.sendNonBindingString(JsonModule().projectDeletion(PrismDMX_Pro_Mobile.deleteProject(deleteProject: hiJuDasIstEinNeuesProject(project: project))) ?? "", response: true)
     }
 }
 

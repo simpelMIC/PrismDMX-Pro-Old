@@ -79,3 +79,7 @@ struct newProject: Equatable, Codable {
 struct setProject: Equatable, Codable {
     var setProject: hiJuDasIstEinNeuesProject
 }
+
+struct deleteProject: Equatable, Codable {
+    var deleteProject: hiJuDasIstEinNeuesProject
+}

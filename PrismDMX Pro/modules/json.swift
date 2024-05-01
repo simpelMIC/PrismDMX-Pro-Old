@@ -54,7 +54,7 @@ class JsonModule {
         if let json = try? encoder.encode(newProject) {
             return String(data: json, encoding: .utf8)
         } else {
-            print("Error encoding packet")
+            print("Error encoding new project")
             return nil
         }
     }
@@ -64,7 +64,17 @@ class JsonModule {
         if let json = try? encoder.encode(setProject) {
             return String(data: json, encoding: .utf8)
         } else {
-            print("Error encoding packet")
+            print("Error encoding set project")
+            return nil
+        }
+    }
+    
+    func projectDeletion(_ deleteProject: deleteProject) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(deleteProject) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding delete Project")
             return nil
         }
     }
