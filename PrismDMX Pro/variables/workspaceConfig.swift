@@ -11,11 +11,12 @@ struct Workspace: Equatable, Identifiable, Codable {
     var id = UUID()
     var isCompleted: Bool
     var settings: Settings
+    var project: Project?
+    var displayMode: Int
 }
 
 struct Settings: Equatable, Identifiable, Codable {
     var id = UUID()
     var ip: String
     var port: String
-    var project: Project?
 }

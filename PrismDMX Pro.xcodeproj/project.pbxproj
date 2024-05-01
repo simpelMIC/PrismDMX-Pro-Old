@@ -8,24 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		6F0DA0BC2BE033C300462EF3 /* mixerVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */; };
-		6F0DA0BD2BE033C300462EF3 /* mixerVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */; };
 		6F4A9CDD2BDD975A003F557B /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4A9CDC2BDD975A003F557B /* config.swift */; };
-		6F9D4AF52BDE76D60036E802 /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
-		6F9D4AF62BDE76D60036E802 /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
-		6F9D4AF72BDE76D60036E802 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061BA2BD6965400C8C8DC /* json.swift */; };
-		6F9D4AF82BDE76D60036E802 /* ws.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073692BD6C3B200906170 /* ws.swift */; };
-		6F9D4AFB2BDE76D60036E802 /* workspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */; };
+		6F9B37902BE2BA25005CD0AE /* Mobile_Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9D4B082BDEFA7A0036E802 /* Mobile_Assets.xcassets */; };
+		6F9B37952BE2BADD005CD0AE /* fixturesWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B37942BE2BADD005CD0AE /* fixturesWorkspace.swift */; };
+		6F9B37962BE2BADD005CD0AE /* fixturesWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B37942BE2BADD005CD0AE /* fixturesWorkspace.swift */; };
+		6F9B37972BE2BB13005CD0AE /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061B42BD652BF00C8C8DC /* LICENSE.txt */; };
+		6F9B37982BE2BB19005CD0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */; };
+		6F9B379E2BE2D807005CD0AE /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B379D2BE2D807005CD0AE /* config.swift */; };
+		6F9B379F2BE2D807005CD0AE /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B379D2BE2D807005CD0AE /* config.swift */; };
 		6F9D4AFE2BDE76D60036E802 /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 6F9D4AF22BDE76D60036E802 /* NWWebSocket */; };
-		6F9D4B002BDE76D60036E802 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061B42BD652BF00C8C8DC /* LICENSE.txt */; };
-		6F9D4B012BDE76D60036E802 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061912BD6520B00C8C8DC /* Preview Assets.xcassets */; };
-		6F9D4B022BDE76D60036E802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB0618C2BD6520B00C8C8DC /* Assets.xcassets */; };
-		6F9D4B092BDEFA7A0036E802 /* Mobile_Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9D4B082BDEFA7A0036E802 /* Mobile_Assets.xcassets */; };
 		6FA7B5402BE01D1F00D3E712 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
-		6FA7B5412BE01D1F00D3E712 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
-		6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
-		6FA7B5492BE0309300D3E712 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5472BE0309300D3E712 /* workspace.swift */; };
 		6FA7B54B2BE0320000D3E712 /* jsonVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */; };
-		6FA7B54C2BE0320000D3E712 /* jsonVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */; };
 		6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
 		6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061882BD6520A00C8C8DC /* PrismDMX_ProDocument.swift */; };
 		6FB0618B2BD6520A00C8C8DC /* macOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0618A2BD6520A00C8C8DC /* macOSView.swift */; };
@@ -37,13 +30,23 @@
 		6FB061B52BD652BF00C8C8DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FB061B42BD652BF00C8C8DC /* LICENSE.txt */; };
 		6FB061B82BD6577000C8C8DC /* workspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */; };
 		6FB061BB2BD6965400C8C8DC /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061BA2BD6965400C8C8DC /* json.swift */; };
-		6FB8F42A2BE19248004C7C52 /* dataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4292BE19248004C7C52 /* dataModule.swift */; };
-		6FB8F42B2BE19248004C7C52 /* dataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4292BE19248004C7C52 /* dataModule.swift */; };
-		6FB8F4312BE197D9004C7C52 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4302BE197D9004C7C52 /* setup.swift */; };
+		6FBB9C752BE2AB7F00044D82 /* tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B53F2BE01D1F00D3E712 /* tree.swift */; };
+		6FBB9C762BE2AB8800044D82 /* PrismDMX_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */; };
+		6FBB9C772BE2AB9400044D82 /* jsonVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */; };
+		6FBB9C782BE2AB9400044D82 /* mixerVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */; };
+		6FBB9C792BE2AB9400044D82 /* workspaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061B72BD6577000C8C8DC /* workspaceConfig.swift */; };
+		6FBB9C7A2BE2ABE100044D82 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB061BA2BD6965400C8C8DC /* json.swift */; };
+		6FBB9C7B2BE2ABE100044D82 /* ws.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073692BD6C3B200906170 /* ws.swift */; };
+		6FBB9C7C2BE2ABEC00044D82 /* iOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5422BE01D6100D3E712 /* iOSView.swift */; };
+		6FBB9C7D2BE2ABEC00044D82 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4302BE197D9004C7C52 /* setup.swift */; };
+		6FBB9C7E2BE2ABEC00044D82 /* fixtureManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBB9C682BE2976500044D82 /* fixtureManagement.swift */; };
+		6FBB9C7F2BE2ABEC00044D82 /* mixerManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBB9C6B2BE2979100044D82 /* mixerManagement.swift */; };
+		6FBB9C802BE2ABEC00044D82 /* masterWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7B5472BE0309300D3E712 /* masterWorkspace.swift */; };
+		6FBB9C822BE2ABEC00044D82 /* dataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB8F4292BE19248004C7C52 /* dataModule.swift */; };
 		6FC0736A2BD6C3B200906170 /* ws.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073692BD6C3B200906170 /* ws.swift */; };
 		6FC0736D2BD6C43200906170 /* NWWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 6FC0736C2BD6C43200906170 /* NWWebSocket */; };
 		6FC073702BD6CAD600906170 /* setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0736F2BD6CAD600906170 /* setup.swift */; };
-		6FC073722BD6CB3800906170 /* workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073712BD6CB3800906170 /* workspace.swift */; };
+		6FC073722BD6CB3800906170 /* macOSWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC073712BD6CB3800906170 /* macOSWorkspace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,13 +69,15 @@
 /* Begin PBXFileReference section */
 		6F0DA0BB2BE033C300462EF3 /* mixerVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = mixerVariables.swift; path = "PrismDMX Pro/modules/mixerVariables.swift"; sourceTree = SOURCE_ROOT; };
 		6F4A9CDC2BDD975A003F557B /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		6F9B37942BE2BADD005CD0AE /* fixturesWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixturesWorkspace.swift; sourceTree = "<group>"; };
+		6F9B379D2BE2D807005CD0AE /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		6F9D4B062BDE76D60036E802 /* PrismDMX Pro_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro_Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9D4B072BDE76D60036E802 /* PrismDMX Pro copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "PrismDMX Pro copy-Info.plist"; path = "/Users/christiansavage/Documents/XCode Projects/PrismDMX Pro/PrismDMX Pro copy-Info.plist"; sourceTree = "<absolute>"; };
 		6F9D4B082BDEFA7A0036E802 /* Mobile_Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mobile_Assets.xcassets; sourceTree = "<group>"; };
 		6F9D761D2BD714C800622AD6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6FA7B53F2BE01D1F00D3E712 /* tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tree.swift; sourceTree = "<group>"; };
 		6FA7B5422BE01D6100D3E712 /* iOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSView.swift; sourceTree = "<group>"; };
-		6FA7B5472BE0309300D3E712 /* workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspace.swift; sourceTree = "<group>"; };
+		6FA7B5472BE0309300D3E712 /* masterWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = masterWorkspace.swift; sourceTree = "<group>"; };
 		6FA7B54A2BE0320000D3E712 /* jsonVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonVariables.swift; sourceTree = "<group>"; };
 		6FB061832BD6520A00C8C8DC /* PrismDMX Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrismDMX Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB061862BD6520A00C8C8DC /* PrismDMX_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismDMX_ProApp.swift; sourceTree = "<group>"; };
@@ -92,9 +97,11 @@
 		6FB061BA2BD6965400C8C8DC /* json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json.swift; sourceTree = "<group>"; };
 		6FB8F4292BE19248004C7C52 /* dataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataModule.swift; sourceTree = "<group>"; };
 		6FB8F4302BE197D9004C7C52 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
+		6FBB9C682BE2976500044D82 /* fixtureManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixtureManagement.swift; sourceTree = "<group>"; };
+		6FBB9C6B2BE2979100044D82 /* mixerManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mixerManagement.swift; sourceTree = "<group>"; };
 		6FC073692BD6C3B200906170 /* ws.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ws.swift; sourceTree = "<group>"; };
 		6FC0736F2BD6CAD600906170 /* setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup.swift; sourceTree = "<group>"; };
-		6FC073712BD6CB3800906170 /* workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workspace.swift; sourceTree = "<group>"; };
+		6FC073712BD6CB3800906170 /* macOSWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSWorkspace.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,16 +138,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F0D145A2BE00389008A76AC /* workspace */ = {
-			isa = PBXGroup;
-			children = (
-				6FA7B5422BE01D6100D3E712 /* iOSView.swift */,
-				6FA7B5472BE0309300D3E712 /* workspace.swift */,
-				6FB8F4302BE197D9004C7C52 /* setup.swift */,
-			);
-			path = workspace;
-			sourceTree = "<group>";
-		};
 		6F5955B12BDFF5B200E2B425 /* target */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +150,7 @@
 		6F5955B22BDFF5C000E2B425 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				6FA7B53F2BE01D1F00D3E712 /* tree.swift */,
 				6FC0736E2BD6CAC700906170 /* workspace */,
 			);
 			path = macOS;
@@ -161,10 +159,24 @@
 		6F5955B32BDFF66A00E2B425 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6FA7B5422BE01D6100D3E712 /* iOSView.swift */,
+				6F9B379C2BE2D7FC005CD0AE /* config */,
+				6FBB9C672BE2975200044D82 /* setup */,
+				6FBB9C6E2BE2A12400044D82 /* Master */,
+				6FBB9C6F2BE2A1FC00044D82 /* Fixtures */,
+				6FBB9C702BE2A21200044D82 /* Mixer */,
+				6FBB9C712BE2A21D00044D82 /* Playbacks */,
 				6FB8F4262BE18F5C004C7C52 /* data */,
-				6F0D145A2BE00389008A76AC /* workspace */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		6F9B379C2BE2D7FC005CD0AE /* config */ = {
+			isa = PBXGroup;
+			children = (
+				6F9B379D2BE2D807005CD0AE /* config.swift */,
+			);
+			path = config;
 			sourceTree = "<group>";
 		};
 		6FB0617A2BD6520A00C8C8DC = {
@@ -194,7 +206,6 @@
 		6FB061852BD6520A00C8C8DC /* PrismDMX Pro */ = {
 			isa = PBXGroup;
 			children = (
-				6FA7B53F2BE01D1F00D3E712 /* tree.swift */,
 				6F5955B12BDFF5B200E2B425 /* target */,
 				6FB061B92BD6964500C8C8DC /* modules */,
 				6FB061B62BD6576300C8C8DC /* variables */,
@@ -261,11 +272,51 @@
 			path = data;
 			sourceTree = "<group>";
 		};
+		6FBB9C672BE2975200044D82 /* setup */ = {
+			isa = PBXGroup;
+			children = (
+				6FB8F4302BE197D9004C7C52 /* setup.swift */,
+				6FBB9C682BE2976500044D82 /* fixtureManagement.swift */,
+				6FBB9C6B2BE2979100044D82 /* mixerManagement.swift */,
+			);
+			path = setup;
+			sourceTree = "<group>";
+		};
+		6FBB9C6E2BE2A12400044D82 /* Master */ = {
+			isa = PBXGroup;
+			children = (
+				6FA7B5472BE0309300D3E712 /* masterWorkspace.swift */,
+			);
+			path = Master;
+			sourceTree = "<group>";
+		};
+		6FBB9C6F2BE2A1FC00044D82 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				6F9B37942BE2BADD005CD0AE /* fixturesWorkspace.swift */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		6FBB9C702BE2A21200044D82 /* Mixer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mixer;
+			sourceTree = "<group>";
+		};
+		6FBB9C712BE2A21D00044D82 /* Playbacks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Playbacks;
+			sourceTree = "<group>";
+		};
 		6FC0736E2BD6CAC700906170 /* workspace */ = {
 			isa = PBXGroup;
 			children = (
 				6FB0618A2BD6520A00C8C8DC /* macOSView.swift */,
-				6FC073712BD6CB3800906170 /* workspace.swift */,
+				6FC073712BD6CB3800906170 /* macOSWorkspace.swift */,
 				6FC0736F2BD6CAD600906170 /* setup.swift */,
 				6F4A9CDC2BDD975A003F557B /* config.swift */,
 			);
@@ -403,10 +454,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F9D4B092BDEFA7A0036E802 /* Mobile_Assets.xcassets in Resources */,
-				6F9D4B002BDE76D60036E802 /* LICENSE.txt in Resources */,
-				6F9D4B012BDE76D60036E802 /* Preview Assets.xcassets in Resources */,
-				6F9D4B022BDE76D60036E802 /* Assets.xcassets in Resources */,
+				6F9B37982BE2BB19005CD0AE /* Assets.xcassets in Resources */,
+				6F9B37972BE2BB13005CD0AE /* LICENSE.txt in Resources */,
+				6F9B37902BE2BA25005CD0AE /* Mobile_Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,18 +491,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FA7B5412BE01D1F00D3E712 /* tree.swift in Sources */,
-				6FB8F42B2BE19248004C7C52 /* dataModule.swift in Sources */,
-				6F9D4AF52BDE76D60036E802 /* PrismDMX_ProDocument.swift in Sources */,
-				6F9D4AF62BDE76D60036E802 /* PrismDMX_ProApp.swift in Sources */,
-				6F9D4AF72BDE76D60036E802 /* json.swift in Sources */,
-				6F9D4AF82BDE76D60036E802 /* ws.swift in Sources */,
-				6FA7B54C2BE0320000D3E712 /* jsonVariables.swift in Sources */,
-				6FA7B5442BE01D6100D3E712 /* iOSView.swift in Sources */,
-				6F0DA0BD2BE033C300462EF3 /* mixerVariables.swift in Sources */,
-				6FA7B5492BE0309300D3E712 /* workspace.swift in Sources */,
-				6F9D4AFB2BDE76D60036E802 /* workspaceConfig.swift in Sources */,
-				6FB8F4312BE197D9004C7C52 /* setup.swift in Sources */,
+				6FBB9C7C2BE2ABEC00044D82 /* iOSView.swift in Sources */,
+				6FBB9C7D2BE2ABEC00044D82 /* setup.swift in Sources */,
+				6FBB9C7E2BE2ABEC00044D82 /* fixtureManagement.swift in Sources */,
+				6F9B379F2BE2D807005CD0AE /* config.swift in Sources */,
+				6F9B37962BE2BADD005CD0AE /* fixturesWorkspace.swift in Sources */,
+				6FBB9C7F2BE2ABEC00044D82 /* mixerManagement.swift in Sources */,
+				6FBB9C802BE2ABEC00044D82 /* masterWorkspace.swift in Sources */,
+				6FBB9C822BE2ABEC00044D82 /* dataModule.swift in Sources */,
+				6FBB9C7A2BE2ABE100044D82 /* json.swift in Sources */,
+				6FBB9C7B2BE2ABE100044D82 /* ws.swift in Sources */,
+				6FBB9C772BE2AB9400044D82 /* jsonVariables.swift in Sources */,
+				6FBB9C782BE2AB9400044D82 /* mixerVariables.swift in Sources */,
+				6FBB9C792BE2AB9400044D82 /* workspaceConfig.swift in Sources */,
+				6FBB9C762BE2AB8800044D82 /* PrismDMX_ProApp.swift in Sources */,
+				6FBB9C752BE2AB7F00044D82 /* tree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +514,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FA7B5402BE01D1F00D3E712 /* tree.swift in Sources */,
-				6FC073722BD6CB3800906170 /* workspace.swift in Sources */,
+				6FC073722BD6CB3800906170 /* macOSWorkspace.swift in Sources */,
+				6F9B37952BE2BADD005CD0AE /* fixturesWorkspace.swift in Sources */,
 				6FB061892BD6520A00C8C8DC /* PrismDMX_ProDocument.swift in Sources */,
 				6FB061872BD6520A00C8C8DC /* PrismDMX_ProApp.swift in Sources */,
 				6FB061BB2BD6965400C8C8DC /* json.swift in Sources */,
@@ -470,7 +524,7 @@
 				6FA7B54B2BE0320000D3E712 /* jsonVariables.swift in Sources */,
 				6F4A9CDD2BDD975A003F557B /* config.swift in Sources */,
 				6FB061B82BD6577000C8C8DC /* workspaceConfig.swift in Sources */,
-				6FB8F42A2BE19248004C7C52 /* dataModule.swift in Sources */,
+				6F9B379E2BE2D807005CD0AE /* config.swift in Sources */,
 				6FC073702BD6CAD600906170 /* setup.swift in Sources */,
 				6F0DA0BC2BE033C300462EF3 /* mixerVariables.swift in Sources */,
 			);
@@ -514,11 +568,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = iOSIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "PrismDMX Pro/PrismDMX_Pro.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = A85Q5NP5JW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -560,11 +614,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = iOSIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "PrismDMX Pro/PrismDMX_Pro.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PrismDMX Pro/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = A85Q5NP5JW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

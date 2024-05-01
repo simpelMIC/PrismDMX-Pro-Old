@@ -13,7 +13,9 @@ struct PrismDMX_ProApp: App {
     @State var packet: Packet = Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error"), Project(internalID: "1", name: "error1")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [])
     @State var connected: Bool = false
     @State var error: String?
-    @State var iOSWorkspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.187", port: "8000/ws/main"))
+    #if os(iOS)
+    @State var iOSWorkspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.187", port: "8000/ws/main"), displayMode: 0)
+    #endif
     var body: some Scene {
         /*WindowGroup {
             VStack {

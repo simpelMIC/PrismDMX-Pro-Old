@@ -6,8 +6,10 @@
 	<string>UseAppPreferences</string>
 	<key>CustomBuildLocationType</key>
 	<string>RelativeToDerivedData</string>
+	<key>DerivedDataCustomLocation</key>
+	<string>/Users/christiansavage/Documents/XCode Projects/PrismDMX Pro/PrismDMX Pro/derivedData</string>
 	<key>DerivedDataLocationStyle</key>
-	<string>Default</string>
+	<string>AbsolutePath</string>
 	<key>ShowSharedSchemesAutomaticallyEnabled</key>
 	<true/>
 </dict>

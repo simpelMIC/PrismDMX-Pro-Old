@@ -1,50 +1,35 @@
 //
-//  setup.swift
-//  PrismDMX Pro_Mobile
+//  fixtureManagement.swift
+//  PrismDMX Pro
 //
-//  Created by Christian on 30.04.24.
+//  Created by Christian on 01.05.24.
 //
 
 import Foundation
 import SwiftUI
 
-struct iOSSetup: View {
-    @Binding var workspace: Workspace
-    @State var selectedSetupPage: String?
-    @Binding var websocket: Websocket
-    @Binding var packet: Packet
-    
-    var body: some View {
-        NavigationStack {
-            List {
-                NavigationLink(destination: FixtureConfigView(packet: $packet, websocket: $websocket), label: { Text("Fixture Configuration") })
-            }
-            .navigationTitle("Setup")
-        }
-    }
-}
-
 struct FixtureConfigView: View {
     @Binding var packet: Packet
     @Binding var websocket: Websocket
+    @Binding var fixtures: [Fixture]
     
     @State private var isSheetOpened: Bool = false
     @State private var isActionSheetOpened: Bool = false
     var body: some View {
         VStack {
-            List(packet.fixtures.indices, id: \.self) { index in
-                NavigationLink(destination: SingleFixtureConfigView(fixture: $packet.fixtures[index], websocket: $websocket)) {
-                    Text(packet.fixtures[index].name)
+            List(fixtures.sorted(by: { $0.startChannel < $1.startChannel }).indices, id: \.self) { index in
+                NavigationLink(destination: SingleFixtureConfigView(fixture: $fixtures[index], websocket: $websocket)) {
+                    Text(fixtures[index].name)
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             Button(role: .destructive) {
-                                requestFixtureDeletion(packet.fixtures[index], websocket: $websocket)
+                                requestFixtureDeletion(fixtures[index], websocket: $websocket)
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button {
-                                requestNewFixture(newFixture(newFixture: hiJuDasIstEineNeueFixture(fixture: $packet.fixtures[index].wrappedValue)), websocket: $websocket)
+                                requestNewFixture(newFixture(newFixture: hiJuDasIstEineNeueFixture(fixture: $fixtures[index].wrappedValue)), websocket: $websocket)
                             } label: {
                                 Label("Duplicate", systemImage: "square.fill.on.square.fill")
                             }
@@ -127,12 +112,12 @@ struct newFixtureView: View {
             HStack {
                 Button {
                     isSheetPresented = false
-                    var newChannels = [Channel]()
+                    /*var newChannels = [Channel]()
                     for templateChannel in selectedTemplate.channels {
                         let dmxChannel = "\(startChannel + Int(templateChannel.dmxChannel)! - 1)"
                         newChannels.append(Channel(internalID: String(packet.fixtures.count), ChannelName: templateChannel.ChannelName, ChannelType: templateChannel.ChannelType, dmxChannel: dmxChannel))
-                    }
-                    requestNewFixture(newFixture(newFixture: hiJuDasIstEineNeueFixture(fixture: Fixture(internalID: "", name: $name.wrappedValue ?? selectedTemplate.name, FixtureGroup: group, template: selectedTemplate.internalID, startChannel: String(startChannel), channels: newChannels))), websocket: $websocket)
+                    }*/
+                    requestNewFixture(newFixture(newFixture: hiJuDasIstEineNeueFixture(fixture: Fixture(internalID: "", name: $name.wrappedValue ?? selectedTemplate.name, FixtureGroup: group, template: selectedTemplate.internalID, startChannel: String(startChannel), channels: selectedTemplate.channels))), websocket: $websocket)
                 } label: {
                     Text("Create")
                 }
@@ -197,7 +182,6 @@ struct SingleFixtureConfigView: View {
     }
     
     public func sendEditedFixture() {
-        fixture.startChannel = $fixture.channels.first?.dmxChannel.wrappedValue ?? "n/a"
         websocket.sendNonBindingString(JsonModule().encodeEditFixture(editFixture(editFixture: hiJuDasIstEineNeueFixture(fixture: $fixture.wrappedValue))) ?? "", response: true)
     }
 }
@@ -252,11 +236,11 @@ struct editChannelSheetView: View {
             HStack {
                 Text("Name")
                 TextField("Name", text: $internalChannel.ChannelName)
-            }
+            }/*
             HStack {
                 Text("DMX Channel")
                 TextField("", text: $internalChannel.dmxChannel)
-            }
+            }*/
             Spacer()
             HStack {
                 Button {
@@ -286,10 +270,11 @@ struct FixtureGeneralView: View {
                     TextField("Name", text: $fixture.name)
                 }
                 HStack {
-                    Text("Start Channel")
-                    Text($fixture.channels.first?.dmxChannel.wrappedValue ?? "n/a")
+                    Text("Start Channel: ")
+                    TextField("Start Channel", text: $fixture.startChannel)
                 }
             }
         }
     }
 }
+

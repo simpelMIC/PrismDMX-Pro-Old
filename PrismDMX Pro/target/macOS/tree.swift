@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct mainView: View {
+#if os(macOS)
     @Binding var document: PrismDMXProDocument
     @Binding var connected: Bool
     @Binding var error: String?
@@ -17,7 +18,6 @@ struct mainView: View {
     @State var websocket: Websocket
     
     var body: some View {
-        #if os(macOS)
         loadingMainView(websocket: Websocket(connected: $connected, error: $error, workspace: $document.workspace, packet: $packet), connected: $connected, error: $error, packet: $packet, workspace: $document.workspace)
             .onAppear {
                 connected = false
@@ -27,9 +27,8 @@ struct mainView: View {
                 print("Window closed")
             }
             .toolbar(content: {
-                Text("WS PROJECT: \(document.workspace.settings.project?.name ?? "NO PROJECT")")
+                Text("WS PROJECT: \(document.workspace.project?.name ?? "NO PROJECT")")
             })
-        #endif
         //iOSView(workspace: $document.workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
     }
     
@@ -38,4 +37,9 @@ struct mainView: View {
         connected = false
         error = nil
     }
+    #else
+    var body: some View {
+        Text("MainView")
+    }
+    #endif
 }

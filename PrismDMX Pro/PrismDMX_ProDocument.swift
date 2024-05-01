@@ -17,7 +17,7 @@ extension UTType {
 struct PrismDMXProDocument: FileDocument, Codable {
     var workspace: Workspace
 
-    init(workspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://127.0.0.1", port: "8000/ws/main", project: nil))) {
+    init(workspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://127.0.0.1", port: "8000/ws/main"), displayMode: 0)) {
         self.workspace = workspace
     }
     

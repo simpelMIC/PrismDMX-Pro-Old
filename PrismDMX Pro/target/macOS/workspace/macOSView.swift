@@ -61,7 +61,7 @@ struct ProjectView: View {
     
     var body: some View {
         VStack {
-            if workspace.settings.project == nil {
+            if workspace.project == nil {
                 if packet.project == nil || packet.project == Project(internalID: "na", name: "na") {
                     setProjectView(packet: $packet, workspace: $workspace, websocket: $websocket)
                 } else {
@@ -91,7 +91,7 @@ struct ProjectView: View {
     }
     
     func loadProject() {
-        websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: workspace.settings.project ?? Project(internalID: "na", name: "na")))) ?? "", response: true)
+        websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: workspace.project ?? Project(internalID: "na", name: "na")))) ?? "", response: true)
     }
 }
 
@@ -144,7 +144,7 @@ struct setProjectView: View {
     }
     
     func loadProject() {
-        workspace.settings.project = selectedProject
+        workspace.project = selectedProject
         websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: selectedProject))) ?? "", response: true)
     }
     

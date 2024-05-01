@@ -115,7 +115,7 @@ struct EnterProjectView: View {
     var body: some View {
         Text("Loading...")
             .onAppear {
-                workspace.settings.project = nil
+                workspace.project = nil
                 packet.project = nil
             }
     }

@@ -8,16 +8,26 @@
 import Foundation
 import SwiftUI
 
-struct iOSWorkspaceView: View {
+struct iOSMasterView: View {
     @Binding var workspace: Workspace
     @Binding var websocket: Websocket
     @Binding var packet: Packet
     var body: some View {
         NavigationSplitView {
             List {
-                NavigationLink(destination: iOSSettings(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Settings") })
-                NavigationLink(destination: iOSSetupView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Setup") })
-                NavigationLink(destination: iOSConfigView(), label: { Text("Config") })
+                NavigationLink {
+                    NavigationStack {
+                        iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+                    }
+                } label: {
+                    Text("Setup")
+                }
+                NavigationLink {
+                    iOSConfigView(workspace: $workspace, websocket: $websocket, packet: $packet)
+                } label: {
+                    Text("Config")
+                }
+
             }
             .navigationTitle(packet.project?.name ?? "Workspace")
         } detail: {
@@ -64,7 +74,7 @@ struct iOSSettings: View {
                 NavigationLink {
                     Text("Loading...")
                         .onAppear {
-                            workspace.settings.project = nil
+                            workspace.project = nil
                             packet.project = nil
                         }
                 } label: {
@@ -73,20 +83,5 @@ struct iOSSettings: View {
             }
             .navigationTitle("App Settings")
         }
-    }
-}
-
-struct iOSSetupView: View {
-    @Binding var workspace: Workspace
-    @Binding var websocket: Websocket
-    @Binding var packet: Packet
-    var body: some View {
-        iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
-    }
-}
-
-struct iOSConfigView: View {
-    var body: some View {
-        Text("Config")
     }
 }

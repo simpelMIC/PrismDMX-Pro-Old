@@ -42,11 +42,37 @@ struct iOSView: View {
         .onAppear {
             connected = false
             error = nil
-            workspace = iOSDataModule().load() ?? Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.187", port: "8000/ws/main"))
+            workspace = iOSDataModule().load() ?? Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.188", port: "8000/ws/main"), displayMode: 0)
         }
         .onDisappear {
             websocket.disconnect(response: true)
             iOSDataModule().save($workspace)
+        }
+    }
+}
+
+struct iOSWorkspaceView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        VStack {
+            if $workspace.displayMode.wrappedValue == 0 {
+                iOSMasterView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 1 {
+                iOSFixturesView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 2 {
+                
+            } else if $workspace.displayMode.wrappedValue == 3 {
+                
+            } else {
+                Text("Error: DisplayMode invalid")
+                Button {
+                    workspace.displayMode = 0
+                } label: {
+                    Text("Reset")
+                }
+            }
         }
     }
 }
@@ -93,7 +119,7 @@ struct iOSSelectProjectView: View {
     
     var body: some View {
         VStack {
-            if workspace.settings.project == nil {
+            if workspace.project == nil {
                 if packet.project == nil || packet.project == Project(internalID: "na", name: "na") || packet.project == Project(internalID: "naa", name: "naa") {
                     setProjectView(packet: $packet, workspace: $workspace, websocket: $websocket)
                 } else {
@@ -113,7 +139,7 @@ struct iOSSelectProjectView: View {
     }
     
     func loadProject() {
-        websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: workspace.settings.project ?? Project(internalID: "na", name: "na")))) ?? "", response: true)
+        websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: workspace.project ?? Project(internalID: "na", name: "na")))) ?? "", response: true)
     }
 }
 
@@ -201,7 +227,7 @@ struct setProjectView: View {
     }
     
     func loadProject(selectedProject: Project) {
-        workspace.settings.project = selectedProject
+        workspace.project = selectedProject
         websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: selectedProject))) ?? "", response: true)
         iOSDataModule().save($workspace)
     }
