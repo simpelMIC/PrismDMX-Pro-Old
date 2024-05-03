@@ -27,7 +27,6 @@ struct iOSMasterView: View {
                 } label: {
                     Text("Config")
                 }
-
             }
             .navigationTitle(packet.project?.name ?? "Workspace")
         } detail: {

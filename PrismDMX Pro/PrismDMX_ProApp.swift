@@ -14,7 +14,7 @@ struct PrismDMX_ProApp: App {
     @State var connected: Bool = false
     @State var error: String?
     #if os(iOS)
-    @State var iOSWorkspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.187", port: "8000/ws/main"), displayMode: 0)
+    @State var iOSWorkspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.187", port: "8000/ws/main"), displayMode: 0, notes: [])
     #endif
     var body: some Scene {
         /*WindowGroup {

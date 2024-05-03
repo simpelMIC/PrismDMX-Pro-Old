@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+///#TODO:
+///- Fader IDs
+///- Fader Presets
 struct iOSMixerConfigView: View {
     @Binding var workspace: Workspace
     @Binding var websocket: Websocket
@@ -29,7 +32,7 @@ struct MixerDisplayConfigView: View {
     @Binding var websocket: Websocket
     @Binding var packet: Packet
     
-    @State private var displayModes: [String] = ["Master", "Fixtures", "Mixer", "Playbacks"]
+    @State private var displayModes: [String] = ["Master", "Fixtures", "Mixer", "Playbacks", "StageNotes"]
     @State private var selectedIndex: Int = 0
     
     private var selectedTemplate: String {

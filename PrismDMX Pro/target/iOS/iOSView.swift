@@ -42,7 +42,7 @@ struct iOSView: View {
         .onAppear {
             connected = false
             error = nil
-            workspace = iOSDataModule().load() ?? Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.188", port: "8000/ws/main"), displayMode: 0)
+            workspace = iOSDataModule().load() ?? Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.188", port: "8000/ws/main"), displayMode: 0, notes: [])
         }
         .onDisappear {
             websocket.disconnect(response: true)
@@ -62,8 +62,17 @@ struct iOSWorkspaceView: View {
             } else if $workspace.displayMode.wrappedValue == 1 {
                 iOSFixturesView(workspace: $workspace, websocket: $websocket, packet: $packet)
             } else if $workspace.displayMode.wrappedValue == 2 {
-                
+                iOSMixerView(workspace: $workspace, websocket: $websocket, packet: $packet)
+                    .onAppear {
+                        workspace.displayMode = 0
+                    }
             } else if $workspace.displayMode.wrappedValue == 3 {
+                Text("Loading...")
+                    .onAppear {
+                        workspace.displayMode = 0
+                    }
+            } else if $workspace.displayMode.wrappedValue == 4 {
+                NotesView(workspace: $workspace, websocket: $websocket, packet: $packet)
                 
             } else {
                 Text("Error: DisplayMode invalid")
