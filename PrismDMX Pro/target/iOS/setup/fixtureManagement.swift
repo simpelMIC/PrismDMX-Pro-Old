@@ -175,13 +175,13 @@ struct SingleFixtureConfigView: View {
             localFixture = fixture
         }
         .onDisappear {
-            fixture = localFixture
             sendEditedFixture()
         }
         .navigationTitle(fixture.name)
     }
     
     public func sendEditedFixture() {
+        fixture = localFixture
         websocket.sendNonBindingString(JsonModule().encodeEditFixture(editFixture(editFixture: hiJuDasIstEineNeueFixture(fixture: $fixture.wrappedValue))) ?? "", response: true)
     }
 }

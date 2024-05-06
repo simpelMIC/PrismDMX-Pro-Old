@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Mixer: Equatable, Codable {
     var pages: [MixerPage]

@@ -57,29 +57,33 @@ struct iOSWorkspaceView: View {
     @Binding var packet: Packet
     var body: some View {
         VStack {
-            if $workspace.displayMode.wrappedValue == 0 {
+            if $workspace.displayMode.wrappedValue == 0 { //MasterView
                 iOSMasterView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 1 {
+            } else if $workspace.displayMode.wrappedValue == 1 { //FixturesView
                 iOSFixturesView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 2 {
+            } else if $workspace.displayMode.wrappedValue == 2 { //MixerView
                 iOSMixerView(workspace: $workspace, websocket: $websocket, packet: $packet)
-                    .onAppear {
-                        workspace.displayMode = 0
-                    }
-            } else if $workspace.displayMode.wrappedValue == 3 {
+            } else if $workspace.displayMode.wrappedValue == 3 { //NotesView
                 Text("Loading...")
                     .onAppear {
                         workspace.displayMode = 0
                     }
-            } else if $workspace.displayMode.wrappedValue == 4 {
+            } else if $workspace.displayMode.wrappedValue == 4 { //
                 NotesView(workspace: $workspace, websocket: $websocket, packet: $packet)
+                Text("Loading...")
+                    .onAppear {
+                        workspace.displayMode = 0
+                    }
                 
             } else {
-                Text("Error: DisplayMode invalid")
-                Button {
-                    workspace.displayMode = 0
-                } label: {
-                    Text("Reset")
+                VStack {
+                    Text("Error: DisplayMode invalid")
+                    Button {
+                        workspace.displayMode = 0
+                    } label: {
+                        Text("Reset")
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
             }
         }
