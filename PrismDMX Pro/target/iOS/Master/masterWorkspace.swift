@@ -13,7 +13,7 @@ struct iOSMasterView: View {
     @Binding var websocket: Websocket
     @Binding var packet: Packet
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $workspace.columnVisible) {
             List {
                 NavigationLink {
                     NavigationStack {

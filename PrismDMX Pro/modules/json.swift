@@ -79,6 +79,16 @@ class JsonModule {
         }
     }
     
+    func encodeEditMixerFader(_ editMixerFader: MixerFader) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(editMixerFader) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding edit Mixer Fader")
+            return nil
+        }
+    }
+    
     func decode(_ data: Data) -> Packet? {
         let decoder = JSONDecoder()
         if let packetData = try? decoder.decode(Packet.self, from: data) {

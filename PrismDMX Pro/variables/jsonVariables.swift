@@ -83,3 +83,11 @@ struct setProject: Equatable, Codable {
 struct deleteProject: Equatable, Codable {
     var deleteProject: hiJuDasIstEinNeuesProject
 }
+
+struct editMixerFader: Equatable, Codable {
+    var editMixerFader: hiJuDasIstEineMixerFaderVeränderung
+}
+
+struct hiJuDasIstEineMixerFaderVeränderung: Equatable, Codable {
+    var fader: MixerFader
+}

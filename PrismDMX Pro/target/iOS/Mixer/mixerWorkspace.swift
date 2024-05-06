@@ -61,7 +61,7 @@ struct iOSMixerView: View {
                 }
             })
             .sheet(isPresented: $isSheetPresented, content: {
-                PagesOverview()
+                PagesOverview(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage, isSheetPresented: $isSheetPresented)
             })
         }
     }

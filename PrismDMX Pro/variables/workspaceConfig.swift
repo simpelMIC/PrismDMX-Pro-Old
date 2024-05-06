@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Workspace: Equatable, Identifiable, Codable {
     var id = UUID()
@@ -14,6 +15,7 @@ struct Workspace: Equatable, Identifiable, Codable {
     var project: Project?
     var displayMode: Int
     var notes: [Note]
+    var columnVisible: NavigationSplitViewVisibility
 }
 
 struct Settings: Equatable, Identifiable, Codable {

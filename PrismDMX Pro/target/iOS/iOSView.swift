@@ -42,7 +42,7 @@ struct iOSView: View {
         .onAppear {
             connected = false
             error = nil
-            workspace = iOSDataModule().load() ?? Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.188", port: "8000/ws/main"), displayMode: 0, notes: [])
+            workspace = iOSDataModule().load() ?? Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.188", port: "8000/ws/main"), displayMode: 0, notes: [], columnVisible: .all)
         }
         .onDisappear {
             websocket.disconnect(response: true)
@@ -57,18 +57,18 @@ struct iOSWorkspaceView: View {
     @Binding var packet: Packet
     var body: some View {
         VStack {
-            if $workspace.displayMode.wrappedValue == 0 { //MasterView
+            if $workspace.displayMode.wrappedValue == 0 { //MasterWorkspace
                 iOSMasterView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 1 { //FixturesView
+            } else if $workspace.displayMode.wrappedValue == 1 { //FixturesWorkspace
                 iOSFixturesView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 2 { //MixerView
+            } else if $workspace.displayMode.wrappedValue == 2 { //MixerWorkspace
                 iOSMixerView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 3 { //NotesView
+            } else if $workspace.displayMode.wrappedValue == 3 { //PlaybacksWorkspace
                 Text("Loading...")
                     .onAppear {
                         workspace.displayMode = 0
                     }
-            } else if $workspace.displayMode.wrappedValue == 4 { //
+            } else if $workspace.displayMode.wrappedValue == 4 { //StageNotesWorkspace
                 NotesView(workspace: $workspace, websocket: $websocket, packet: $packet)
                 Text("Loading...")
                     .onAppear {
