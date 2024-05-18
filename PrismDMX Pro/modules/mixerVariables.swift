@@ -19,6 +19,7 @@ struct MixerPage: Equatable, Codable {
     var num: String
     var faders: [MixerFader]
     var buttons: [MixerButton]
+    var id: String
 }
 
 struct MixerFader: Equatable, Codable {
@@ -28,6 +29,7 @@ struct MixerFader: Equatable, Codable {
     var value: String //Int
     var assignedType: String
     var assignedID: String
+    var id: String
 }
 
 struct MixerButton: Equatable, Codable {
@@ -36,4 +38,5 @@ struct MixerButton: Equatable, Codable {
     var isPressed: String //Bool
     var assignedType: String
     var assignedID: String
+    var id: String
 }

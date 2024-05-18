@@ -45,7 +45,6 @@ struct iOSConfigView: View {
                 Button {
                     if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
                         mixerPage = mixerPage + 1
-                        print(packet.mixer.pages.count)
                     } else {
                         //Append new page
                     }
@@ -80,20 +79,20 @@ struct PagesOverview: View {
                     }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button(role: .destructive) {
-                            websocket.sendNonBindingString("", response: true) //Delete Page
+                            websocket.sendNonBindingString("{ \"deletepage\": \"\(packet.mixer.pages[index].id)\" }", response: true) //Delete Page
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
+                        .tint(.primary)
                     }
                 }
                 .navigationTitle("Pages")
                 .toolbar(content: {
                     Button {
-                        websocket.sendNonBindingString("", response: true) //Append Page
+                        websocket.sendNonBindingString("{ \"newpage\": \"true\" }", response: true) //Append Page
                     } label: {
                         Image(systemName: "plus")
                     }
-
                 })
             }
         }
@@ -144,7 +143,8 @@ struct MixerView: View {
                                         ScrollView(.horizontal) {
                                             HStack {
                                                 ForEach(packet.mixer.pages[mixerPage].buttons.indices, id: \.self) { index in
-                                                    SingleButtonView(button: $packet.mixer.pages[mixerPage].buttons[index])
+                                                    NavigationLink(destination: InformationView(workspace: $workspace, websocket: $websocket, packet: $packet, content: Binding.constant(packet.mixer.pages[mixerPage].buttons[index])), label: { SingleButtonView(button: $packet.mixer.pages[mixerPage].buttons[index]) })
+                                                        .buttonStyle(.plain)
                                                 }
                                                 .padding(.leading)
                                             }
@@ -216,8 +216,8 @@ struct InformationView: View {
     @Binding var content: Any
     
     @State private var bgColor = Color(.sRGB, red: 1.0, green: 1.0, blue: 1.0)
-    @State private var localMixerFader: MixerFader = MixerFader(name: "error in InformationView", color: "error in InformationView", isTouched: "error in InformationView", value: "error in InformationView", assignedType: "error in InformationView", assignedID: "error in InformationView")
-    @State private var localMixerButton: MixerButton = MixerButton(name: "error in InformationView", color: "InformationView", isPressed: "error in InformationView", assignedType: "error in InformationView", assignedID: "error in InformationView")
+    @State private var localMixerFader: MixerFader = MixerFader(name: "error in InformationView", color: "error in InformationView", isTouched: "error in InformationView", value: "error in InformationView", assignedType: "error in InformationView", assignedID: "error in InformationView", id: "error")
+    @State private var localMixerButton: MixerButton = MixerButton(name: "error in InformationView", color: "InformationView", isPressed: "error in InformationView", assignedType: "error in InformationView", assignedID: "error in InformationView", id: "error")
     
     var body: some View {
         if let mixerFader = content as? MixerFader {
@@ -226,9 +226,10 @@ struct InformationView: View {
                     SingleFaderView(fader: $localMixerFader)
                         .padding(.horizontal, 40)
                     List {
+                        TextField("Name", text: $localMixerFader.name)
                         ColorPicker("Color", selection: $bgColor)
                             .onChange(of: bgColor, {
-                                let newLocalMixerFader = MixerFader(name: localMixerFader.name, color: rgbToHexString(color: bgColor), isTouched: localMixerFader.isTouched, value: localMixerFader.value, assignedType: localMixerFader.assignedType, assignedID: localMixerFader.assignedID)
+                                let newLocalMixerFader = MixerFader(name: localMixerFader.name, color: rgbToHexString(color: bgColor), isTouched: localMixerFader.isTouched, value: localMixerFader.value, assignedType: localMixerFader.assignedType, assignedID: localMixerFader.assignedID, id: localMixerFader.id)
                                 localMixerFader = newLocalMixerFader
                             })
                     }
@@ -266,7 +267,7 @@ struct InformationView: View {
     
     func rgbToHexString(color: Color) -> String {
             guard let components = color.cgColor?.components else {
-                return "#000000" // Default black color if conversion fails
+                return "#ffffff"
             }
             
             let red = components[0]
@@ -281,6 +282,6 @@ struct InformationView: View {
         }
     
     func saveChanges() {
-        websocket.sendNonBindingString(JsonModule().encodeEditMixerFader($localMixerFader.wrappedValue) ?? "", response: true)
+        websocket.sendNonBindingString(JsonModule().encodeEditMixerFader(editMixerFader(editMixerFader: hiJuDasIstEineMixerFaderVeränderung(fader: $localMixerFader.wrappedValue))) ?? "", response: true)
     }
 }

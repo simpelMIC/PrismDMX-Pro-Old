@@ -79,7 +79,7 @@ class JsonModule {
         }
     }
     
-    func encodeEditMixerFader(_ editMixerFader: MixerFader) -> String? {
+    func encodeEditMixerFader(_ editMixerFader: editMixerFader) -> String? {
         let encoder = JSONEncoder()
         if let json = try? encoder.encode(editMixerFader) {
             return String(data: json, encoding: .utf8)
