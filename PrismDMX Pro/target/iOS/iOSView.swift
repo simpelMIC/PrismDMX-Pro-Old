@@ -200,12 +200,18 @@ struct setProjectView: View {
                 .navigationTitle("Select a Project")
             }
             .toolbar(content: {
-                Button {
-                    createProject()
-                } label: {
-                    Image(systemName: "plus")
+                HStack {
+                    Button {
+                        disconnect()
+                    } label: {
+                        Text("Disconnect")
+                    }
+                    Button {
+                        createProject()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
-
             })
             .sheet(isPresented: $isSheetPresented, content: {
                 newProjectSheet(isSheetPresented: $isSheetPresented, websocket: $websocket, workspace: $workspace)
@@ -251,6 +257,10 @@ struct setProjectView: View {
     
     func deleteProject(project: Project) {
         websocket.sendNonBindingString(JsonModule().projectDeletion(PrismDMX_Pro_Mobile.deleteProject(deleteProject: hiJuDasIstEinNeuesProject(project: project))) ?? "", response: true)
+    }
+    
+    func disconnect() {
+        websocket.disconnect(response: true)
     }
 }
 

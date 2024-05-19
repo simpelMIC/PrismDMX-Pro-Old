@@ -65,8 +65,33 @@ struct MixerLightingConfigView: View {
     @Binding var workspace: Workspace
     @Binding var websocket: Websocket
     @Binding var packet: Packet
+    
+    @State private var bgColor = Color(.sRGB, red: 1.0, green: 1.0, blue: 1.0)
+    @State private var localColor: String = "#ffffff"
     var body: some View {
-        Text("Lighting")
+        List {
+            ColorPicker("Color", selection: $bgColor)
+                .onChange(of: bgColor, {
+                    websocket.sendNonBindingString("{ \"setMixerColor\": \"\(rgbToHexString(color: bgColor))\" }", response: true)
+                })
+        }
+        .navigationTitle("Lighting")
+    }
+    
+    func rgbToHexString(color: Color) -> String {
+        guard let components = color.cgColor?.components else {
+            return "#ffffff"
+        }
+        
+        let red = components[0]
+        let green = components[1]
+        let blue = components[2]
+        
+        let redHex = String(format: "%02X", Int(red * 255))
+        let greenHex = String(format: "%02X", Int(green * 255))
+        let blueHex = String(format: "%02X", Int(blue * 255))
+        
+        return "#" + redHex + greenHex + blueHex
     }
 }
 

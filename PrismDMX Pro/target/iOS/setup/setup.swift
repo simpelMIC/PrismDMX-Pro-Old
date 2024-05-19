@@ -14,7 +14,26 @@ struct iOSSetup: View {
     @Binding var packet: Packet
     var body: some View {
         List {
-            NavigationLink(destination: iOSSettings(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("App Settings") })
+            //App Settings
+            NavigationLink {
+                Text("Loading")
+                    .onAppear {
+                        workspace.isCompleted = false
+                        websocket.disconnect(response: true)
+                    }
+            } label: {
+                Text("Network Settings")
+            }
+            NavigationLink {
+                Text("Loading...")
+                    .onAppear {
+                        workspace.project = nil
+                        packet.project = nil
+                    }
+            } label: {
+                Text("Change Project")
+            }
+            //Other Settings
             NavigationLink(destination: FixtureConfigView(packet: $packet, websocket: $websocket, fixtures: $packet.fixtures), label: { Text("Fixture Configuration") })
             NavigationLink(destination: iOSMixerConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Mixer Configuration") })
         }

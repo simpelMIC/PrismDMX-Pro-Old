@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-///#TODO:
-///- An overview of all pages
-///- Delete and add pages
+/// To-Do
+///  - When pressed Enter then save mixer thing
+
 struct iOSConfigView: View {
     @Binding var workspace: Workspace
     @Binding var websocket: Websocket
@@ -22,7 +22,11 @@ struct iOSConfigView: View {
             MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
             .tabItem {
                 Image(systemName: "slider.vertical.3")
-                Text("Mixer")
+                if packet.mixer.isMixerAvailable == "True" { //Ja das muss so
+                    Text("Mixer")
+                } else {
+                    Text("Mixer (Disconnected)")
+                }
             }
         }
         .toolbar(content: {
@@ -32,7 +36,7 @@ struct iOSConfigView: View {
                         mixerPage = mixerPage - 1
                     }
                 } label: {
-                    Image(systemName: "minus")
+                    Text("Down")
                 }
                 .disabled(mixerPage == 0)
                 .padding(.horizontal)
@@ -46,12 +50,18 @@ struct iOSConfigView: View {
                     if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
                         mixerPage = mixerPage + 1
                     } else {
-                        //Append new page
+                        websocket.sendNonBindingString("{ \"newPage\": \"true\" }", response: true) //Append Page
+                        if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
+                            mixerPage = mixerPage + 1
+                        }
                     }
                 } label: {
-                    Image(systemName: "plus")
+                    if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
+                        Text("Up")
+                    } else {
+                        Text("Create New")
+                    }
                 }
-                .disabled($mixerPage.wrappedValue == $packet.mixer.pages.wrappedValue.count - 1)
                 .padding(.horizontal)
             }
         })
@@ -78,18 +88,23 @@ struct PagesOverview: View {
                         Text("Page \(index + 1)")
                     }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        Button(role: .destructive) {
-                            websocket.sendNonBindingString("{ \"deletepage\": \"\(packet.mixer.pages[index].id)\" }", response: true) //Delete Page
-                        } label: {
-                            Label("Delete", systemImage: "trash")
+                        if packet.mixer.pages.count > 1 {
+                            Button(role: .destructive) {
+                                websocket.sendNonBindingString("{ \"deletePage\": \"\(packet.mixer.pages[index].id)\" }", response: true) //Delete Page
+                                if index != 0 {
+                                    mixerPage = index - 1
+                                }
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                            .tint(.primary)
                         }
-                        .tint(.primary)
                     }
                 }
                 .navigationTitle("Pages")
                 .toolbar(content: {
                     Button {
-                        websocket.sendNonBindingString("{ \"newpage\": \"true\" }", response: true) //Append Page
+                        websocket.sendNonBindingString("{ \"newPage\": \"true\" }", response: true) //Append Page
                     } label: {
                         Image(systemName: "plus")
                     }
