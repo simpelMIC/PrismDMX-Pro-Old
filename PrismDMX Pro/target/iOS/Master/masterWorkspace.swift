@@ -13,42 +13,50 @@ struct iOSMasterView: View {
     @Binding var websocket: Websocket
     @Binding var packet: Packet
     var body: some View {
-        NavigationSplitView(columnVisibility: $workspace.columnVisible) {
-            List {
-                NavigationLink {
-                    NavigationStack {
-                        iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+        if packet.setup == "false" {
+            NavigationSplitView(columnVisibility: $workspace.columnVisible) {
+                List {
+                    if packet.mixer.isMixerAvailable == "False" {
+                        NavigationLink {
+                            NavigationStack {
+                                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+                            }
+                        } label: {
+                            Text("Setup")
+                        }
                     }
-                } label: {
-                    Text("Setup")
+                    NavigationLink {
+                        iOSConfigView(workspace: $workspace, websocket: $websocket, packet: $packet)
+                    } label: {
+                        Text("Config")
+                    }
                 }
-                NavigationLink {
-                    iOSConfigView(workspace: $workspace, websocket: $websocket, packet: $packet)
-                } label: {
-                    Text("Config")
+                .navigationTitle(packet.project?.name ?? "Workspace")
+            } detail: {
+                ZStack {
+                    Image("light-lights-led-812677")
+                    Rectangle()
+                        .fill(.clear)
+                        .background(Material.regular)
+                    VStack {
+                        HStack {
+                            Text("Welcome to PrismDMX Pro")
+                                .font(.title)
+                                .fontWeight(.black)
+                            Image("icon_512x512")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 40, height: 40)
+                                .clipped()
+                        }
+                        Text("Select a category")
+                    }
                 }
             }
-            .navigationTitle(packet.project?.name ?? "Workspace")
-        } detail: {
-            ZStack {
-                Image("light-lights-led-812677")
-                Rectangle()
-                    .fill(.clear)
-                    .background(Material.regular)
-                VStack {
-                    HStack {
-                        Text("Welcome to PrismDMX Pro")
-                            .font(.title)
-                            .fontWeight(.black)
-                        Image("icon_512x512")
-                            .renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 40, height: 40)
-                            .clipped()
-                    }
-                    Text("Select a category")
-                }
+        } else {
+            NavigationStack {
+                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
             }
         }
     }

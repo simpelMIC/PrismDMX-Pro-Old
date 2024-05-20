@@ -16,19 +16,19 @@ struct iOSMixerView: View {
     @State var mixerPage: Int = 0
     @State var isSheetPresented: Bool = false
     var body: some View {
-            TabView {
-                MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
-                    .tabItem {
-                        Image(systemName: "slider.vertical.3")
-                        Text("Mixer")
-                    }
-                NavigationView {
-                    iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
-                }
+        TabView {
+            MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
                 .tabItem {
-                    Image(systemName: "gear")
-                    Text("Setup")
+                    Image(systemName: "slider.vertical.3")
+                    Text("Mixer")
                 }
+            NavigationView {
+                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+            }
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Setup")
+            }
             .toolbar(content: {
                 HStack {
                     Button {

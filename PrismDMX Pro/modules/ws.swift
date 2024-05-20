@@ -68,6 +68,8 @@ class Websocket: WebSocketConnectionDelegate {
     
     func disconnect(response: Bool) {
         socket?.disconnect()
+        connected = false
+        error = nil
         if response == true {
             print("Websocket disconnect")
         }
@@ -132,7 +134,7 @@ class Websocket: WebSocketConnectionDelegate {
         print("WebSocket received message as string: \(string)")
         //On Recieve change data
         if let data = string.data(using: .utf8) {
-            packet = JsonModule().decode(data) ?? Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [])
+            packet = JsonModule().decode(data) ?? Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [], setup: "false")
         } else {
             print("Couldn't convert recieved message to data")
         }

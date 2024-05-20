@@ -36,6 +36,7 @@ struct Packet: Equatable, Codable {
     var fixtureTemplates: [FixtureTemplate]
     var mixer: Mixer
     var fixtureGroups: [FixtureGroup]
+    var setup: String
 }
 
 struct Project: Equatable, Codable {

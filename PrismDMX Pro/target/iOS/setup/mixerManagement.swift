@@ -72,10 +72,24 @@ struct MixerLightingConfigView: View {
         List {
             ColorPicker("Color", selection: $bgColor)
                 .onChange(of: bgColor, {
-                    websocket.sendNonBindingString("{ \"setMixerColor\": \"\(rgbToHexString(color: bgColor))\" }", response: true)
+                    localColor = rgbToHexString(color: bgColor)
                 })
+                .onSubmit() {
+                    save()
+                }
         }
         .navigationTitle("Lighting")
+        .onAppear {
+            bgColor = hexStringToRGB(hex: packet.mixer.color)
+        }
+        .onDisappear {
+            save()
+        }
+        .toolbar(content: {
+            Button("Save") {
+                save()
+            }
+        })
     }
     
     func rgbToHexString(color: Color) -> String {
@@ -92,6 +106,37 @@ struct MixerLightingConfigView: View {
         let blueHex = String(format: "%02X", Int(blue * 255))
         
         return "#" + redHex + greenHex + blueHex
+    }
+    
+    func hexStringToRGB(hex: String) -> Color {
+        // Remove the '#' if it exists
+        let cleanedHex = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        
+        // Ensure the string is 6 characters long
+        guard cleanedHex.count == 6 else {
+            return Color.white // default to white color if invalid
+        }
+        
+        // Extract RGB values
+        let redHex = String(cleanedHex.prefix(2))
+        let greenHex = String(cleanedHex.dropFirst(2).prefix(2))
+        let blueHex = String(cleanedHex.dropFirst(4).prefix(2))
+        
+        // Convert hex strings to Int values
+        let redInt = Int(redHex, radix: 16) ?? 255
+        let greenInt = Int(greenHex, radix: 16) ?? 255
+        let blueInt = Int(blueHex, radix: 16) ?? 255
+        
+        // Create Color from RGB values
+        return Color(
+            red: Double(redInt) / 255.0,
+            green: Double(greenInt) / 255.0,
+            blue: Double(blueInt) / 255.0
+        )
+    }
+    
+    func save() {
+        websocket.sendNonBindingString("{ \"setMixerColor\": \"\(localColor)\" }", response: true)
     }
 }
 

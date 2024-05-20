@@ -10,7 +10,7 @@ import Foundation
 
 @main
 struct PrismDMX_ProApp: App {
-    @State var packet: Packet = Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error"), Project(internalID: "1", name: "error1")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [])
+    @State var packet: Packet = Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error"), Project(internalID: "1", name: "error1")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [], setup: "false")
     @State var connected: Bool = false
     @State var error: String?
     #if os(iOS)

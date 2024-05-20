@@ -126,7 +126,7 @@ struct MixerView: View {
                 VStack {
                     ZStack {
                         if workspace.displayMode != 2 {
-                            AngularGradient(gradient: Gradient(colors: [Color(.sRGB, red: 254/255, green: 254/255, blue: 254/255), Color(.systemBackground)]), center: .center, startAngle: .degrees(0), endAngle:
+                            AngularGradient(gradient: Gradient(colors: [hexStringToRGB(hex: packet.mixer.color), Color(.systemBackground)]), center: .center, startAngle: .degrees(0), endAngle:
                                     .degrees(360))
                             Rectangle()
                                 .fill(.clear)
@@ -172,6 +172,33 @@ struct MixerView: View {
                 }
             }
         }
+    }
+    
+    func hexStringToRGB(hex: String) -> Color {
+        // Remove the '#' if it exists
+        let cleanedHex = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        
+        // Ensure the string is 6 characters long
+        guard cleanedHex.count == 6 else {
+            return Color.white // default to white color if invalid
+        }
+        
+        // Extract RGB values
+        let redHex = String(cleanedHex.prefix(2))
+        let greenHex = String(cleanedHex.dropFirst(2).prefix(2))
+        let blueHex = String(cleanedHex.dropFirst(4).prefix(2))
+        
+        // Convert hex strings to Int values
+        let redInt = Int(redHex, radix: 16) ?? 255
+        let greenInt = Int(greenHex, radix: 16) ?? 255
+        let blueInt = Int(blueHex, radix: 16) ?? 255
+        
+        // Create Color from RGB values
+        return Color(
+            red: Double(redInt) / 255.0,
+            green: Double(greenInt) / 255.0,
+            blue: Double(blueInt) / 255.0
+        )
     }
 }
 
@@ -254,6 +281,7 @@ struct InformationView: View {
             .onAppear {
                 workspace.columnVisible = .detailOnly
                 localMixerFader = mixerFader
+                bgColor = hexStringToRGB(hex: mixerFader.color)
             }
             .onDisappear {
                 saveChanges()
@@ -295,6 +323,34 @@ struct InformationView: View {
             
             return "#" + redHex + greenHex + blueHex
         }
+
+    func hexStringToRGB(hex: String) -> Color {
+        // Remove the '#' if it exists
+        let cleanedHex = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        
+        // Ensure the string is 6 characters long
+        guard cleanedHex.count == 6 else {
+            return Color.white // default to white color if invalid
+        }
+        
+        // Extract RGB values
+        let redHex = String(cleanedHex.prefix(2))
+        let greenHex = String(cleanedHex.dropFirst(2).prefix(2))
+        let blueHex = String(cleanedHex.dropFirst(4).prefix(2))
+        
+        // Convert hex strings to Int values
+        let redInt = Int(redHex, radix: 16) ?? 255
+        let greenInt = Int(greenHex, radix: 16) ?? 255
+        let blueInt = Int(blueHex, radix: 16) ?? 255
+        
+        // Create Color from RGB values
+        return Color(
+            red: Double(redInt) / 255.0,
+            green: Double(greenInt) / 255.0,
+            blue: Double(blueInt) / 255.0
+        )
+    }
+
     
     func saveChanges() {
         websocket.sendNonBindingString(JsonModule().encodeEditMixerFader(editMixerFader(editMixerFader: hiJuDasIstEineMixerFaderVeränderung(fader: $localMixerFader.wrappedValue))) ?? "", response: true)
