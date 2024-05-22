@@ -1,36 +1,90 @@
 # PrismDMX Pro
 
-PrismDMX Pro is a Swift application designed to facilitate the control and management of DMX-based lighting fixtures. It provides a user-friendly interface for configuring, controlling, and customizing DMX devices, making it ideal for use in stage lighting, events, and installations.
+PrismDMX Pro is an advanced, professional-grade lighting control software designed for efficient and dynamic management of lighting fixtures and playbacks. With a user-friendly interface and robust networking capabilities, PrismDMX Pro is the perfect solution for lighting professionals looking to enhance their workflows.
 
 ## Features
 
-- **DMX Control**: PrismDMX Pro allows users to control DMX-based lighting fixtures with ease, providing intuitive controls for adjusting channel values and settings.
-  
-- **Fixture Management**: Users can manage fixtures by adding, removing, and configuring various types of lighting devices, including dimmers, RGB fixtures, moving heads, lasers, and more.
-  
-- **Customization**: PrismDMX Pro offers customization options for fixture control, allowing users to tailor settings and channels according to their specific lighting requirements.
-  
-- **Color Control**: The application includes features for controlling color parameters, enabling users to manipulate RGB, RGBW, and other color channels with precision.
-  
-- **Streamlined Interface**: With a clean and organized interface, PrismDMX Pro ensures that users can navigate and operate the application efficiently, even in complex lighting setups.
+- **Workspace Organization**: Manage your lighting projects with intuitive workspace organization, keeping all your fixtures, playbacks, and settings neatly organized.
+- **Mixer Control**: Customize and control your lighting setup with dynamic mixer controls for fine-tuning colors, adjusting fader presets, and creating lighting effects.
+- **Fixture Management**: Efficiently handle your fixtures and fixture groups, providing detailed control over each light source.
+- **Playback Timeline**: Visualize and manage lighting cues and sequences with an interactive playback timeline for seamless event synchronization.
+- **Networking Capabilities**: Integrate with your existing network infrastructure for easy collaboration and control across multiple devices.
+- **Project Management**: Create, edit, and collaborate on lighting projects with robust project management tools, ensuring flawless execution of every detail.
+- **Customization Options**: Personalize your lighting experience with extensive customization options for color schemes, control layouts, and more.
 
-## Getting Started
+## Installation
 
-To get started with PrismDMX Pro, follow these steps:
+To install and run PrismDMX Pro, follow these steps:
 
-1. **Clone the Repository**: Clone the PrismDMX Pro repository to your local machine using the following command:
-```
-git clone https://github.com/simpelMIC/PrismDMX-Pro.git
-```
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/simpelMIC/PrismDMXPro.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd PrismDMXPro
+    ```
+3. Open the project in Xcode:
+    ```sh
+    open PrismDMXPro.xcodeproj
+    ```
+4. Build and run the project using Xcode.
 
-2. **Open in Xcode**: Open the project in Xcode by double-clicking the `PrismDMX-Pro.xcodeproj` file.
+## Usage
 
-3. **Build and Run**: Build the project and run it on your mac (macOS) to start using PrismDMX Pro.
+### Connecting to a WebSocket Server
+
+1. Open the `Settings` tab.
+2. Enter the IP address and port of your WebSocket server.
+3. Click the "Connect" button to establish a connection.
+
+### Managing Fixtures
+
+1. Navigate to the `Fixtures` tab.
+2. Add, edit, or delete fixtures as needed.
+3. Group fixtures for easier control and organization.
+
+### Using the Mixer
+
+1. Open the `Mixer` tab.
+2. Adjust faders and buttons to control lighting effects.
+3. Customize the mixer layout and settings to fit your needs.
+
+### Playback Timeline
+
+1. Go to the `Playbacks` tab.
+2. Create and edit playback sequences.
+3. Visualize the timeline to ensure smooth transitions and effects.
 
 ## Contributing
 
-Contributions to PrismDMX Pro are welcome! If you encounter any bugs, have feature requests, or would like to contribute enhancements, please feel free to submit a pull request or open an issue on the GitHub repository.
+We welcome contributions from the community! To contribute to PrismDMX Pro, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
+    ```sh
+    git checkout -b feature/your-feature
+    ```
+3. Make your changes and commit them:
+    ```sh
+    git commit -m "Add new feature"
+    ```
+4. Push to the branch:
+    ```sh
+    git push origin feature/your-feature
+    ```
+5. Open a pull request on GitHub.
 
 ## License
 
-PrismDMX Pro is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Contact
+
+For any questions or feedback, feel free to reach out:
+
+- **GitHub Issues**: [https://github.com/simpelMIC/PrismDMXPro/issues](https://github.com/simpelMIC/PrismDMXPro/issues)
+
+---
+
+Thank you for using PrismDMX Pro! We hope this software enhances your lighting control experience.
