@@ -12,24 +12,6 @@ PrismDMX Pro is an advanced, professional-grade lighting control software design
 - **Project Management**: Create, edit, and collaborate on lighting projects with robust project management tools, ensuring flawless execution of every detail.
 - **Customization Options**: Personalize your lighting experience with extensive customization options for color schemes, control layouts, and more.
 
-## Installation
-
-To install and run PrismDMX Pro, follow these steps:
-
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/simpelMIC/PrismDMXPro.git
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd PrismDMXPro
-    ```
-3. Open the project in Xcode:
-    ```sh
-    open PrismDMXPro.xcodeproj
-    ```
-4. Build and run the project using Xcode.
-
 ## Usage
 
 ### Connecting to a WebSocket Server
@@ -83,7 +65,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) f
 
 For any questions or feedback, feel free to reach out:
 
-- **GitHub Issues**: [https://github.com/simpelMIC/PrismDMXPro/issues](https://github.com/simpelMIC/PrismDMXPro/issues)
+- **GitHub Issues**: [https://github.com/simpelMIC/PrismDMX-Pro/issues](https://github.com/simpelMIC/PrismDMX-Pro/issues)
 
 ---
 
