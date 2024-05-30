@@ -18,7 +18,7 @@ struct iOSConfigView: View {
     @State var mixerPage: Int = 0
     @State var isSheetPresented: Bool = false
     var body: some View {
-        TabView {
+        NavigationStack {
             MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
             .tabItem {
                 Image(systemName: "slider.vertical.3")
@@ -59,7 +59,7 @@ struct iOSConfigView: View {
                     if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
                         Text("Up")
                     } else {
-                        Text("Create New")
+                        Text("New")
                     }
                 }
                 .padding(.horizontal)
@@ -88,18 +88,17 @@ struct PagesOverview: View {
                         Text("Page \(index + 1)")
                     }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        if packet.mixer.pages.count > 1 {
-                            Button(role: .destructive) {
-                                websocket.sendNonBindingString("{ \"deletePage\": \"\(packet.mixer.pages[index].id)\" }", response: true) //Delete Page
-                                if index != 0 {
-                                    mixerPage = index - 1
-                                }
-                            } label: {
-                                Label("Delete", systemImage: "trash")
+                        Button(role: .destructive) {
+                            websocket.sendNonBindingString("{ \"deletePage\": \"\(packet.mixer.pages[index].id)\" }", response: true) //Delete Page
+                            if index != 0 {
+                                mixerPage = index - 1
                             }
-                            .tint(.primary)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
                         }
+                        .disabled(!(packet.mixer.pages.count > 1))
                     }
+                    .tint(.primary)
                 }
                 .navigationTitle("Pages")
                 .toolbar(content: {
