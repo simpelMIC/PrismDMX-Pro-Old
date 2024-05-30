@@ -7,15 +7,6 @@
 
 import Foundation
 
-struct Fixture: Equatable, Codable {
-    var internalID: String
-    var name: String
-    var FixtureGroup: String
-    var template: String
-    var startChannel: String
-    var channels: [Channel]
-}
-
 struct FixtureTemplate: Equatable, Codable, Hashable {
     var internalID: String
     var name: String
@@ -37,16 +28,14 @@ struct Packet: Equatable, Codable {
     var mixer: Mixer
     var fixtureGroups: [FixtureGroup]
     var setup: String
+    var channels: String //Bool
+    var selectedFixtureIDs: [String] //Int Array
+    var selectedFixtureGroupIDs: [String] //Int Array
 }
 
 struct Project: Equatable, Codable {
     var internalID: String
     var name: String
-}
-
-struct FixtureGroup: Equatable, Codable {
-    var name: String
-    var internalIDs: [String]
 }
 
 struct newFixture: Equatable, Codable {
@@ -91,4 +80,12 @@ struct editMixerFader: Equatable, Codable {
 
 struct hiJuDasIstEineMixerFaderVeränderung: Equatable, Codable {
     var fader: MixerFader
+}
+
+struct hiJuDasIstEineMixerButtonVeränderung: Equatable, Codable {
+    var fader: MixerFader
+}
+
+struct editMixerButton: Equatable, Codable {
+    var editMixerButton: hiJuDasIstEineMixerButtonVeränderung
 }

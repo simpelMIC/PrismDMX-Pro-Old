@@ -1,0 +1,2202 @@
+//
+//  iOSView.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 29.04.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct iOSView: View {
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    @Binding var connected: Bool
+    @Binding var error: String?
+    @State var websocket: Websocket
+    var body: some View {
+        ZStack {
+            if connected == false {
+                Image("light-lights-led-812677")
+                Rectangle()
+                    .fill(.clear)
+                    .background(Material.regular)
+            }
+            VStack {
+                if connected == false {
+                    HStack {
+                        Text("Welcome to PrismDMX Pro")
+                            .font(.title)
+                            .fontWeight(.black)
+                        Image("icon_512x512")
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 40, height: 40)
+                            .clipped()
+                    }
+                }
+                ConnectionView(workspace: $workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
+            }
+        }
+        .onAppear {
+            connected = false
+            error = nil
+            workspace = iOSDataModule().load() ?? Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.188", port: "8000/ws/main"), displayMode: 0, notes: [], columnVisible: .all)
+        }
+        .onDisappear {
+            websocket.disconnect(response: true)
+            iOSDataModule().save($workspace)
+        }
+    }
+}
+
+struct iOSWorkspaceView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        VStack {
+            if $workspace.displayMode.wrappedValue == 0 { //MasterWorkspace
+                iOSMasterView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 1 { //FixturesWorkspace
+                iOSFixturesView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 2 { //MixerWorkspace
+                iOSMixerView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 3 { //PlaybacksWorkspace
+                PlaybacksWorkspace(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else {
+                VStack {
+                    Text("Error: DisplayMode invalid")
+                    Button {
+                        workspace.displayMode = 0
+                    } label: {
+                        Text("Reset")
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+            }
+        }
+    }
+}
+
+struct ConnectionView: View {
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    @Binding var connected: Bool
+    @Binding var error: String?
+    @Binding var websocket: Websocket
+    
+    @State var isSheetPresented: Bool = false
+    var body: some View {
+        VStack {
+            if connected == true && error == nil {
+                iOSSelectProjectView(workspace: $workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
+                    .onAppear {
+                        iOSDataModule().save($workspace)
+                    }
+            } else {
+                Button("Connect") {
+                    isSheetPresented.toggle()
+                }
+                .onAppear {
+                    if workspace.isCompleted == true {
+                        websocket.connect(ip: $workspace.settings.ip, port: $workspace.settings.port, response: true)
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $isSheetPresented, content: {
+            ConnectionViewSheet(workspace: $workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket, isSheetPresented: $isSheetPresented)
+                .padding(20)
+        })
+    }
+}
+
+struct iOSSelectProjectView: View {
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    @Binding var connected: Bool
+    @Binding var error: String?
+    @Binding var websocket: Websocket
+    
+    var body: some View {
+        VStack {
+            if workspace.project == nil {
+                if packet.project == nil || packet.project == Project(internalID: "na", name: "na") || packet.project == Project(internalID: "naa", name: "naa") {
+                    setProjectView(packet: $packet, workspace: $workspace, websocket: $websocket)
+                } else {
+                iOSWorkspaceView(workspace: $workspace, websocket: $websocket, packet: $packet) //If a new Project is created
+                }
+            } else {
+                if packet.project == nil || packet.project == Project(internalID: "na", name: "na") {
+                    setProjectView(packet: $packet, workspace: $workspace, websocket: $websocket)
+                        .onAppear {
+                            loadProject()
+                        }
+                } else {
+                    iOSWorkspaceView(workspace: $workspace, websocket: $websocket, packet: $packet) //If an existing project is loaded
+                }
+            }
+        }
+    }
+    
+    func loadProject() {
+        websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: workspace.project ?? Project(internalID: "na", name: "na")))) ?? "", response: true)
+    }
+}
+
+struct setProjectView: View {
+    @Binding var packet: Packet
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    
+    @State private var selectedIndex: Int = 0
+    @State private var isSheetPresented: Bool = false
+    
+    private var sortedProjectIndices: [Int] {
+        return packet.availableProjects.indices.sorted { index1, index2 in
+            let project1 = packet.availableProjects[index1]
+            let project2 = packet.availableProjects[index2]
+            return project1.name.contains("(currently open)") && !project2.name.contains("(currently open)")
+        }
+    }
+    /*
+    private var selectedProject: Project {
+        let selectedProjectIndex = sortedProjectIndices[selectedIndex]
+        return packet.availableProjects[selectedProjectIndex]
+    }*/
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                List(sortedProjectIndices.indices, id: \.self) { index in
+                    NavigationLink {
+                        Text("Loading...")
+                            .onAppear {
+                                loadProject(selectedProject: packet.availableProjects[index])
+                            }
+                    } label: {
+                        Text(packet.availableProjects[index].name)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button(role: .destructive) {
+                                    deleteProject(project: $packet.availableProjects[index].wrappedValue)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                    }
+                }
+                .navigationTitle("Select a Project")
+            }
+            .toolbar(content: {
+                HStack {
+                    Button {
+                        disconnect()
+                    } label: {
+                        Text("Disconnect")
+                    }
+                    Button {
+                        createProject()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            })
+            .sheet(isPresented: $isSheetPresented, content: {
+                newProjectSheet(isSheetPresented: $isSheetPresented, websocket: $websocket, workspace: $workspace)
+            })
+        }
+        /*
+        VStack {
+            Text("Select your project")
+                .font(.title)
+                .fontWeight(.black)
+            HStack {
+                Picker("Available Projects", selection: $selectedIndex) {
+                    ForEach(0..<packet.availableProjects.count, id: \.self) { index in
+                        Text(packet.availableProjects[self.sortedProjectIndices[index]].name)
+                    }
+                }
+            }
+            Spacer()
+            HStack {
+                Button("Create") { createProject() }
+                    .buttonStyle(.bordered)
+                Button("Load") {
+                    loadProject()
+                }
+                    .buttonStyle(.borderedProminent)
+            }
+        }
+        .padding(20)
+        .sheet(isPresented: $isSheetPresented, content: {
+            newProjectSheet(isSheetPresented: $isSheetPresented, websocket: $websocket, workspace: $workspace)
+        })*/
+    }
+    
+    func loadProject(selectedProject: Project) {
+        workspace.project = selectedProject
+        websocket.sendNonBindingString(JsonModule().encodeSetProject(setProject(setProject: hiJuDasIstEinNeuesProject(project: selectedProject))) ?? "", response: true)
+        iOSDataModule().save($workspace)
+    }
+    
+    func createProject() {
+        isSheetPresented.toggle()
+    }
+    
+    func deleteProject(project: Project) {
+        websocket.sendNonBindingString(JsonModule().projectDeletion(PrismDMX_Pro_Mobile.deleteProject(deleteProject: hiJuDasIstEinNeuesProject(project: project))) ?? "", response: true)
+    }
+    
+    func disconnect() {
+        websocket.disconnect(response: true)
+    }
+}
+
+
+
+struct newProjectSheet: View {
+    @State var newProject: Project = Project(internalID: "0", name: "New Project")
+    
+    @Binding var isSheetPresented: Bool
+    @Binding var websocket: Websocket
+    @Binding var workspace: Workspace
+    
+    var body: some View {
+        VStack {
+            Text("New Project")
+                .font(.title)
+                .fontWeight(.black)
+            HStack {
+                Text("Name: ")
+                TextField("Name", text: $newProject.name)
+            }
+            Spacer()
+            HStack {
+                Button("Create") {
+                    createProject()
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .padding(12)
+    }
+    
+    func createProject() {
+        isSheetPresented.toggle()
+        websocket.sendNonBindingString(JsonModule().encodeNewProject(PrismDMX_Pro_Mobile.newProject(newProject: hiJuDasIstEinNeuesProject(project: newProject))) ?? "", response: true)
+        iOSDataModule().save($workspace)
+    }
+}
+
+struct ConnectionViewSheet: View {
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    @Binding var connected: Bool
+    @Binding var error: String?
+    @Binding var websocket: Websocket
+    @Binding var isSheetPresented: Bool
+    var body: some View {
+        if workspace.isCompleted == true {
+            if connected == true && error == nil {
+                Text("Loading...")
+                    .onAppear {
+                        isSheetPresented = false
+                    }
+            } else if connected == true && error != nil {
+                iOSErrorView(workspace: $workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
+            } else if connected == false && error != nil {
+                iOSErrorView(workspace: $workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
+            } else if connected == false && error == nil {
+                iOSisConnectingView(workspace: $workspace, websocket: $websocket)
+            }
+        } else {
+            iOSNWSettingsView(workspace: $workspace, packet: $packet, connected: $connected, error: $error, websocket: $websocket)
+        }
+    }
+}
+
+struct iOSisConnectingView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    var body: some View {
+        Text("Connecting...")
+        Button("Cancel") {
+            workspace.isCompleted = false
+        }
+        .onAppear {
+            websocket.connect(ip: $workspace.settings.ip, port: $workspace.settings.port, response: true)
+        }
+    }
+}
+
+struct iOSErrorView: View {
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    @Binding var connected: Bool
+    @Binding var error: String?
+    @Binding var websocket: Websocket
+    var body: some View {
+        VStack {
+            Text("An error occured: \(error ?? "unknown error")")
+            HStack {
+                Button("Settings") {
+                    workspace.isCompleted = false
+                }
+                .buttonStyle(.bordered)
+                Button("Retry") {
+                    websocket.disconnect(response: true)
+                    websocket.connect(ip: $workspace.settings.ip, port: $workspace.settings.port, response: true)
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+    }
+}
+
+struct iOSNWSettingsView: View {
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    @Binding var connected: Bool
+    @Binding var error: String?
+    @Binding var websocket: Websocket
+    var body: some View {
+        VStack {
+            Text("Network Settings")
+                .font(.title)
+                .fontWeight(.black)
+            HStack {
+                Text("IP: ")
+                TextField("IP", text: $workspace.settings.ip)
+            }
+            HStack {
+                Text("Port: ")
+                TextField("Port", text: $workspace.settings.port)
+            }
+            Spacer()
+            Button("Connect") {
+                workspace.isCompleted = true
+            }
+            .buttonStyle(.borderedProminent)
+        }
+    }
+}
+
+//
+//  config.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 01.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+/// To-Do
+///  - When pressed Enter then save mixer thing
+
+struct iOSConfigView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    @State var mixerPage: Int = 0
+    @State var isSheetPresented: Bool = false
+    var body: some View {
+        TabView {
+            MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
+            .tabItem {
+                Image(systemName: "slider.vertical.3")
+                if packet.mixer.isMixerAvailable == "True" { //Ja das muss so
+                    Text("Mixer")
+                } else {
+                    Text("Mixer (Disconnected)")
+                }
+            }
+        }
+        .toolbar(content: {
+            HStack {
+                Button {
+                    if mixerPage > 0 {
+                        mixerPage = mixerPage - 1
+                    }
+                } label: {
+                    Text("Down")
+                }
+                .disabled(mixerPage == 0)
+                .padding(.horizontal)
+                Button {
+                    isSheetPresented.toggle()
+                } label: {
+                    Text("Selected Page: \(mixerPage + 1)")
+                }
+                .buttonStyle(.plain)
+                Button {
+                    if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
+                        mixerPage = mixerPage + 1
+                    } else {
+                        websocket.sendNonBindingString("{ \"newPage\": \"true\" }", response: true) //Append Page
+                        if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
+                            mixerPage = mixerPage + 1
+                        }
+                    }
+                } label: {
+                    if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
+                        Text("Up")
+                    } else {
+                        Text("Create New")
+                    }
+                }
+                .padding(.horizontal)
+            }
+        })
+        .sheet(isPresented: $isSheetPresented, content: {
+            PagesOverview(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage, isSheetPresented: $isSheetPresented)
+        })
+    }
+}
+
+struct PagesOverview: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    @Binding var mixerPage: Int
+    @Binding var isSheetPresented: Bool
+    var body: some View {
+        NavigationStack {
+            VStack {
+                List(packet.mixer.pages.indices, id: \.self) { index in
+                    Button {
+                        isSheetPresented = false
+                        mixerPage = index
+                    } label: {
+                        Text("Page \(index + 1)")
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        if packet.mixer.pages.count > 1 {
+                            Button(role: .destructive) {
+                                websocket.sendNonBindingString("{ \"deletePage\": \"\(packet.mixer.pages[index].id)\" }", response: true) //Delete Page
+                                if index != 0 {
+                                    mixerPage = index - 1
+                                }
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                            .tint(.primary)
+                        }
+                    }
+                }
+                .navigationTitle("Pages")
+                .toolbar(content: {
+                    Button {
+                        websocket.sendNonBindingString("{ \"newPage\": \"true\" }", response: true) //Append Page
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                })
+            }
+        }
+    }
+}
+
+struct MixerView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    
+    @Binding var mixerPage: Int
+    var body: some View {
+        NavigationStack {
+            if !packet.mixer.pages.isEmpty {
+                VStack {
+                    ZStack {
+                        if workspace.displayMode != 2 {
+                            AngularGradient(gradient: Gradient(colors: [hexStringToRGB(hex: packet.mixer.color), Color(.systemBackground)]), center: .center, startAngle: .degrees(0), endAngle:
+                                    .degrees(360))
+                            Rectangle()
+                                .fill(.clear)
+                                .background(Material.bar)
+                        }
+                        ScrollView {
+                            VStack {
+                                if packet.mixer.pages[mixerPage].faders != [] {
+                                    VStack {
+                                        Text("Faders")
+                                            .font(.system(.title, weight: .bold))
+                                            .padding(.leading, 20)
+                                        ScrollView(.horizontal) {
+                                            HStack {
+                                                ForEach(packet.mixer.pages[mixerPage].faders.indices, id: \.self) { index in
+                                                    NavigationLink(destination: InformationView(workspace: $workspace, websocket: $websocket, packet: $packet, content: Binding.constant(packet.mixer.pages[mixerPage].faders[index])), label: { SingleFaderView(fader: $packet.mixer.pages[mixerPage].faders[index]) })
+                                                        .buttonStyle(.plain)
+                                                }
+                                                .padding(.leading)
+                                            }
+                                        }
+                                    }
+                                }
+                                if packet.mixer.pages[mixerPage].buttons != [] {
+                                    VStack {
+                                        Text("Buttons")
+                                            .font(.system(.title, weight: .bold))
+                                            .padding(.leading, 20)
+                                        ScrollView(.horizontal) {
+                                            HStack {
+                                                ForEach(packet.mixer.pages[mixerPage].buttons.indices, id: \.self) { index in
+                                                    NavigationLink(destination: InformationView(workspace: $workspace, websocket: $websocket, packet: $packet, content: Binding.constant(packet.mixer.pages[mixerPage].buttons[index])), label: { SingleButtonView(button: $packet.mixer.pages[mixerPage].buttons[index]) })
+                                                        .buttonStyle(.plain)
+                                                }
+                                                .padding(.leading)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func hexStringToRGB(hex: String) -> Color {
+        // Remove the '#' if it exists
+        let cleanedHex = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        
+        // Ensure the string is 6 characters long
+        guard cleanedHex.count == 6 else {
+            return Color.white // default to white color if invalid
+        }
+        
+        // Extract RGB values
+        let redHex = String(cleanedHex.prefix(2))
+        let greenHex = String(cleanedHex.dropFirst(2).prefix(2))
+        let blueHex = String(cleanedHex.dropFirst(4).prefix(2))
+        
+        // Convert hex strings to Int values
+        let redInt = Int(redHex, radix: 16) ?? 255
+        let greenInt = Int(greenHex, radix: 16) ?? 255
+        let blueInt = Int(blueHex, radix: 16) ?? 255
+        
+        // Create Color from RGB values
+        return Color(
+            red: Double(redInt) / 255.0,
+            green: Double(greenInt) / 255.0,
+            blue: Double(blueInt) / 255.0
+        )
+    }
+}
+
+struct SingleFaderView: View {
+    @Binding var fader: MixerFader
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(Color(.quaternaryLabel))
+                .frame(width: 120, height: 300)
+                .clipped()
+            VStack {
+                Text(fader.name)
+                    .frame(width: 110, height: 45)
+                    .clipped()
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color(hex: fader.color) ?? .white)
+                    .frame(width: 106, height: 190)
+                    .clipped()
+                Text(fader.value)
+                    .frame(width: 110, height: 26)
+                    .clipped()
+            }
+            .frame(width: 110, height: 280, alignment: .top)
+            .clipped()
+        }
+    }
+}
+
+struct SingleButtonView: View {
+    @Binding var button: MixerButton
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(Color(.quaternaryLabel))
+                .frame(width: 120, height: 120)
+                .clipped()
+            VStack {
+                Text(button.name)
+                    .frame(width: 110, height: 45)
+                    .clipped()
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color(hex: button.color) ?? .white)
+                    .frame(width: 106, height: 50)
+                    .clipped()
+            }
+            .frame(width: 110, height: 110, alignment: .center)
+            .clipped()
+        }
+    }
+}
+
+struct InformationView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    @Binding var content: Any
+    
+    @State private var bgColor = Color(.sRGB, red: 1.0, green: 1.0, blue: 1.0)
+    @State private var localMixerFader: MixerFader = MixerFader(name: "error in InformationView", color: "error in InformationView", isTouched: "error in InformationView", value: "error in InformationView", assignedType: "error in InformationView", assignedID: "error in InformationView", id: "error")
+    @State private var localMixerButton: MixerButton = MixerButton(name: "error in InformationView", color: "InformationView", isPressed: "error in InformationView", assignedType: "error in InformationView", assignedID: "error in InformationView", id: "error")
+    
+    var body: some View {
+        if let mixerFader = content as? MixerFader {
+            VStack {
+                HStack {
+                    SingleFaderView(fader: $localMixerFader)
+                        .padding(.horizontal, 40)
+                    List {
+                        TextField("Name", text: $localMixerFader.name)
+                        ColorPicker("Color", selection: $bgColor)
+                            .onChange(of: bgColor, {
+                                let newLocalMixerFader = MixerFader(name: localMixerFader.name, color: rgbToHexString(color: bgColor), isTouched: localMixerFader.isTouched, value: localMixerFader.value, assignedType: localMixerFader.assignedType, assignedID: localMixerFader.assignedID, id: localMixerFader.id)
+                                localMixerFader = newLocalMixerFader
+                            })
+                    }
+                    .navigationTitle(localMixerFader.name)
+                }
+            }
+            .onAppear {
+                workspace.columnVisible = .detailOnly
+                localMixerFader = mixerFader
+                bgColor = hexStringToRGB(hex: mixerFader.color)
+            }
+            .onDisappear {
+                saveChanges()
+                workspace.columnVisible = .all
+            }
+            .toolbar(content: {
+                Button {
+                    saveChanges()
+                } label: {
+                    Text("Save")
+                }
+            })
+        } else if let mixerButton = content as? MixerButton {
+            Text("Button")
+                .onAppear {
+                    workspace.columnVisible = .detailOnly
+                    localMixerButton = mixerButton
+                }
+                .onDisappear {
+                    workspace.columnVisible = .all
+                }
+        } else {
+            Text("Unable to identify Element")
+        }
+    }
+    
+    func rgbToHexString(color: Color) -> String {
+            guard let components = color.cgColor?.components else {
+                return "#ffffff"
+            }
+            
+            let red = components[0]
+            let green = components[1]
+            let blue = components[2]
+            
+            let redHex = String(format: "%02X", Int(red * 255))
+            let greenHex = String(format: "%02X", Int(green * 255))
+            let blueHex = String(format: "%02X", Int(blue * 255))
+            
+            return "#" + redHex + greenHex + blueHex
+        }
+
+    func hexStringToRGB(hex: String) -> Color {
+        // Remove the '#' if it exists
+        let cleanedHex = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        
+        // Ensure the string is 6 characters long
+        guard cleanedHex.count == 6 else {
+            return Color.white // default to white color if invalid
+        }
+        
+        // Extract RGB values
+        let redHex = String(cleanedHex.prefix(2))
+        let greenHex = String(cleanedHex.dropFirst(2).prefix(2))
+        let blueHex = String(cleanedHex.dropFirst(4).prefix(2))
+        
+        // Convert hex strings to Int values
+        let redInt = Int(redHex, radix: 16) ?? 255
+        let greenInt = Int(greenHex, radix: 16) ?? 255
+        let blueInt = Int(blueHex, radix: 16) ?? 255
+        
+        // Create Color from RGB values
+        return Color(
+            red: Double(redInt) / 255.0,
+            green: Double(greenInt) / 255.0,
+            blue: Double(blueInt) / 255.0
+        )
+    }
+
+    
+    func saveChanges() {
+        websocket.sendNonBindingString(JsonModule().encodeEditMixerFader(editMixerFader(editMixerFader: hiJuDasIstEineMixerFaderVeränderung(fader: $localMixerFader.wrappedValue))) ?? "", response: true)
+    }
+}
+
+//
+//  setup.swift
+//  PrismDMX Pro_Mobile
+//
+//  Created by Christian on 30.04.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct iOSSetup: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        List {
+            //App Settings
+            NavigationLink {
+                Text("Loading")
+                    .onAppear {
+                        workspace.isCompleted = false
+                        websocket.disconnect(response: true)
+                    }
+            } label: {
+                Text("Network Settings")
+            }
+            NavigationLink {
+                Text("Loading...")
+                    .onAppear {
+                        workspace.project = nil
+                        packet.project = nil
+                    }
+            } label: {
+                Text("Change Project")
+            }
+            //Other Settings
+            NavigationLink(destination: FixtureConfigView(packet: $packet, websocket: $websocket, fixtures: $packet.fixtures), label: { Text("Fixture Configuration") })
+            NavigationLink(destination: iOSMixerConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Mixer Configuration") })
+        }
+        .navigationTitle("Setup")
+    }
+}
+
+//
+//  fixtureManagement.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 01.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct FixtureConfigView: View {
+    @Binding var packet: Packet
+    @Binding var websocket: Websocket
+    @Binding var fixtures: [Fixture]
+    
+    @State private var isSheetOpened: Bool = false
+    @State private var isActionSheetOpened: Bool = false
+    var body: some View {
+        VStack {
+            List(fixtures.sorted(by: { $0.startChannel < $1.startChannel }).indices, id: \.self) { index in
+                NavigationLink(destination: SingleFixtureConfigView(fixture: $fixtures[index], websocket: $websocket)) {
+                    Text(fixtures[index].name)
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            Button(role: .destructive) {
+                                requestFixtureDeletion(fixtures[index], websocket: $websocket)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button {
+                                requestNewFixture(newFixture(newFixture: hiJuDasIstEineNeueFixture(fixture: $fixtures[index].wrappedValue)), websocket: $websocket)
+                            } label: {
+                                Label("Duplicate", systemImage: "square.fill.on.square.fill")
+                            }
+                        }
+                }
+            }
+            .padding()
+            .navigationTitle("Fixture Configuration")
+        }
+        .toolbar {
+            Button {
+                isSheetOpened = true
+            } label: {
+                Image(systemName: "plus")
+            }
+
+        }
+        .sheet(isPresented: $isSheetOpened, content: {
+            newFixtureView(packet: $packet, websocket: $websocket, isSheetPresented: $isSheetOpened)
+        })
+    }
+    
+    func requestNewFixture(_ newFixture: newFixture, websocket: Binding<Websocket>) {
+        let json = JsonModule()
+        let jsonData = json.encodeNewFixture(newFixture)
+        websocket.wrappedValue.sendNonBindingString(jsonData ?? "", response: true)
+    }
+    
+    func requestFixtureDeletion(_ fixture: Fixture, websocket: Binding<Websocket>) {
+        let json = JsonModule()
+        let jsonData = json.encodeFixtureDeletion(DeleteFixture(deleteFixture: hiJuDasIstDieFixture(internalID: fixture.internalID)))
+        websocket.wrappedValue.sendNonBindingString((jsonData ?? ""), response: true)
+    }
+}
+
+struct newFixtureView: View {
+    @Binding var packet: Packet
+    @Binding var websocket: Websocket
+    @Binding var isSheetPresented: Bool
+    
+    @State private var selection: FixtureTemplate?
+    @State private var name: String?
+    @State private var selectedIndex: Int = 0
+    @State private var group: String = ""
+    @State private var startChannelString: String = ""
+    
+    private var selectedTemplate: FixtureTemplate {
+        return packet.fixtureTemplates[selectedIndex]
+    }
+    
+    private var startChannel: Int {
+        return Int(startChannelString) ?? 1
+    }
+
+    var body: some View {
+        VStack {
+            Text("New Fixture")
+                .font(.title)
+                .fontWeight(.black)
+            HStack {
+                Text("Name: ")
+                TextField("Name", text: Binding(
+                                get: { self.name ?? "" },
+                                set: { self.name = $0.isEmpty ? nil : $0 }
+                            ))
+            }
+            HStack {
+                Text("Starting Channel: ")
+                TextField("Channel", text: $startChannelString)
+            }
+            HStack {
+                Text("Pick a template: ")
+                Picker("Pick a template", selection: $selectedIndex) {
+                    ForEach(packet.fixtureTemplates.indices, id: \.self) { index in
+                        Text(packet.fixtureTemplates[index].name)
+                    }
+                }
+            }
+            Spacer()
+            HStack {
+                Button {
+                    isSheetPresented = false
+                    /*var newChannels = [Channel]()
+                    for templateChannel in selectedTemplate.channels {
+                        let dmxChannel = "\(startChannel + Int(templateChannel.dmxChannel)! - 1)"
+                        newChannels.append(Channel(internalID: String(packet.fixtures.count), ChannelName: templateChannel.ChannelName, ChannelType: templateChannel.ChannelType, dmxChannel: dmxChannel))
+                    }*/
+                    requestNewFixture(newFixture(newFixture: hiJuDasIstEineNeueFixture(fixture: Fixture(internalID: "", name: $name.wrappedValue ?? selectedTemplate.name, FixtureGroup: group, template: selectedTemplate.internalID, startChannel: String(startChannel), channels: selectedTemplate.channels))), websocket: $websocket)
+                } label: {
+                    Text("Create")
+                }
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .padding(20)
+    }
+    
+    func requestNewFixture(_ newFixture: newFixture, websocket: Binding<Websocket>) {
+        let json = JsonModule()
+        let jsonData = json.encodeNewFixture(newFixture)
+        websocket.wrappedValue.sendNonBindingString(jsonData ?? "", response: true)
+    }
+}
+
+/*
+ struct Channel: Equatable, Codable, Hashable {
+     var internalID: String
+     var ChannelName: String
+     var ChannelType: String
+     var dmxChannel: String
+ }
+ */
+
+struct SingleFixtureConfigView: View {
+    @Binding var fixture: Fixture
+    @State var localFixture: Fixture = Fixture(internalID: "error", name: "error", FixtureGroup: "error", template: "error", startChannel: "error", channels: [])
+    @Binding var websocket: Websocket
+    @State var isEditChannelSheetOpened: Bool = false
+    
+    var body: some View {
+        TabView {
+            FixtureGeneralView(fixture: $localFixture)
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("General")
+                }
+                .padding(12)
+            ChannelView(channels: $localFixture.channels, editChannelSheet: $isEditChannelSheetOpened)
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Channels")
+                }
+        }
+        .toolbar(content: {
+            Button {
+                sendEditedFixture()
+            } label: {
+                Text("Save")
+            }
+        })
+        .padding(12)
+        .onAppear {
+            localFixture = fixture
+        }
+        .onDisappear {
+            sendEditedFixture()
+        }
+        .navigationTitle(fixture.name)
+    }
+    
+    public func sendEditedFixture() {
+        fixture = localFixture
+        websocket.sendNonBindingString(JsonModule().encodeEditFixture(editFixture(editFixture: hiJuDasIstEineNeueFixture(fixture: $fixture.wrappedValue))) ?? "", response: true)
+    }
+}
+
+struct ChannelWrapper: Identifiable {
+    var id: UUID
+    var channel: Channel
+}
+
+struct ChannelView: View {
+    @Binding var channels: [Channel]
+    @State var selectedChannel: Channel = Channel(internalID: "42", ChannelName: "error", ChannelType: "error", dmxChannel: "1")
+    
+    @Binding var editChannelSheet: Bool
+
+    var body: some View {
+        Table(channels.map { ChannelWrapper(id: UUID(), channel: $0) }) {
+            TableColumn("Name", value: \.channel.ChannelName)
+            TableColumn("Type", value: \.channel.ChannelType)
+            TableColumn("Address", value: \.channel.dmxChannel)
+            TableColumn("Action") { index in
+                Button {
+                    selectedChannel = index.channel
+                    editChannelSheet = true
+                } label: {
+                    Text("Edit")
+                }
+                .buttonStyle(.bordered)
+                .sheet(isPresented: $editChannelSheet) {
+                    editChannelSheetView(channel: $selectedChannel, editChannelSheet: $editChannelSheet)
+                        .onDisappear {
+                            if let selectedChannelIndex = channels.firstIndex(where: { $0.internalID == selectedChannel.internalID}) {
+                                channels[selectedChannelIndex] = $selectedChannel.wrappedValue
+                            }
+                        }
+                }
+            }
+        }
+    }
+}
+
+struct editChannelSheetView: View {
+    @Binding var channel: Channel
+    @Binding var editChannelSheet: Bool
+    
+    @State var internalChannel: Channel = Channel(internalID: "error", ChannelName: "error", ChannelType: "error", dmxChannel: "error")
+    var body: some View {
+        VStack {
+            Text("Edit channel \(internalChannel.ChannelName)")
+                .font(.title)
+                .fontWeight(.black)
+            HStack {
+                Text("Name")
+                TextField("Name", text: $internalChannel.ChannelName)
+            }/*
+            HStack {
+                Text("DMX Channel")
+                TextField("", text: $internalChannel.dmxChannel)
+            }*/
+            Spacer()
+            HStack {
+                Button {
+                    channel = internalChannel
+                    editChannelSheet = false
+                } label: {
+                    Text("Done")
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(internalChannel == channel)
+            }
+        }
+        .padding(20)
+        .onAppear {
+            internalChannel = channel
+        }
+    }
+}
+
+struct FixtureGeneralView: View {
+    @Binding var fixture: Fixture
+    var body: some View {
+        ScrollView {
+            VStack {
+                HStack {
+                    Text("Name: ")
+                    TextField("Name", text: $fixture.name)
+                }
+                HStack {
+                    Text("Start Channel: ")
+                    TextField("Start Channel", text: $fixture.startChannel)
+                }
+            }
+        }
+    }
+}
+
+//
+//  mixerManagement.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 01.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+///#TODO:
+///- Fader IDs
+///- Fader Presets
+struct iOSMixerConfigView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        VStack {
+            List {
+                NavigationLink(destination: MixerDisplayConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Displays") })
+                NavigationLink(destination: MixerLightingConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Lighting") })
+                NavigationLink(destination: MixerFaderConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Faders") })
+            }
+            .navigationTitle("Mixer Configuration")
+        }
+    }
+}
+
+struct MixerDisplayConfigView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    
+    @State private var displayModes: [String] = ["Master", "Fixtures", "Mixer", "Playbacks"/*, "StageNotes"*/]
+    @State private var selectedIndex: Int = 0
+    
+    private var selectedTemplate: String {
+        return displayModes[selectedIndex]
+    }
+    var body: some View {
+        VStack {
+            List {
+                Section("Monitors") {
+                    Picker("This iPad displays", selection: $selectedIndex) {
+                        ForEach(displayModes.indices, id: \.self) { index in
+                            Text(displayModes[index])
+                        }
+                    }
+                    .onChange(of: selectedIndex, {
+                        workspace.displayMode = selectedIndex
+                        iOSDataModule().save($workspace)
+                    })
+                }
+            }
+            .navigationTitle("Displays")
+            .onAppear {
+                selectedIndex = workspace.displayMode
+            }
+        }
+    }
+}
+
+struct MixerLightingConfigView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    
+    @State private var bgColor = Color(.sRGB, red: 1.0, green: 1.0, blue: 1.0)
+    @State private var localColor: String = "#ffffff"
+    var body: some View {
+        List {
+            ColorPicker("Color", selection: $bgColor)
+                .onChange(of: bgColor, {
+                    localColor = rgbToHexString(color: bgColor)
+                })
+                .onSubmit() {
+                    save()
+                }
+        }
+        .navigationTitle("Lighting")
+        .onAppear {
+            bgColor = hexStringToRGB(hex: packet.mixer.color)
+        }
+        .onDisappear {
+            save()
+        }
+        .toolbar(content: {
+            Button("Save") {
+                save()
+            }
+        })
+    }
+    
+    func rgbToHexString(color: Color) -> String {
+        guard let components = color.cgColor?.components else {
+            return "#ffffff"
+        }
+        
+        let red = components[0]
+        let green = components[1]
+        let blue = components[2]
+        
+        let redHex = String(format: "%02X", Int(red * 255))
+        let greenHex = String(format: "%02X", Int(green * 255))
+        let blueHex = String(format: "%02X", Int(blue * 255))
+        
+        return "#" + redHex + greenHex + blueHex
+    }
+    
+    func hexStringToRGB(hex: String) -> Color {
+        // Remove the '#' if it exists
+        let cleanedHex = hex.hasPrefix("#") ? String(hex.dropFirst()) : hex
+        
+        // Ensure the string is 6 characters long
+        guard cleanedHex.count == 6 else {
+            return Color.white // default to white color if invalid
+        }
+        
+        // Extract RGB values
+        let redHex = String(cleanedHex.prefix(2))
+        let greenHex = String(cleanedHex.dropFirst(2).prefix(2))
+        let blueHex = String(cleanedHex.dropFirst(4).prefix(2))
+        
+        // Convert hex strings to Int values
+        let redInt = Int(redHex, radix: 16) ?? 255
+        let greenInt = Int(greenHex, radix: 16) ?? 255
+        let blueInt = Int(blueHex, radix: 16) ?? 255
+        
+        // Create Color from RGB values
+        return Color(
+            red: Double(redInt) / 255.0,
+            green: Double(greenInt) / 255.0,
+            blue: Double(blueInt) / 255.0
+        )
+    }
+    
+    func save() {
+        websocket.sendNonBindingString("{ \"setMixerColor\": \"\(localColor)\" }", response: true)
+    }
+}
+
+struct MixerFaderConfigView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        Text("Faders")
+    }
+}
+
+//
+//  workspace.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 29.04.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct iOSMasterView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        if packet.setup == "false" {
+            NavigationSplitView(columnVisibility: $workspace.columnVisible) {
+                List {
+                    if packet.mixer.isMixerAvailable == "False" {
+                        NavigationLink {
+                            NavigationStack {
+                                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+                            }
+                        } label: {
+                            Text("Setup")
+                        }
+                    }
+                    NavigationLink {
+                        iOSConfigView(workspace: $workspace, websocket: $websocket, packet: $packet)
+                    } label: {
+                        Text("Config")
+                    }
+                }
+                .navigationTitle(packet.project?.name ?? "Workspace")
+            } detail: {
+                ZStack {
+                    Image("light-lights-led-812677")
+                    Rectangle()
+                        .fill(.clear)
+                        .background(Material.regular)
+                    VStack {
+                        HStack {
+                            Text("Welcome to PrismDMX Pro")
+                                .font(.title)
+                                .fontWeight(.black)
+                            Image("icon_512x512")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 40, height: 40)
+                                .clipped()
+                        }
+                        Text("Select a category")
+                    }
+                }
+            }
+        } else {
+            NavigationStack {
+                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+            }
+        }
+    }
+}
+
+struct iOSSettings: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        VStack {
+            List {
+                NavigationLink {
+                    Text("Loading")
+                        .onAppear {
+                            workspace.isCompleted = false
+                            websocket.disconnect(response: true)
+                        }
+                } label: {
+                    Text("Network Settings")
+                }
+                NavigationLink {
+                    Text("Loading...")
+                        .onAppear {
+                            workspace.project = nil
+                            packet.project = nil
+                        }
+                } label: {
+                    Text("Change Project")
+                }
+            }
+            .navigationTitle("App Settings")
+        }
+    }
+}
+
+//
+//  fixturesWorkspace.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 01.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct iOSFixturesView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        TabView {
+            iOSFixtureList(workspace: $workspace, websocket: $websocket, packet: $packet)
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Fixtures")
+                }
+            NavigationView {
+                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+            }
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Setup")
+            }
+        }
+    }
+}
+
+struct iOSFixtureList: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Fixtures")
+                        .font(.system(.title, weight: .bold))
+                        .padding(.leading, 20)
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(packet.fixtures.sorted(by: { $0.startChannel < $1.startChannel }).indices, id: \.self) { index in
+                                NavigationLink {
+                                    FixtureControlView()
+                                } label: {
+                                    SingleFixtureKastenView(fixture: $packet.fixtures[index])
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        .frame(height: 220)
+                        .clipped()
+                    }
+                    Text("Fixture Groups")
+                        .font(.system(.title, weight: .bold))
+                        .padding(.leading, 20)
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach($packet.fixtureGroups.indices, id: \.self) { index in
+                                SingleFixtureGroupKastenView(fixtureGroup: $packet.fixtureGroups[index])
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        .frame(height: 220)
+                        .clipped()
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .padding(.vertical, 20)
+                .clipped()
+            }
+        }
+    }
+}
+
+struct SingleFixtureKastenView: View {
+    @Binding var fixture: Fixture
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .stroke(Color(.quaternaryLabel), lineWidth: 1)
+                .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(Color(.quaternaryLabel)))
+                .frame(width: 180, height: 200)
+                .clipped()
+                .shadow(radius: 10)
+            VStack {
+                Text(fixture.name)
+                    .font(.system(.title2, weight: .semibold))
+                    .frame(width: 170, height: 60)
+                    .clipped()
+                Text("Channel: \(fixture.startChannel)")
+                .frame(width: 170, height: 20)
+                .clipped()
+            }
+        }
+    }
+}
+
+struct SingleFixtureGroupKastenView: View {
+    @Binding var fixtureGroup: FixtureGroup
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .stroke(Color(.quaternaryLabel), lineWidth: 1)
+                .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(Color(.quaternaryLabel)))
+                .frame(width: 180, height: 200)
+                .clipped()
+                .shadow(radius: 10)
+            VStack {
+                Text(fixtureGroup.name)
+                    .font(.system(.title2, weight: .semibold))
+                    .frame(width: 170, height: 60)
+                    .clipped()
+            }
+        }
+    }
+}
+
+struct FixtureControlView: View {
+    var body: some View {
+        Text("Hellooo")
+    }
+}
+
+//
+//  MixerWorkspace.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 02.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct iOSMixerView: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    
+    @State var mixerPage: Int = 0
+    @State var isSheetPresented: Bool = false
+    var body: some View {
+        TabView {
+            MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
+                .tabItem {
+                    Image(systemName: "slider.vertical.3")
+                    Text("Mixer")
+                }
+            NavigationView {
+                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+            }
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Setup")
+            }
+            .toolbar(content: {
+                HStack {
+                    Button {
+                        if mixerPage > 0 {
+                            mixerPage = mixerPage - 1
+                        }
+                    } label: {
+                        Image(systemName: "minus")
+                    }
+                    .disabled(mixerPage == 0)
+                    .padding(.horizontal)
+                    Button {
+                        isSheetPresented.toggle()
+                    } label: {
+                        Text("Selected Page: \(mixerPage + 1)")
+                    }
+                    .buttonStyle(.plain)
+                    Button {
+                        if $mixerPage.wrappedValue != $packet.mixer.pages.wrappedValue.count - 1 {
+                            mixerPage = mixerPage + 1
+                            print(packet.mixer.pages.count)
+                        } else {
+                            //Append new page
+                        }
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    .disabled($mixerPage.wrappedValue == $packet.mixer.pages.wrappedValue.count - 1)
+                    .padding(.horizontal)
+                }
+            })
+            .sheet(isPresented: $isSheetPresented, content: {
+                PagesOverview(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage, isSheetPresented: $isSheetPresented)
+            })
+        }
+    }
+}
+
+//
+//  PlaybacksWorkspace.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 06.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct PlaybacksWorkspace: View {
+    @Binding var workspace: Workspace
+    @Binding var websocket: Websocket
+    @Binding var packet: Packet
+    
+    var body: some View {
+        TabView {
+            PlaybackTimelineView()
+                .tabItem { Text("Playbacks") }
+            NavigationView {
+                iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
+            }
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Setup")
+            }
+        }
+    }
+}
+
+struct PlaybackTimelineView: View {
+    var body: some View {
+        VStack {
+            PlaybackInformationView()
+            PlaybackTimeline()
+            PlaybackTimelineToolbar()
+        }
+    }
+}
+
+struct PlaybackInformationView: View {
+    var body: some View {
+        NavigationView {
+            List {
+                NavigationLink {
+                    PlaybacksListView()
+                } label: {
+                    Text("Playbacks")
+                }
+
+            }
+            .navigationTitle("Playbacks")
+        }
+    }
+}
+
+struct PlaybacksListView: View {
+    var body: some View {
+        Text("Playbacks")
+    }
+}
+
+struct PlaybackTimeline: View {
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .fill(.tertiary)
+            VStack {
+                PlaybackTimelineLights()
+                PlaybackTimelineAudio()
+            }
+        }
+    }
+}
+
+struct PlaybackTimelineLights: View {
+    var body: some View {
+        ScrollView {
+            Text("Lights")
+        }
+    }
+}
+
+struct PlaybackTimelineAudio: View {
+    var body: some View {
+        ScrollView {
+            Text("Audio")
+        }
+    }
+}
+
+struct PlaybackTimelineToolbar: View {
+    var body: some View {
+        HStack {
+            
+        }
+    }
+}
+
+//
+//  json.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 22.04.24.
+//
+
+import Foundation
+import SwiftUI
+
+class JsonModule {
+    func encodeNewFixture(_ newFixture: newFixture) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(newFixture) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding newFixture")
+            return nil
+        }
+    }
+    
+    func encodeEditFixture(_ editFixture: editFixture) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(editFixture) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding editFixture")
+            return nil
+        }
+    }
+    
+    func encodeFixtureDeletion(_ deleteFixture: DeleteFixture) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(deleteFixture) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding fixtureDeletion")
+            return nil
+        }
+    }
+    
+    func encodePacket(_ packet: Packet) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(packet) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding packet")
+            return nil
+        }
+    }
+    
+    func encodeNewProject(_ newProject: newProject) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(newProject) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding new project")
+            return nil
+        }
+    }
+    
+    func encodeSetProject(_ setProject: setProject) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(setProject) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding set project")
+            return nil
+        }
+    }
+    
+    func projectDeletion(_ deleteProject: deleteProject) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(deleteProject) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding delete Project")
+            return nil
+        }
+    }
+    
+    func encodeEditMixerFader(_ editMixerFader: editMixerFader) -> String? {
+        let encoder = JSONEncoder()
+        if let json = try? encoder.encode(editMixerFader) {
+            return String(data: json, encoding: .utf8)
+        } else {
+            print("Error encoding edit Mixer Fader")
+            return nil
+        }
+    }
+    
+    func decode(_ data: Data) -> Packet? {
+        let decoder = JSONDecoder()
+        if let packetData = try? decoder.decode(Packet.self, from: data) {
+            return packetData
+        } else {
+            print("Error decoding packet")
+            return nil
+        }
+    }
+}
+
+//
+//  ws.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 22.04.24.
+//
+
+import Foundation
+import SwiftUI
+import Network
+import NWWebSocket
+
+//Responses are console logs
+class Websocket: WebSocketConnectionDelegate {
+    var socket: NWWebSocket?
+    
+    @Binding var connected: Bool
+    @Binding var error: String?
+    
+    @Binding var workspace: Workspace
+    @Binding var packet: Packet
+    
+    init(connected: Binding<Bool>, error: Binding<String?>, workspace: Binding<Workspace>, packet: Binding<Packet>) {
+        self._connected = connected
+        self._error = error
+        self._workspace = workspace
+        self._packet = packet
+    }
+    
+    //Connection
+    
+    func connect(ip: Binding<String>, port: Binding<String>, response: Bool) {
+        // Check if the IP is a valid URL
+        guard let url = URL(string: ip.wrappedValue), url.scheme != nil else {
+            // Print an error message or handle the invalid URL case as needed
+            error = "Invalid URL: \(ip.wrappedValue)"
+            return
+        }
+        
+        // Connect only if the port is empty
+        if port.wrappedValue.isEmpty {
+            if response {
+                print("Connecting to \(ip.wrappedValue)")
+            }
+            connectToSocket(url: url, response: response)
+        } else {
+            // If the port is provided, proceed with the connection
+            let urlString = "\(ip.wrappedValue):\(port.wrappedValue)"
+            if let socketURL = URL(string: urlString) {
+                if response {
+                    print("Connecting to \(urlString)...")
+                }
+                connectToSocket(url: socketURL, response: response)
+            } else {
+                error = "Invalid URL: \(urlString)"
+            }
+        }
+    }
+
+    func connectToSocket(url: URL, response: Bool) {
+        self.socket = NWWebSocket(url: url)
+        self.socket?.delegate = self
+        self.socket?.connect()
+        if response {
+            print("Websocket connected to: \(url)")
+        }
+    }
+    
+    func disconnect(response: Bool) {
+        socket?.disconnect()
+        connected = false
+        error = nil
+        if response == true {
+            print("Websocket disconnect")
+        }
+    }
+    
+    //Data
+    
+    func sendData(_ data: Binding<[UInt8]>, response: Bool) {
+        let messageData = Data(data.wrappedValue)
+        self.socket?.send(data: messageData)
+        if response == true {
+            print("Sent data: \(data)")
+        }
+    }
+    
+    func sendString(_ string: Binding<String>, response: Bool) {
+        socket?.send(string: string.wrappedValue)
+        if response == true {
+            print("Sent message: \(string)")
+        }
+    }
+    
+    func sendNonBindingString(_ string: String, response: Bool) {
+        socket?.send(string: string)
+        if response == true {
+            print("Sent message: \(string)")
+        }
+    }
+    
+    //WS Events
+    
+    func webSocketDidConnect(connection: WebSocketConnection) {
+        print("WebSocket connected")
+        connected = true
+        error = nil
+    }
+
+    func webSocketDidDisconnect(connection: WebSocketConnection, closeCode: NWProtocolWebSocket.CloseCode, reason: Data?) {
+        print("WebSocket disconnected with code: \(closeCode)")
+        connected = false
+        error = "Connection lost"
+    }
+
+    func webSocketViabilityDidChange(connection: WebSocketConnection, isViable: Bool) {
+        print("WebSocket viability changed to: \(isViable)")
+    }
+
+    func webSocketDidAttemptBetterPathMigration(result: Result<WebSocketConnection, NWError>) {
+        print("WebSocket attempted better path migration")
+    }
+
+    func webSocketDidReceiveError(connection: WebSocketConnection, error: NWError) {
+        print("WebSocket received error: \(error)")
+        self.error = error.localizedDescription
+    }
+
+    func webSocketDidReceivePong(connection: WebSocketConnection) {
+        print("WebSocket received Pong")
+    }
+
+    func webSocketDidReceiveMessage(connection: WebSocketConnection, string: String) {
+        print("WebSocket received message as string: \(string)")
+        //On Recieve change data
+        if let data = string.data(using: .utf8) {
+            packet = JsonModule().decode(data) ?? Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [], setup: "false")
+        } else {
+            print("Couldn't convert recieved message to data")
+        }
+    }
+
+    func webSocketDidReceiveMessage(connection: WebSocketConnection, data: Data) {
+        print("WebSocket received message as data: \(data)")
+    }
+}
+
+//
+//  UIColor+Hex.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 04.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+extension UIColor {
+    // Initializes a new UIColor instance from a hex string
+    convenience init?(hex: String) {
+        var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        if hexString.hasPrefix("#") {
+            hexString.removeFirst()
+        }
+
+        let scanner = Scanner(string: hexString)
+
+        var rgbValue: UInt64 = 0
+        guard scanner.scanHexInt64(&rgbValue) else {
+            return nil
+        }
+
+        var red, green, blue, alpha: UInt64
+        switch hexString.count {
+        case 6:
+            red = (rgbValue >> 16)
+            green = (rgbValue >> 8 & 0xFF)
+            blue = (rgbValue & 0xFF)
+            alpha = 255
+        case 8:
+            red = (rgbValue >> 16)
+            green = (rgbValue >> 8 & 0xFF)
+            blue = (rgbValue & 0xFF)
+            alpha = rgbValue >> 24
+        default:
+            return nil
+        }
+
+        self.init(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: CGFloat(alpha) / 255)
+    }
+
+    // Returns a hex string representation of the UIColor instance
+    func toHexString(includeAlpha: Bool = false) -> String? {
+        // Get the red, green, and blue components of the UIColor as floats between 0 and 1
+        guard let components = self.cgColor.components else {
+            // If the UIColor's color space doesn't support RGB components, return nil
+            return nil
+        }
+
+        // Convert the red, green, and blue components to integers between 0 and 255
+        let red = Int(components[0] * 255.0)
+        let green = Int(components[1] * 255.0)
+        let blue = Int(components[2] * 255.0)
+
+        // Create a hex string with the RGB values and, optionally, the alpha value
+        let hexString: String
+        if includeAlpha, let alpha = components.last {
+            let alphaValue = Int(alpha * 255.0)
+            hexString = String(format: "#%02X%02X%02X%02X", red, green, blue, alphaValue)
+        } else {
+            hexString = String(format: "#%02X%02X%02X", red, green, blue)
+        }
+
+        // Return the hex string
+        return hexString
+    }
+}
+
+//
+//  Color+Hex.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 04.05.24.
+//
+
+import Foundation
+import SwiftUI
+
+extension Color {
+
+    init?(hex: String) {
+        guard let uiColor = UIColor(hex: hex) else { return nil }
+        self.init(uiColor: uiColor)
+    }
+
+    func toHexString(includeAlpha: Bool = false) -> String? {
+        return UIColor(self).toHexString(includeAlpha: includeAlpha)
+    }
+
+}
+
+//
+//  jsonVariables.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 29.04.24.
+//
+
+import Foundation
+
+struct Fixture: Equatable, Codable {
+    var internalID: String
+    var name: String
+    var FixtureGroup: String
+    var template: String
+    var startChannel: String
+    var channels: [Channel]
+}
+
+struct FixtureTemplate: Equatable, Codable, Hashable {
+    var internalID: String
+    var name: String
+    var channels: [Channel]
+}
+
+struct Channel: Equatable, Codable, Hashable {
+    var internalID: String
+    var ChannelName: String
+    var ChannelType: String
+    var dmxChannel: String
+}
+
+struct Packet: Equatable, Codable {
+    var project: Project?
+    var availableProjects: [Project]
+    var fixtures: [Fixture]
+    var fixtureTemplates: [FixtureTemplate]
+    var mixer: Mixer
+    var fixtureGroups: [FixtureGroup]
+    var setup: String
+}
+
+struct Project: Equatable, Codable {
+    var internalID: String
+    var name: String
+}
+
+struct FixtureGroup: Equatable, Codable {
+    var name: String
+    var internalIDs: [String]
+}
+
+struct newFixture: Equatable, Codable {
+    var newFixture: hiJuDasIstEineNeueFixture
+}
+
+struct editFixture: Equatable, Codable {
+    var editFixture: hiJuDasIstEineNeueFixture
+}
+
+struct hiJuDasIstEineNeueFixture: Equatable, Codable {
+    var fixture: Fixture
+}
+
+struct DeleteFixture: Equatable, Codable {
+    var deleteFixture: hiJuDasIstDieFixture
+}
+
+struct hiJuDasIstDieFixture: Equatable, Codable {
+    var internalID: String
+}
+
+struct hiJuDasIstEinNeuesProject: Equatable, Codable {
+    var project: Project
+}
+
+struct newProject: Equatable, Codable {
+    var newProject: hiJuDasIstEinNeuesProject
+}
+
+struct setProject: Equatable, Codable {
+    var setProject: hiJuDasIstEinNeuesProject
+}
+
+struct deleteProject: Equatable, Codable {
+    var deleteProject: hiJuDasIstEinNeuesProject
+}
+
+struct editMixerFader: Equatable, Codable {
+    var editMixerFader: hiJuDasIstEineMixerFaderVeränderung
+}
+
+struct hiJuDasIstEineMixerFaderVeränderung: Equatable, Codable {
+    var fader: MixerFader
+}
+
+//
+//  mixerVariables.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 29.04.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct Mixer: Equatable, Codable {
+    var pages: [MixerPage]
+    var color: String
+    var isMixerAvailable: String //Bool
+    var mixerType: String //Divides between 5/10/15 .. mixers
+}
+
+struct MixerPage: Equatable, Codable {
+    var num: String
+    var faders: [MixerFader]
+    var buttons: [MixerButton]
+    var id: String
+}
+
+struct MixerFader: Equatable, Codable {
+    var name: String
+    var color: String //HEX f.e. 0xffffff
+    var isTouched: String //Bool
+    var value: String //Int
+    var assignedType: String
+    var assignedID: String
+    var id: String
+}
+
+struct MixerButton: Equatable, Codable {
+    var name: String
+    var color: String
+    var isPressed: String //Bool
+    var assignedType: String
+    var assignedID: String
+    var id: String
+}
+
+//
+//  Variables.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 22.04.24.
+//
+
+import Foundation
+import SwiftUI
+
+struct Workspace: Equatable, Identifiable, Codable {
+    var id = UUID()
+    var isCompleted: Bool
+    var settings: Settings
+    var project: Project?
+    var displayMode: Int
+    var notes: [Note]
+    var columnVisible: NavigationSplitViewVisibility
+}
+
+struct Settings: Equatable, Identifiable, Codable {
+    var id = UUID()
+    var ip: String
+    var port: String
+}
+
+struct Note: Equatable, Identifiable, Codable {
+    var id = UUID()
+    var name: String
+    var content: String
+}
+
+//
+//  PrismDMX_ProApp.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 22.04.24.
+//
+
+import SwiftUI
+import Foundation
+
+@main
+struct PrismDMX_ProApp: App {
+    @State var packet: Packet = Packet(project: nil, availableProjects: [Project(internalID: "0", name: "error"), Project(internalID: "1", name: "error1")], fixtures: [], fixtureTemplates: [], mixer: Mixer(pages: [], color: "0xffffff", isMixerAvailable: "false", mixerType: "0"), fixtureGroups: [], setup: "false")
+    @State var connected: Bool = false
+    @State var error: String?
+    #if os(iOS)
+    @State var iOSWorkspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://192.168.178.187", port: "8000/ws/main"), displayMode: 0, notes: [], columnVisible: .all)
+    #endif
+    var body: some Scene {
+        /*WindowGroup {
+            VStack {
+                ForEach(packet.availableProjects.indices, id: \.self) { index in
+                    Text(packet.availableProjects[index].name)
+                }
+            }
+        }*/
+        #if os(macOS)
+        DocumentGroup(newDocument: PrismDMXProDocument()) { file in
+            mainView(document: file.$document,connected: $connected, error: $error, packet: $packet, websocket: Websocket(connected: $connected, error: $error, workspace: file.$document.workspace, packet: $packet))
+        }
+        .commands {
+            CommandGroup(after: .newItem) {
+                Button("Projects") { packet.project = nil }
+                    .disabled(!$connected.wrappedValue)
+            }
+        }
+        #else
+        WindowGroup {
+            iOSView(workspace: $iOSWorkspace, packet: $packet, connected: $connected, error: $error, websocket: Websocket(connected: $connected, error: $error, workspace: $iOSWorkspace, packet: $packet))
+        }
+        #endif
+    }
+}
+
+//
+//  PrismDMX_ProDocument.swift
+//  PrismDMX Pro
+//
+//  Created by Christian on 22.04.24.
+//
+
+import SwiftUI
+import UniformTypeIdentifiers
+
+extension UTType {
+    static var prismDMXProDocument: UTType {
+        UTType(exportedAs: "de.micstudios.pmxpro")
+    }
+}
+
+struct PrismDMXProDocument: FileDocument, Codable {
+    var workspace: Workspace
+
+    init(workspace: Workspace = Workspace(isCompleted: false, settings: Settings(ip: "ws://127.0.0.1", port: "8000/ws/main"), displayMode: 0)) {
+        self.workspace = workspace
+    }
+    
+    static var readableContentTypes: [UTType] { [.prismDMXProDocument] }
+
+    init(configuration: ReadConfiguration) throws {
+        let data = configuration.file.regularFileContents!
+        self = try JSONDecoder().decode(Self.self, from: data)
+    }
+    
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        let data = try JSONEncoder().encode(self)
+        return .init(regularFileWithContents: data)
+    }
+}

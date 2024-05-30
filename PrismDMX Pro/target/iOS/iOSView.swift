@@ -57,24 +57,10 @@ struct iOSWorkspaceView: View {
     @Binding var packet: Packet
     var body: some View {
         VStack {
-            if $workspace.displayMode.wrappedValue == 0 { //MasterWorkspace
-                iOSMasterView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 1 { //FixturesWorkspace
-                iOSFixturesView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 2 { //MixerWorkspace
+            if $workspace.displayMode.wrappedValue == 0 { //Fixture
+                PlaybacksWorkspace(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 1 { //Mixer
                 iOSMixerView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            } else if $workspace.displayMode.wrappedValue == 3 { //PlaybacksWorkspace
-                Text("Loading...")
-                    .onAppear {
-                        workspace.displayMode = 0
-                    }
-            } else if $workspace.displayMode.wrappedValue == 4 { //StageNotesWorkspace
-                NotesView(workspace: $workspace, websocket: $websocket, packet: $packet)
-                Text("Loading...")
-                    .onAppear {
-                        workspace.displayMode = 0
-                    }
-                
             } else {
                 VStack {
                     Text("Error: DisplayMode invalid")
@@ -87,6 +73,29 @@ struct iOSWorkspaceView: View {
                 }
             }
         }
+        /*
+        VStack {
+            if $workspace.displayMode.wrappedValue == 0 { //MasterWorkspace
+                iOSMasterView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 1 { //FixturesWorkspace
+                iOSFixturesView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 2 { //MixerWorkspace
+                iOSMixerView(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else if $workspace.displayMode.wrappedValue == 3 { //PlaybacksWorkspace
+                PlaybacksWorkspace(workspace: $workspace, websocket: $websocket, packet: $packet)
+            } else {
+                VStack {
+                    Text("Error: DisplayMode invalid")
+                    Button {
+                        workspace.displayMode = 0
+                    } label: {
+                        Text("Reset")
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+            }
+        }
+         */
     }
 }
 

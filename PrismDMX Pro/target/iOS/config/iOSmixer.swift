@@ -22,7 +22,7 @@ struct iOSConfigView: View {
             MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
             .tabItem {
                 Image(systemName: "slider.vertical.3")
-                if packet.mixer.isMixerAvailable == "True" { //Ja das muss so
+                if packet.mixer.isMixerAvailable == "true" {
                     Text("Mixer")
                 } else {
                     Text("Mixer (Disconnected)")
@@ -133,7 +133,7 @@ struct MixerView: View {
                         }
                         ScrollView {
                             VStack {
-                                if packet.mixer.pages[mixerPage].faders != [] {
+                                if packet.mixer.pages[mixerPage].faders != [] { //Error
                                     VStack {
                                         Text("Faders")
                                             .font(.system(.title, weight: .bold))

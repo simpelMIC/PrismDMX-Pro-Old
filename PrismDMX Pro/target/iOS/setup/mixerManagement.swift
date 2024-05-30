@@ -32,7 +32,7 @@ struct MixerDisplayConfigView: View {
     @Binding var websocket: Websocket
     @Binding var packet: Packet
     
-    @State private var displayModes: [String] = ["Master", "Fixtures", "Mixer", "Playbacks", "StageNotes"]
+    @State private var displayModes: [String] = ["Right", "Left"/*, "StageNotes"*/]
     @State private var selectedIndex: Int = 0
     
     private var selectedTemplate: String {

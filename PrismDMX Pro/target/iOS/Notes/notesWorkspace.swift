@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+
+//Discontinued
+//Dont use workspace. Notes should be synchronised via whole mixer / every ipad
 struct NotesView: View {
     @Binding var workspace: Workspace
     @Binding var websocket: Websocket

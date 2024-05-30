@@ -16,6 +16,7 @@ struct iOSMasterView: View {
         if packet.setup == "false" {
             NavigationSplitView(columnVisibility: $workspace.columnVisible) {
                 List {
+                    //Setup
                     if packet.mixer.isMixerAvailable == "False" {
                         NavigationLink {
                             NavigationStack {
@@ -25,10 +26,23 @@ struct iOSMasterView: View {
                             Text("Setup")
                         }
                     }
+                    
+                    //Fixtures
+                    NavigationLink {
+                        FixtureView(workspace: $workspace, websocket: $websocket, packet: $packet)
+                    } label: {
+                        Text("Fixtures")
+                    }
+                    
+                    //Mixer
                     NavigationLink {
                         iOSConfigView(workspace: $workspace, websocket: $websocket, packet: $packet)
                     } label: {
-                        Text("Config")
+                        if $packet.mixer.isMixerAvailable.wrappedValue == "True" {
+                            Text("Mixer")
+                        } else {
+                            Text("Config")
+                        }
                     }
                 }
                 .navigationTitle(packet.project?.name ?? "Workspace")
