@@ -15,6 +15,11 @@ struct FixtureConfigView: View {
     
     @State private var isSheetOpened: Bool = false
     @State private var isActionSheetOpened: Bool = false
+    
+    private let adaptiveColumn = [
+            GridItem(.adaptive(minimum: 180))
+        ]
+    
     var body: some View {
         VStack {
             List(fixtures.sorted(by: { $0.startChannel < $1.startChannel }).indices, id: \.self) { index in

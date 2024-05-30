@@ -15,6 +15,11 @@ struct FixtureView: View {
     
     @State var isSheetPresented: Bool = false
     @State var localSheetName: String = "New Group"
+    
+    private let adaptiveColumn = [
+            GridItem(.adaptive(minimum: 180))
+        ]
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -22,28 +27,21 @@ struct FixtureView: View {
                     HStack {
                         Text("Fixture Groups")
                             .font(.headline)
-                        Spacer()
-                        Button {
-                            isSheetPresented.toggle()
-                        } label: {
-                            Text("Add")
-                        }
                     }
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(packet.fixtureGroups.indices, id: \.self) { index in
-                                NavigationLink {
-                                    FixtureGroupDetailView(fixtureGroup: $packet.fixtureGroups[index], packet: $packet, websocket: $websocket)
-                                } label: {
-                                    FixtureGroupStackView(fixtureGroup: $packet.fixtureGroups[index])
-                                }
-                                .buttonStyle(.plain)
-                                .contextMenu {
+                            LazyHGrid(rows: adaptiveColumn, spacing: 25) {
+                                ForEach(packet.fixtureGroups.indices, id: \.self) { index in
                                     Button {
-                                        websocket.sendNonBindingString("{\"deleteGroup\": {\"groupID\":\"\(packet.fixtureGroups[index].groupID)\"}}", response: true)
+                                        if $packet.selectedFixtureGroupIDs.wrappedValue.contains($packet.fixtureGroups[index].groupID.wrappedValue) {
+                                            websocket.sendNonBindingString("{\"deselectFixtureGroup\":{\"groupID\":\"\($packet.fixtureGroups[index].groupID.wrappedValue)\"}}", response: true)
+                                        } else {
+                                            websocket.sendNonBindingString("{\"selectFixtureGroup\":{\"groupID\":\"\($packet.fixtureGroups[index].groupID.wrappedValue)\"}}", response: true)
+                                        }
                                     } label: {
-                                        Text("Delete")
+                                        FixtureGroupStackView(fixtureGroup: $packet.fixtureGroups[index], packet: $packet)
                                     }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
@@ -51,17 +49,19 @@ struct FixtureView: View {
                     HStack {
                         Text("Fixtures")
                             .font(.headline)
-                        Spacer()
-                        NavigationLink {
-                        } label: {
-                            Text("Settings")
-                        }
                     }
-                    ForEach($packet.fixtures.indices, id: \.self) { index in
-                        NavigationLink {
-                            
-                        } label: {
-                            Text($packet.fixtures[index].name.wrappedValue)
+                    LazyVGrid(columns: adaptiveColumn, spacing: 25) {
+                        ForEach($packet.fixtures.indices, id: \.self) { index in
+                            Button {
+                                if $packet.selectedFixtureIDs.wrappedValue.contains($packet.fixtures[index].internalID.wrappedValue) {
+                                    websocket.sendNonBindingString("{\"deselectFixture\":{\"fixtureID\":\"\($packet.fixtures[index].internalID.wrappedValue)\"}}", response: true)
+                                } else {
+                                    websocket.sendNonBindingString("{\"selectFixture\":{\"fixtureID\":\"\($packet.fixtures[index].internalID.wrappedValue)\"}}", response: true)
+                                }
+                            } label: {
+                                SingleFixtureView(fixture: $packet.fixtures[index], packet: $packet)
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
                 }
@@ -96,6 +96,7 @@ struct FixtureView: View {
 
 struct FixtureGroupStackView: View {
     @Binding var fixtureGroup: FixtureGroup
+    @Binding var packet: Packet
     var body: some View {
         ZStack {
             if fixtureGroup.internalIDs.count >= 2 {
@@ -113,11 +114,27 @@ struct FixtureGroupStackView: View {
                     .rotationEffect(.degrees(8), anchor: .center)
             }
             if fixtureGroup.internalIDs.count >= 0 {
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .frame(width: 180, height: 180)
-                    .clipped()
-                    .foregroundColor(Color(.tertiaryLabel))
-                    .rotationEffect(.degrees(0), anchor: .center)
+                if $packet.channels.wrappedValue == "true" {
+                    if $packet.selectedFixtureGroupIDs.wrappedValue.contains(fixtureGroup.groupID) {
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .frame(width: 180, height: 180)
+                            .clipped()
+                            .foregroundColor(.purple)
+                            .rotationEffect(.degrees(0), anchor: .center)
+                    } else {
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .frame(width: 180, height: 180)
+                            .clipped()
+                            .foregroundColor(Color(.tertiaryLabel))
+                            .rotationEffect(.degrees(0), anchor: .center)
+                    }
+                } else {
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .frame(width: 180, height: 180)
+                        .clipped()
+                        .foregroundColor(Color(.tertiaryLabel))
+                        .rotationEffect(.degrees(0), anchor: .center)
+                }
                 VStack {
                     Text($fixtureGroup.name.wrappedValue)
                         .frame(width: 160, height: 70)
@@ -126,7 +143,6 @@ struct FixtureGroupStackView: View {
                 }
             }
         }
-        .padding(20)
     }
 }
 
@@ -155,7 +171,7 @@ struct FixtureGroupDetailView: View {
                 VStack {
                     Text("All Fixtures")
                     List (packet.fixtures.filter { !fixtureGroup.internalIDs.contains($0.internalID) }, id: \.internalID) { fixture in
-                        Button(role: .destructive) {
+                        Button {
                             websocket.sendNonBindingString("{\"addFixtureToGroup\":{\"groupID\":\"\(fixtureGroup.groupID)\", \"fixtureID\":\"\(fixture.internalID)\"}}", response: true)
                         } label: {
                             Text(fixture.name)

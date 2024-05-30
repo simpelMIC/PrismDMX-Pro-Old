@@ -22,7 +22,7 @@ struct iOSMixerView: View {
                     iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
                 }
             } else if $packet.channels.wrappedValue == "true" {
-                
+                iOSChannelsView(workspace: $workspace, websocket: $websocket, packet: $packet, iPadNumber: "left")
             } else {
                 NavigationStack {
                     MixerView(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage)
@@ -65,6 +65,7 @@ struct iOSMixerView: View {
                         .sheet(isPresented: $isSheetPresented, content: {
                             PagesOverview(workspace: $workspace, websocket: $websocket, packet: $packet, mixerPage: $mixerPage, isSheetPresented: $isSheetPresented)
                         })
+                        .navigationTitle(packet.project?.name ?? "Untitled Project")
                 }
             }
         } else {

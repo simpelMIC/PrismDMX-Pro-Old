@@ -19,6 +19,8 @@ struct PlaybacksWorkspace: View {
                 NavigationView {
                     iOSSetup(workspace: $workspace, websocket: $websocket, packet: $packet)
                 }
+            } else if $packet.channels.wrappedValue == "true" {
+                iOSChannelsView(workspace: $workspace, websocket: $websocket, packet: $packet, iPadNumber: "right")
             } else {
                 PlaybackTimelineView()
             }

@@ -34,8 +34,9 @@ struct iOSSetup: View {
                 Text("Change Project")
             }
             //Other Settings
-            NavigationLink(destination: FixtureConfigView(packet: $packet, websocket: $websocket, fixtures: $packet.fixtures), label: { Text("Fixture Configuration") })
-            NavigationLink(destination: iOSMixerConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Mixer Configuration") })
+            NavigationLink(destination: FixtureConfigView(packet: $packet, websocket: $websocket, fixtures: $packet.fixtures), label: { Text("Fixtures") })
+            NavigationLink(destination: iOSMixerConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Mixer") })
+            NavigationLink(destination: FixtureGroupConfigView(workspace: $workspace, websocket: $websocket, packet: $packet), label: { Text("Fixture Groups") })
         }
         .navigationTitle("Setup")
     }
