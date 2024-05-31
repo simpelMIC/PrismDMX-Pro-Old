@@ -16,12 +16,7 @@ struct iOSChannelsView: View {
     @State var iPadNumber: String
     var body: some View {
         if iPadNumber == "left" { //Left
-            if packet.selectedFixtureIDs == [] && packet.selectedFixtureGroupIDs == [] {
-                Text("Nothing selected")
-                    .font(.headline)
-            } else {
-                FixtureView(workspace: $workspace, websocket: $websocket, packet: $packet)
-            }
+            FixtureView(workspace: $workspace, websocket: $websocket, packet: $packet)
         } else { //Right
             if packet.selectedFixtureIDs == [] && packet.selectedFixtureGroupIDs == [] {
                 Text("Nothing selected")

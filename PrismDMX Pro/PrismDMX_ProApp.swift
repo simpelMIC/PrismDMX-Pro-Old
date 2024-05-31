@@ -36,7 +36,9 @@ struct PrismDMX_ProApp: App {
         }
         #else
         WindowGroup {
-            iOSView(workspace: $iOSWorkspace, packet: $packet, connected: $connected, error: $error, websocket: Websocket(connected: $connected, error: $error, workspace: $iOSWorkspace, packet: $packet))
+            // 1.0: iOSView(workspace: $iOSWorkspace, packet: $packet, connected: $connected, error: $error, websocket: Websocket(connected: $connected, error: $error, workspace: $iOSWorkspace, packet: $packet))
+            // 2.0:
+            iOSMainView()
         }
         #endif
     }
